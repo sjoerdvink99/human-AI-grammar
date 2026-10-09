@@ -1,0 +1,80 @@
+{
+  "name": "System X",
+  "goal": "End-to-end figurative glyph authoring, including ideation, decomposition, categorical and numerical encoding, assembly, placement, and export.",
+  "description": "the system helps users create figurative glyph-based visualizations from tabular data. It combines language and image generation, interactive segmentation, attribute encoding, and rule-based placement, allowing users to progressively refine the resulting visualization. Actors: model_1 = language model; model_2 = image generation model; model_3 = image segmentation model; model_4 = vision-language model; model_5 = ControlNet-conditioned diffusion model; tool_1 = data processing and prompt construction utilities; tool_2 = image edge detection algorithm; tool_3 = image processing libraries; tool_4 = rule-based visualization placement recommender.",
+  "processes": [
+    {
+      "name": "Recommend figurative concepts",
+      "description": "When the user uploads a CSV dataset, the system identifies categorical and numerical attributes and describes them to model_1, which suggests semantically related keywords. The system displays these keywords in a word cloud and uses model_2 to generate three candidate images for each suggested concept.",
+      "rawExpression": "(dataset_1: artifact tabular)\n-> [tool_1 extract]\n-> (attributes_1: artifact record)\n-> [tool_1 translate]\n-> (dataset_description_1: artifact language)\n-> [model_1 generate]~\n-> (keyword_response_1: artifact language)\n-> [tool_1 extract]\n-> (keywords_1: artifact language)*\n-> [tool_1 translate]\n-> (keywords_1: artifact language)* + (word_cloud_1: artifact visual)\n-> [tool_1 compose]\n-> (image_prompts_1: instruction language)*\n-> [model_2 generate]~\n-> (candidate_images_1: artifact visual)*"
+    },
+    {
+      "name": "Refine figurative image candidates",
+      "description": "After seeing the recommended concepts and images, the user can choose a keyword or enter a custom description. model_2 generates new image candidates from the prompt, and the user can refresh the results or revise the description repeatedly until a suitable figurative concept is found.",
+      "rawExpression": "(candidate_images_1: artifact visual)* + (keywords_1: artifact language)* + (word_cloud_1: artifact visual)\n-> [human specify]\n-> (concept_prompt_1: instruction language)\n-> [tool_1 compose]\n-> (image_prompt_2: instruction language)\n-> [model_2 generate]~\n-> (candidate_images_2: artifact visual)*\n-> [human modify]\n-> (concept_prompt_1: instruction language)"
+    },
+    {
+      "name": "Select figurative prototype",
+      "description": "Once the generated candidates contain a suitable figurative design, the user selects one image as the prototype for segmentation and attribute mapping.",
+      "rawExpression": "(candidate_images_2: artifact visual)*\n-> [human select]\n-> (glyph_image_1: artifact visual)"
+    },
+    {
+      "name": "Segment and map glyph components",
+      "description": "After selecting a figurative image, the user draws bounding boxes around components to be used for data encoding. The model_3 generates masks for these regions, which the user can refine before assigning each component to a categorical attribute, a numerical attribute, or both.",
+      "rawExpression": "(glyph_image_1: artifact visual) + (attributes_1: artifact record)\n-> [human select]\n-> (glyph_image_1: artifact visual) + (regions_1: selection spatial)*\n-> [model_3 extract]\n-> (glyph_image_1: artifact visual) + (masks_1: artifact spatial)*\n-> [human modify]\n-> (glyph_image_1: artifact visual) + (masks_2: artifact spatial)*\n-> [human assign]\n-> (glyph_image_1: artifact visual) + (masks_2: artifact spatial)* + (attribute_mappings_1: label record)*"
+    },
+    {
+      "name": "Generate and refine categorical encodings",
+      "description": "After the user submits the segmented components and attribute mappings, tool_2 extracts fragment boundaries and model_4 describes the visual objects. A ControlNet-conditioned diffusion model generates color- and texture-based variants for categorical values, which the user can regenerate or customize through prompts until the encodings match their design intentions.",
+      "rawExpression": "(glyph_image_1: artifact visual) + (masks_2: artifact spatial)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_2 extract]\n-> (fragments_1: artifact visual)* + (fragment_edges_1: artifact spatial)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [model_4 generate]~\n-> (fragment_descriptions_1: artifact language)* + (fragment_edges_1: artifact spatial)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_1 compose]\n-> (encoding_prompts_1: instruction language)* + (fragment_edges_1: artifact spatial)*\n-> [model_5 generate]~\n-> (categorical_fragments_1: artifact visual)* + (encoding_prompts_1: instruction language)* + (fragment_edges_1: artifact spatial)*\n-> [human modify]\n-> (encoding_prompts_1: instruction language)* + (fragment_edges_1: artifact spatial)*"
+    },
+    {
+      "name": "Encode numerical attributes and assemble glyphs",
+      "description": "After categorical encoding, the user chooses how numerical attributes affect glyph components through size scaling or horizontal, vertical, or path-based duplication. The user can also adjust fragment spacing and layer order, preview the assembled glyphs, and repeatedly refine these settings until the glyph structures are satisfactory.",
+      "rawExpression": "(categorical_fragments_1: artifact visual)* + (masks_2: artifact spatial)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_3 extract]\n-> (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [human specify]\n-> (assembly_settings_1: instruction record) + (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_3 translate]\n-> (numerical_fragments_1: artifact visual)* + (assembly_settings_1: instruction record) + (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_3 compose]\n-> (glyphs_1: artifact visual)* + (assembly_settings_1: instruction record) + (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [human modify]\n-> (assembly_settings_1: instruction record) + (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)"
+    },
+    {
+      "name": "Arrange and style the visualization",
+      "description": "Once the glyphs are assembled, the user chooses a visual style and optionally selects up to two data attributes to emphasize. A rule-based system recommends a placement format based on the selected attributes and their types, after which the user can adjust the layout, spacing, and display settings repeatedly until satisfied.",
+      "rawExpression": "(glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [human specify]\n-> (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [tool_4 match]\n-> (layout_recommendation_1: artifact record) + (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [human select]\n-> (layout_1: instruction record) + (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [tool_3 compose]\n-> (fgv_1: artifact visual) + (layout_1: instruction record) + (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [human modify]\n-> (layout_1: instruction record) + (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)"
+    },
+    {
+      "name": "Export final visualization",
+      "description": "After accepting the arrangement, the user requests export of the completed figurative glyph-based visualization. The system renders the final design as a PNG image.",
+      "rawExpression": "(fgv_1: artifact visual)\n-> [human specify]\n-> (fgv_1: artifact visual) + (export_request_1: instruction categorical)\n-> [tool_3 translate]\n-> (fgv_png_1: artifact visual)"
+    }
+  ],
+  "representations": {
+    "dataset": "the CSV table the user uploads",
+    "attributes": "the table's columns, typed as categorical or numerical",
+    "dataset_description": "a text description of the attributes for the language model",
+    "keyword_response": "the language model's reply with related keywords",
+    "keywords": "suggested concept keywords for figurative images",
+    "word_cloud": "the keywords shown as a word cloud",
+    "image_prompts": "prompts for generating images of each keyword",
+    "candidate_images": "generated candidate images, three per concept",
+    "concept_prompt": "a keyword or custom description the user enters",
+    "image_prompt": "the prompt built from the user's concept",
+    "glyph_image": "the image the user picks as the glyph prototype",
+    "regions": "boxes the user draws around parts of the image to use for encoding",
+    "masks": "segmentation masks for those parts",
+    "attribute_mappings": "which data attribute each part encodes",
+    "fragments": "the image parts cut out by their masks",
+    "fragment_edges": "edge maps of the parts",
+    "fragment_descriptions": "text descriptions of what each part shows",
+    "encoding_prompts": "prompts for color and texture variants of each part",
+    "categorical_fragments": "part variants, one per category value",
+    "fragment_contours": "outlines of the parts used for placing copies",
+    "assembly_settings": "how numbers change parts (size scaling or duplication), spacing and layer order",
+    "numerical_fragments": "parts scaled or duplicated by numerical values",
+    "glyphs": "one assembled glyph per data row",
+    "placement_settings": "the chosen style and up to two attributes to emphasize",
+    "layout_recommendation": "the recommended placement format",
+    "layout": "the arrangement of glyphs on the canvas",
+    "fgv": "the finished figurative glyph visualization",
+    "export_request": "the user's request to export",
+    "fgv_png": "the visualization as a PNG image"
+  },
+  "references": [],
+  "images": []
+}

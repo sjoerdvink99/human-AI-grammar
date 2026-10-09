@@ -1,0 +1,35 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(therapy_framework_1: instruction record) + (chat_history_1: artifact language)\n-> [model_1 extract]\n-> (therapy_framework_1: instruction record) + (chat_history_1: artifact language) + (required_variables_1: artifact record)\n-> [tool_1 evaluate]\n-> (therapy_framework_1: instruction record) + (chat_history_1: artifact language) + (required_variables_1: artifact record) + (step_status_1: evaluation categorical)\n-> [model_1 generate]~\n-> (therapy_framework_1: instruction record) + (chat_history_1: artifact language) + (question_1: artifact language)\n-> [human specify]\n-> (therapy_framework_1: instruction record) + (chat_history_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(chat_history_1: artifact language) + (required_variables_1: artifact record)\n-> [model_1 generate]~\n-> (lyric_questions_1: artifact language)\n-> [human specify]\n-> (lyric_inputs_1: artifact language)\n-> [model_1 extract]\n-> (song_concept_1: instruction record) + (lyric_elements_1: artifact record)\n-> [model_1 generate]~\n-> (lyrics_1: artifact language)\n-> [human evaluate]\n-> (lyrics_1: artifact language) + (lyrics_feedback_1: evaluation language)\n-> [model_1 modify]~\n-> (lyrics_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(lyrics_1: artifact language) + (song_concept_1: instruction record)\n-> [model_1 generate]~\n-> (music_guidance_1: artifact language)\n-> [human specify]\n-> (lyrics_1: artifact language) + (music_attributes_1: instruction record)\n-> [model_1 translate]~\n-> (lyrics_1: artifact language) + (style_prompt_1: instruction language)\n-> [model_2 generate]~\n-> (lyrics_1: artifact language) + (song_1: artifact audio)\n-> [tool_2 extract]\n-> (lyrics_1: artifact language) + (song_1: artifact audio) + (predicted_transcript_1: artifact record) + (audio_features_1: artifact record)\n-> [tool_3 match]\n-> (song_1: artifact audio) + (timed_lyrics_1: artifact record) + (audio_features_1: artifact record)\n-> [tool_4 extract]\n-> (song_1: artifact audio) + (timed_lyrics_1: artifact record) + (audio_features_1: artifact record) + (beat_features_1: artifact tabular)\n-> [tool_5 translate]\n-> (song_1: artifact audio) + (music_visualization_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(song_1: artifact audio) + (music_visualization_1: artifact visual) + (lyrics_1: artifact language)\n-> [model_1 generate]~\n-> (song_1: artifact audio) + (music_visualization_1: artifact visual) + (lyrics_1: artifact language) + (review_question_1: artifact language)\n-> [human evaluate]\n-> (song_1: artifact audio) + (lyrics_1: artifact language) + (song_feedback_1: evaluation language)\n-> [model_1 generate]~\n-> (song_1: artifact audio) + (lyrics_1: artifact language) + (reflection_question_1: artifact language)\n-> [human specify]\n-> (reflection_1: artifact language)\n-> [model_1 generate]~\n-> (supportive_response_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(song_1: artifact audio) + (lyrics_1: artifact language) + (music_attributes_1: instruction record) + (song_feedback_1: evaluation language)\n-> [human modify]\n-> (lyrics_1: artifact language) + (music_attributes_2: instruction record)\n-> [model_1 translate]~\n-> (lyrics_1: artifact language) + (style_prompt_2: instruction language)\n-> [model_2 generate]~\n-> (lyrics_1: artifact language) + (song_2: artifact audio)\n-> [tool_2 extract]\n-> (lyrics_1: artifact language) + (song_2: artifact audio) + (predicted_transcript_2: artifact record) + (audio_features_2: artifact record)\n-> [tool_3 match]\n-> (song_2: artifact audio) + (timed_lyrics_2: artifact record) + (audio_features_2: artifact record)\n-> [tool_4 extract]\n-> (song_2: artifact audio) + (timed_lyrics_2: artifact record) + (audio_features_2: artifact record) + (beat_features_2: artifact tabular)\n-> [tool_5 translate]\n-> (song_2: artifact audio) + (music_visualization_2: artifact visual)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

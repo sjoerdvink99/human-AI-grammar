@@ -1,0 +1,84 @@
+{
+  "name": "System X",
+  "goal": "Domain knowledge ingestion, contextual gap detection, proactive highlighting, reactive querying, knowledge curation, provenance navigation, and human-directed narrative revision.",
+  "description": "the system is a mixed-initiative writing environment that proactively identifies potential domain knowledge gaps in fiction drafts and provides source-grounded explanations and facts. Writers can query unfamiliar concepts, organize retrieved knowledge on a spatial canvas, and incorporate it into their own prose. Actors: model_1 = language model; model_2 = embedding model; tool_1 = graph database; tool_2 = asynchronous context management component; tool_3 = source alignment and presentation component.",
+  "processes": [
+    {
+      "name": "Build Domain Knowledge Graph",
+      "description": "The author uploads reference books or other domain texts. The system extracts entities and relationships, associates them with their original source passages, and stores the resulting knowledge graph in tool_1.",
+      "rawExpression": "(source_documents_1: artifact language)*\n-> [model_1 extract]\n-> (domain_entities_1: artifact record)* + (domain_relations_1: artifact record)*\n-> [tool_1 compose]\n-> (knowledge_graph_1: artifact graph)"
+    },
+    {
+      "name": "Maintain Writing Context",
+      "description": "During drafting, tool_2 asynchronously combines the current prose with the Knowledge Canvas topology to maintain a Semantic Frame that informs knowledge retrieval.",
+      "rawExpression": "(draft_1: artifact language) + (canvas_1: artifact graph)\n-> [tool_2 compose]\n-> (semantic_frame_1: artifact record)"
+    },
+    {
+      "name": "Proactively Highlight Knowledge Gaps",
+      "description": "As the author writes, model_1 extracts domain concepts from the current context, model_2 embeds them, and the graph retriever finds related source-backed knowledge. tool_3 selects relevant phrases in the draft as potential knowledge gaps, displaying subtle inline highlights after a five-second typing pause.",
+      "rawExpression": "(draft_1: artifact language) + (semantic_frame_1: artifact record) + (knowledge_graph_1: artifact graph)\n-> [model_1 extract]\n-> (draft_concepts_1: artifact record)* + (draft_1: artifact language) + (knowledge_graph_1: artifact graph)\n-> [model_2 translate]\n-> (concept_vectors_1: artifact numeric)* + (draft_1: artifact language) + (knowledge_graph_1: artifact graph)\n-> [tool_1 match]\n-> (candidate_facts_1: artifact record)* + (draft_1: artifact language)\n-> [tool_3 select]\n-> (highlight_spans_1: selection language)* + (candidate_facts_1: artifact record)* + (draft_1: artifact language)"
+    },
+    {
+      "name": "Inspect Highlighted Knowledge",
+      "description": "When the author clicks a highlighted phrase, the system opens a contextual Knowledge Card. The card pairs an AI-generated explanation of the domain concept with an exact passage from the uploaded source material.",
+      "rawExpression": "(highlight_spans_1: selection language)* + (candidate_facts_1: artifact record)* + (draft_1: artifact language)\n-> [human select]\n-> (clicked_span_1: selection language) + (candidate_facts_1: artifact record)*\n-> [model_1 generate]~\n-> (card_explanation_1: artifact language) + (clicked_span_1: selection language) + (candidate_facts_1: artifact record)*\n-> [tool_3 compose]\n-> (highlight_card_1: artifact record)"
+    },
+    {
+      "name": "Query Domain Knowledge",
+      "description": "The author asks a question in the Query Panel. model_1 extracts relevant concepts, model_2 provides embeddings, and multi-hop graph retrieval finds source-backed facts. Two parallel instances of tool_3 produce a conversational response and structured Knowledge Cards, with semantic matching connecting corresponding concepts through color-coded highlights.",
+      "rawExpression": "(semantic_frame_1: artifact record) + (knowledge_graph_1: artifact graph)\n-> [human specify]\n-> (query_1: instruction language) + (semantic_frame_1: artifact record) + (knowledge_graph_1: artifact graph)\n-> [model_1 extract]\n-> (query_concepts_1: artifact record)* + (query_1: instruction language) + (knowledge_graph_1: artifact graph)\n-> [model_2 translate]\n-> (query_vectors_1: artifact numeric)* + (query_1: instruction language) + (knowledge_graph_1: artifact graph)\n-> [tool_1 match]\n-> (query_facts_1: artifact record)* + (query_1: instruction language)\n-> [model_1 generate]~\n-> (query_answer_1: artifact language) + (query_facts_1: artifact record)*\n-> [tool_3 compose]\n-> (query_answer_1: artifact language) + (query_cards_1: artifact record)*\n-> [tool_3 match]\n-> (query_answer_1: artifact language) + (query_cards_1: artifact record)* + (text_card_links_1: artifact record)*"
+    },
+    {
+      "name": "Curate Knowledge on Canvas",
+      "description": "After discovering facts through highlights or queries, the author adds selected Knowledge Cards to the spatial canvas. Cards from highlights become gold nodes and cards from queries become silver nodes; the system automatically identifies and displays labeled semantic connections between related nodes.",
+      "rawExpression": "(canvas_1: artifact graph) + (highlight_card_1: artifact record) + (query_cards_1: artifact record)*\n-> [human select]\n-> (canvas_1: artifact graph) + (chosen_highlight_card_1: selection record) + (chosen_query_card_1: selection record)\n-> [tool_3 compose]\n-> (canvas_2: artifact graph)\n-> [tool_1 match]\n-> (canvas_2: artifact graph) + (related_edges_1: artifact graph)\n-> [tool_3 compose]\n-> (canvas_3: artifact graph)"
+    },
+    {
+      "name": "Navigate to Highlight Source",
+      "description": "When the author clicks a gold node on the Knowledge Canvas, the system locates and visually highlights the original passage in the draft that triggered the associated knowledge discovery.",
+      "rawExpression": "(canvas_3: artifact graph) + (draft_1: artifact language)\n-> [human select]\n-> (gold_node_1: selection record) + (canvas_3: artifact graph) + (draft_1: artifact language)\n-> [tool_3 match]\n-> (origin_span_1: selection language) + (draft_1: artifact language)"
+    },
+    {
+      "name": "Navigate to Query Source",
+      "description": "When the author clicks a silver node on the Knowledge Canvas, the system follows its stored provenance link and scrolls the Query Panel to the conversation turn from which that knowledge originated.",
+      "rawExpression": "(canvas_3: artifact graph) + (query_answer_1: artifact language)\n-> [human select]\n-> (silver_node_1: selection record) + (canvas_3: artifact graph) + (query_answer_1: artifact language)\n-> [tool_3 match]\n-> (query_turn_1: selection language) + (query_answer_1: artifact language)"
+    },
+    {
+      "name": "Integrate Knowledge into Narrative",
+      "description": "The author uses discovered and organized domain knowledge to revise or continue the narrative in their own words, without AI-generated story prose. tool_2 updates the Semantic Frame with the revised draft and curated canvas so later discovery reflects the evolving writing context.",
+      "rawExpression": "(draft_1: artifact language) + (canvas_3: artifact graph)\n-> [human modify]\n-> (draft_2: artifact language) + (canvas_3: artifact graph)\n-> [tool_2 compose]\n-> (semantic_frame_2: artifact record) + (draft_2: artifact language) + (canvas_3: artifact graph)"
+    }
+  ],
+  "representations": {
+    "source_documents": "reference books or other domain texts the author uploads",
+    "domain_entities": "entities extracted from the source documents, each tied to the passage it came from",
+    "domain_relations": "relationships between extracted entities, each tied to the passage it came from",
+    "knowledge_graph": "the stored graph of entities and relations with links to their source passages",
+    "draft": "the fiction text the author is writing",
+    "canvas": "a spatial canvas of saved knowledge cards as nodes, with labeled connections between related nodes",
+    "semantic_frame": "a summary of the current writing context, built from the draft and the canvas, used to guide retrieval",
+    "draft_concepts": "domain concepts found in the current draft",
+    "concept_vectors": "embeddings of the draft concepts",
+    "candidate_facts": "source-backed facts from the graph that relate to the draft concepts",
+    "highlight_spans": "phrases in the draft marked inline as possible knowledge gaps",
+    "clicked_span": "the highlighted phrase the author clicks",
+    "card_explanation": "a short generated explanation of the concept in the clicked phrase",
+    "highlight_card": "a knowledge card pairing the explanation with an exact passage from the source material",
+    "query": "a question the author asks in the query panel",
+    "query_concepts": "concepts extracted from the question",
+    "query_vectors": "embeddings of the query concepts",
+    "query_facts": "source-backed facts retrieved from the graph for the question",
+    "query_answer": "a conversational answer to the question",
+    "query_cards": "structured knowledge cards for the retrieved facts, each with its source passage",
+    "text_card_links": "links between concepts in the answer and the matching cards, shown with shared colors",
+    "chosen_highlight_card": "a card from a highlight that the author saves to the canvas",
+    "chosen_query_card": "a card from a query that the author saves to the canvas",
+    "related_edges": "labeled connections found between related canvas nodes",
+    "gold_node": "a canvas node that came from an inline highlight",
+    "silver_node": "a canvas node that came from a query",
+    "origin_span": "the passage in the draft that led to a gold node",
+    "query_turn": "the conversation turn in the query panel that led to a silver node"
+  },
+  "references": [],
+  "images": []
+}

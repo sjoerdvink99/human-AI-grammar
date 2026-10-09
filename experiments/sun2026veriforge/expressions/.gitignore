@@ -1,0 +1,5 @@
+node_modules
+dist
+data/kg.json
+.DS_Store
+data/sources.json

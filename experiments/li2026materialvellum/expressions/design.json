@@ -1,0 +1,25 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(urban_site_1: artifact spatial)\n-> [human specify]\n-> (urban_site_1: artifact spatial) + (zoning_bands_1: instruction spatial)*\n-> [tool_1 modify]\n-> (zoning_bands_2: instruction spatial)*\n-> [tool_3 compose]\n-> (urban_plan_1: artifact spatial)\n-> [tool_2 translate]\n-> (city_model_1: artifact spatial)\n-> [tool_3 translate]\n-> (city_model_1: artifact spatial) + (density_grid_1: instruction spatial)\n-> [human modify]\n-> (city_model_1: artifact spatial) + (density_grid_2: instruction spatial)\n-> [tool_2 modify]\n-> (city_model_2: artifact spatial)\n-> [tool_3 translate]\n-> (depth_map_1: artifact visual)\n-> [model_1 generate]~\n-> (render_1: artifact visual)\n-> [human specify]\n-> (render_1: artifact visual) + (function_magnets_1: instruction spatial)*\n-> [tool_1 modify]\n-> (render_1: artifact visual) + (function_magnets_2: instruction spatial)*\n-> [tool_3 translate]\n-> (render_1: artifact visual) + (inpainting_masks_1: selection spatial)* + (function_prompts_1: instruction language)*\n-> [model_1 modify]~\n-> (render_2: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(ikebana_canvas_1: artifact spatial)\n-> [human specify]\n-> (ikebana_elements_1: instruction spatial)*\n-> [tool_1 modify]\n-> (ikebana_elements_2: instruction spatial)*\n-> [tool_3 translate]\n-> (scribble_map_1: artifact visual) + (ikebana_prompt_1: instruction language)\n-> [model_1 generate]~\n-> (ikebana_image_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(poster_theme_1: instruction language) + (poster_canvas_1: artifact spatial)\n-> [human specify]\n-> (poster_theme_1: instruction language) + (sand_clusters_1: instruction spatial)*\n-> [human modify]\n-> (poster_theme_1: instruction language) + (sand_clusters_2: instruction spatial)*\n-> [human specify]\n-> (poster_theme_1: instruction language) + (sand_clusters_2: instruction spatial)* + (spoken_roles_1: instruction audio)*\n-> [tool_3 translate]\n-> (poster_theme_1: instruction language) + (sand_clusters_2: instruction spatial)* + (element_roles_1: label categorical)*\n-> [tool_3 compose]\n-> (poster_theme_1: instruction language) + (element_specs_1: instruction record)*\n-> [model_2 generate]~\n-> (element_specs_1: instruction record)* + (text_elements_1: artifact language)*\n-> [model_1 generate]~\n-> (element_specs_1: instruction record)* + (text_elements_1: artifact language)* + (image_elements_1: artifact visual)*\n-> [tool_3 compose]\n-> (poster_1: artifact visual)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

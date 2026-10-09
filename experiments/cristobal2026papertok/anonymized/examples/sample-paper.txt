@@ -1,0 +1,19 @@
+Sleep Spindles Predict Overnight Gains in Motor Skill Learning
+Maria Okafor, Daniel Lindqvist, and Hana Sato
+Journal of Sleep Research Methods, 2024
+
+Abstract
+We investigated whether sleep spindles, brief bursts of 11-16 Hz oscillatory brain activity during non-REM sleep, predict how much people improve at a newly learned motor skill after a night of sleep. Forty-eight adults learned a finger-tapping sequence in the evening, slept in the lab with high-density EEG, and were retested the next morning. Participants improved their tapping speed by 14% on average overnight, while a control group that stayed awake for an equivalent daytime interval improved by only 3%. Spindle density over the motor cortex contralateral to the trained hand correlated strongly with overnight improvement (r = 0.61). Spindles that were coupled to slow oscillation up-states were the strongest predictors. A targeted auditory stimulation protocol that increased slow-oscillation-coupled spindles by 22% in a second experiment produced a further 6% gain in performance compared to sham stimulation.
+
+1 Introduction
+Learning a new motor skill, such as playing a piano passage, continues after practice ends. Many studies have reported that performance improves after sleep without further practice, a phenomenon called offline consolidation. Which features of sleep drive this improvement remains debated. Sleep spindles have been linked to memory consolidation, but it is unclear whether their local distribution over the brain matters, and whether their timing relative to slow oscillations is important.
+
+2 Methods
+Experiment 1: 48 healthy adults (aged 19-35) trained on a five-element finger-tapping sequence with the left hand for 12 blocks of 30 seconds. A sleep group (n=32) slept for 8 hours in the laboratory while 128-channel EEG was recorded. A wake group (n=16) trained in the morning and was retested in the evening. Spindles were detected automatically and their coupling with slow oscillations was computed.
+Experiment 2: 30 new participants received closed-loop auditory stimulation: short pink-noise clicks played in phase with slow oscillation up-states, or sham stimulation without sound, in a crossover design.
+
+3 Results
+The sleep group improved by 14.2% versus 3.1% for the wake group. Improvement correlated with spindle density over the right motor cortex (r = 0.61, p < 0.001) but not over the left motor cortex (r = 0.12). Spindles coupled to slow oscillation up-states explained more variance than uncoupled spindles. In Experiment 2, stimulation increased coupled spindles by 22% and improved overnight gains by an additional 6.1% relative to sham. Subjective sleep quality did not differ between conditions.
+
+4 Discussion
+Our results suggest that local, well-timed spindles over the brain area used during learning support offline skill gains. Because auditory stimulation can boost these spindles without waking people, it may become a tool for rehabilitation after stroke or for athletic training. Limitations include the young healthy sample, one type of motor task, and a single night of recording.

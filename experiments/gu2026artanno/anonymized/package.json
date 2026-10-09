@@ -1,0 +1,20 @@
+{
+  "name": "system-x",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test test/",
+    "check": "node --check server/index.js && node --check server/pipeline.js && node --check server/llm.js && node --check server/tools.js && node --check server/store.js && node --check server/demo.js && node --check public/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.3.0",
+    "multer": "^2.5.0",
+    "sharp": "^0.35.5"
+  },
+  "type": "module"
+}

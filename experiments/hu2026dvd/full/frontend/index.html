@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System X — Opening-scene ideation for data videos</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">System X <span>opening scenes for data videos</span></div>
+    <nav id="tabs">
+      <button data-tab="ideate" class="active">1 · Script &amp; demo</button>
+      <button data-tab="chart">2 · Data chart</button>
+      <button data-tab="gallery">3 · Gallery <span id="gallery-count" class="count"></span></button>
+    </nav>
+    <button id="reset" class="ghost">New project</button>
+  </header>
+
+  <main>
+    <!-- ======================= Script & demo (P1–P4) ======================= -->
+    <section id="tab-ideate" class="tab active">
+      <div class="col input-col">
+        <h2>Story</h2>
+        <label>Topic <small>(topic)</small>
+          <input id="topic" placeholder="e.g. How remote work reshaped city centres" />
+        </label>
+        <div class="label-row">Selected data facts <small>(data_facts)</small></div>
+        <ul id="facts"></ul>
+        <button id="add-fact" class="ghost small">+ Add fact</button>
+        <button id="generate" class="primary">Generate opening scenes</button>
+        <p class="hint">A screenwriting model drafts 3–4 scenes, each tied to a cinematic guideline. A full video demo is then rendered and added to the gallery.</p>
+        <div id="gen-status" class="status"></div>
+      </div>
+
+      <div class="col scenes-col">
+        <div class="col-head">
+          <h2>Opening scenes <small id="scripts-version"></small></h2>
+          <span id="dirty" class="dirty hidden">edited — not yet rendered</span>
+        </div>
+        <div id="scenes" class="scenes"><p class="empty">Enter a topic and data facts, then generate.</p></div>
+      </div>
+
+      <div class="col side-col">
+        <div class="panel">
+          <div class="col-head"><h2>Video demo <small id="video-version"></small></h2></div>
+          <div id="video-wrap" class="video-wrap"><p class="empty">No video yet.</p></div>
+          <label class="assess">Your assessment of this design <small>(assessment)</small>
+            <textarea id="assessment" rows="2" placeholder="What works, what should change?"></textarea>
+          </label>
+          <div class="row">
+            <button id="save-assessment" class="ghost small">Save assessment</button>
+            <button id="regenerate" class="primary">Regenerate full demo</button>
+          </div>
+          <ul id="assessments" class="assessments"></ul>
+          <div id="render-status" class="status"></div>
+        </div>
+        <div class="panel">
+          <h2>Cinematic guidelines</h2>
+          <p class="hint" id="focus-hint">Select a scene to see the guideline it follows and reference examples.</p>
+          <ol id="guidelines" class="guidelines"></ol>
+          <div id="references" class="references"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Data chart (P5–P7) ======================= -->
+    <section id="tab-chart" class="tab">
+      <div class="col chart-col">
+        <h2>Animated chart from real data</h2>
+        <label>Paste a table <small>(chart_data — first column labels, numeric columns after; CSV or TSV)</small>
+          <textarea id="chart-text" rows="8" placeholder="Year,Share working remotely (%)&#10;2019,6&#10;2020,35&#10;2021,28&#10;2022,26&#10;2023,27"></textarea>
+        </label>
+        <label>Chart title <input id="chart-title" placeholder="optional" /></label>
+        <div class="label-row">Chart type <small>(chart_type)</small></div>
+        <div id="chart-type" class="segmented">
+          <button data-type="line">Line</button><button data-type="bar" class="active">Bar</button><button data-type="pie">Pie</button>
+        </div>
+        <button id="make-chart" class="primary">Create animated chart</button>
+        <div id="chart-status" class="status"></div>
+        <div id="chart-preview"></div>
+        <div id="chart-table"></div>
+      </div>
+
+      <div class="col replace-col">
+        <div class="col-head">
+          <h2>Replace a video object with the chart</h2>
+          <div id="replace-mode" class="segmented">
+            <button data-mode="full" class="active">Complete chart</button>
+            <button data-mode="shape">Chart shape</button>
+          </div>
+        </div>
+        <p class="hint" id="mode-hint"></p>
+        <div class="steps">
+          <div class="step" id="step-keyframe">
+            <h3><span>1</span> Pause the video at a keyframe</h3>
+            <div id="replace-video"></div>
+            <button id="use-frame" class="primary small">Use this frame</button>
+          </div>
+          <div class="step" id="step-point">
+            <h3><span>2</span> Click the object to replace</h3>
+            <div id="keyframe-view" class="keyframe"></div>
+            <div id="mask-info" class="status"></div>
+          </div>
+          <div class="step" id="step-clean">
+            <h3><span>3</span> Object removed (inpainted)</h3>
+            <div id="cleaned-view"></div>
+          </div>
+          <div class="step" id="step-region">
+            <h3><span>4</span> Select the part of the chart to use as a shape</h3>
+            <div id="region-view" class="region"></div>
+            <button id="merge-shape" class="primary small">Merge shape into the scene</button>
+          </div>
+          <div class="step" id="step-result">
+            <h3><span id="result-num">4</span> Result</h3>
+            <div id="result-view"></div>
+          </div>
+        </div>
+        <div id="replace-status" class="status"></div>
+      </div>
+    </section>
+
+    <!-- ======================= Gallery (P8) ======================= -->
+    <section id="tab-gallery" class="tab">
+      <div class="col gallery-col">
+        <h2>Generated videos <small>(video_versions)</small></h2>
+        <div id="gallery" class="gallery"><p class="empty">Videos appear here after generation.</p></div>
+      </div>
+      <div class="col review-col">
+        <div id="review" class="review"><p class="empty">Choose a previous video to compare it with the current one.</p></div>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast hidden"></div>
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>

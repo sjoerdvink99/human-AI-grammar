@@ -1,0 +1,45 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact language)\n-> [model_1 extract]\n-> (r1_1: artifact language) + (r2_1: artifact language)*\n-> [model_1 generate]~\n-> (r1_1: artifact language) + (r3_1: artifact language)*\n-> [model_1 generate]~\n-> (r1_1: artifact language) + (r4_1: artifact language)*\n-> [model_1 evaluate]\n-> (r1_1: artifact language) + (r4_1: artifact language)* + (r5_1: evaluation numeric)*\n-> [model_1 select]\n-> (r1_1: artifact language) + (r6_1: artifact language)*\n-> [model_1 generate]~\n-> (r7_1: artifact record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r7_1: artifact record)*\n-> [human select]\n-> (r8_1: artifact record)\n-> [tool_1 compose]\n-> (r8_1: artifact record) + (r9_1: instruction language)\n-> [model_1 generate]~\n-> (r8_1: artifact record) + (r9_1: instruction language) + (r10_1: instruction language)\n-> [human specify]\n-> (r8_1: artifact record) + (r9_1: instruction language) + (r11_1: instruction language)\n-> [model_1 compose]~\n-> (r8_1: artifact record) + (r12_1: instruction language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r8_1: artifact record)\n-> [human modify]\n-> (r8_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r8_1: artifact record) + (r12_1: instruction language)\n-> [model_1 decompose]\n-> (r13_1: artifact language)* + (r12_1: instruction language)\n-> [model_1 generate]~\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language)\n-> [human specify]\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r15_1: instruction categorical)\n-> [model_3 generate]~\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r16_1: artifact audio)*\n-> [tool_1 extract]\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r16_1: artifact audio)* + (r17_1: artifact numeric)*\n-> [model_2 generate]~\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r16_1: artifact audio)* + (r18_1: artifact visual)*\n-> [tool_2 compose]\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)*\n-> [human select]\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r20_1: selection categorical)\n-> [human specify]\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r20_1: selection categorical) + (r21_1: instruction categorical)\n-> [model_3 generate]~\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r20_1: selection categorical) + (r22_1: artifact audio)\n-> [tool_1 extract]\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r20_1: selection categorical) + (r22_1: artifact audio) + (r23_1: artifact numeric)\n-> [model_2 generate]~\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r20_1: selection categorical) + (r22_1: artifact audio) + (r24_1: artifact visual)\n-> [tool_2 compose]\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r20_1: selection categorical) + (r25_1: artifact multimodal)\n-> [tool_1 modify]\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)*\n-> [human modify]\n-> (r13_2: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)*\n-> [model_1 generate]~\n-> (r13_2: artifact language)* + (r14_2: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)*\n-> [model_3 generate]~\n-> (r13_2: artifact language)* + (r14_2: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r26_1: artifact audio)\n-> [tool_1 extract]\n-> (r13_2: artifact language)* + (r14_2: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r26_1: artifact audio) + (r27_1: artifact numeric)\n-> [model_2 generate]~\n-> (r13_2: artifact language)* + (r14_2: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r26_1: artifact audio) + (r28_1: artifact visual)\n-> [tool_2 compose]\n-> (r13_2: artifact language)* + (r14_2: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)* + (r29_1: artifact multimodal)\n-> [tool_1 modify]\n-> (r13_1: artifact language)* + (r14_1: instruction language)* + (r12_1: instruction language) + (r19_1: artifact multimodal)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r19_1: artifact multimodal)* + (r1_1: artifact language)\n-> [tool_1 extract]\n-> (r19_1: artifact multimodal)* + (r30_1: artifact visual) + (r31_1: artifact language)*\n-> [tool_1 compose]\n-> (r19_1: artifact multimodal)* + (r30_1: artifact visual) + (r32_1: artifact language)\n-> [human modify]\n-> (r19_1: artifact multimodal)* + (r30_1: artifact visual) + (r32_2: artifact language)\n-> [tool_1 compose]\n-> (r19_1: artifact multimodal)* + (r33_1: artifact visual)\n-> [human select]\n-> (r34_1: artifact multimodal)* + (r33_1: artifact visual)\n-> [human specify]\n-> (r34_1: artifact multimodal)* + (r33_1: artifact visual) + (r35_1: instruction categorical)\n-> [tool_2 translate]\n-> (r34_1: artifact multimodal)* + (r36_1: artifact multimodal)\n-> [tool_2 compose]\n-> (r37_1: artifact multimodal)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

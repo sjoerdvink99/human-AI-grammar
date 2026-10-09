@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System X — Highlight Remix</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Highlight Remix</h1>
+    <nav>
+      <button class="tab active" data-view="today">Today</button>
+      <button class="tab" data-view="archive">Archive</button>
+    </nav>
+  </header>
+
+  <main id="today" class="view">
+    <div class="col main-col">
+      <!-- highlight_1 / highlight_2 -->
+      <section class="card highlight" id="highlight">
+        <p class="muted">Loading a highlight…</p>
+      </section>
+      <div class="row">
+        <span id="highlight-origin" class="muted small"></span>
+        <button id="next-highlight" class="ghost">Resurface another ↻</button>
+      </div>
+
+      <!-- keywords_1 / keywords_2 -->
+      <section class="block">
+        <div class="row">
+          <h2>Keywords</h2>
+          <button id="regen-keywords" class="ghost small">Regenerate</button>
+        </div>
+        <div id="keywords" class="chips"></div>
+      </section>
+
+      <!-- response_1 -->
+      <section class="block">
+        <h2>Your response</h2>
+        <textarea id="response" rows="6" placeholder="What does this passage make you think of now? Click a keyword to add it."></textarea>
+        <div class="row">
+          <span id="response-count" class="muted small">0 words</span>
+          <button id="remix-btn" class="primary">Remix</button>
+        </div>
+      </section>
+
+      <!-- remix_1 + alternative_remix_1 -->
+      <section class="block hidden" id="remix-block">
+        <h2>Remix</h2>
+        <div class="remixes" id="remixes"></div>
+        <div class="retry">
+          <span class="muted small">Try an alternative:</span>
+          <div id="retry-buttons" class="chips"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- process 3: interest_1 -->
+    <aside class="col side-col">
+      <section class="block hidden" id="interest-block">
+        <h2>Where next?</h2>
+        <p class="muted small">Name something you're curious about and the next highlight will be picked to match it.</p>
+        <form id="interest-form">
+          <input id="interest" type="text" placeholder="e.g. dealing with change" />
+          <button class="primary">Find highlight</button>
+        </form>
+      </section>
+      <section class="block">
+        <h2>Collection</h2>
+        <p id="stats" class="muted small"></p>
+      </section>
+    </aside>
+  </main>
+
+  <main id="archive" class="view hidden">
+    <div class="col main-col">
+      <!-- archive_filter_1 -->
+      <div id="filters" class="chips"></div>
+      <!-- filtered_highlights_1 -->
+      <ul id="archive-list" class="archive-list"></ul>
+    </div>
+    <aside class="col side-col">
+      <!-- archive_view_1 -->
+      <section class="block" id="archive-view">
+        <p class="muted small">Pick an item to render it as a card.</p>
+      </section>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

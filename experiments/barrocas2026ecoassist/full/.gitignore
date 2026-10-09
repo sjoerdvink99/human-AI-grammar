@@ -1,0 +1,4 @@
+node_modules
+dist
+data/training/screens
+.DS_Store

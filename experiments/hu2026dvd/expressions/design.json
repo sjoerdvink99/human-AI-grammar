@@ -1,0 +1,50 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(topic_1: instruction language) + (data_facts_1: artifact language)* + (guidelines_1: artifact language)*\n-> [model_1 generate]~\n-> (scripts_1: artifact record)* + (guidelines_1: artifact language)*\n-> [tool_1 compose]\n-> (scripts_1: artifact record)* + (video_request_1: instruction record)\n-> [tool_2 execute]\n-> (scripts_1: artifact record)* + (video_1: artifact visual)\n-> [tool_7 compose]\n-> (scripts_1: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(scripts_1: artifact record)* + (guidelines_1: artifact language)* + (reference_videos_1: artifact visual)*\n-> [human select]\n-> (scripts_1: artifact record)* + (guidelines_1: artifact language)* + (reference_videos_1: artifact visual)* + (scene_focus_1: selection record)\n-> [tool_3 select]\n-> (scene_focus_1: selection record) + (guideline_focus_1: selection language) + (reference_focus_1: selection visual)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(scripts_1: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)*\n-> [human evaluate]\n-> (scripts_1: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)* + (assessment_1: evaluation language)\n-> [human modify]\n-> (scripts_2: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)*\n-> [tool_1 compose]\n-> (scripts_2: artifact record)* + (video_request_2: instruction record) + (video_versions_1: artifact visual)*\n-> [tool_2 execute]\n-> (scripts_2: artifact record)* + (video_2: artifact visual) + (video_versions_1: artifact visual)*\n-> [tool_7 compose]\n-> (scripts_1: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(scripts_1: artifact record)*\n-> [human select]\n-> (scripts_1: artifact record)* + (clip_scene_1: selection record)\n-> [tool_1 compose]\n-> (clip_request_1: instruction record)\n-> [model_2 generate]~\n-> (clip_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(chart_data_1: artifact tabular)\n-> [human specify]\n-> (chart_data_1: artifact tabular) + (chart_type_1: instruction categorical)\n-> [tool_4 translate]\n-> (animated_chart_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(video_1: artifact visual) + (animated_chart_1: artifact visual)\n-> [human select]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (keyframe_full_1: selection visual)\n-> [human select]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (keyframe_full_1: selection visual) + (object_point_full_1: selection spatial)\n-> [model_3 extract]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (object_mask_full_1: selection spatial)\n-> [tool_5 modify]\n-> (cleaned_video_full_1: artifact visual) + (animated_chart_1: artifact visual)\n-> [tool_6 compose]\n-> (video_with_chart_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(video_1: artifact visual) + (animated_chart_1: artifact visual)\n-> [human select]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (keyframe_shape_1: selection visual)\n-> [human select]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (keyframe_shape_1: selection visual) + (object_point_shape_1: selection spatial)\n-> [model_3 extract]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (object_mask_shape_1: selection spatial)\n-> [tool_5 modify]\n-> (cleaned_video_shape_1: artifact visual) + (animated_chart_1: artifact visual)\n-> [human select]\n-> (cleaned_video_shape_1: artifact visual) + (animated_chart_1: artifact visual) + (chart_region_1: selection spatial)\n-> [tool_6 compose]\n-> (video_with_shape_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(video_versions_1: artifact visual)*\n-> [human select]\n-> (reviewed_video_1: artifact visual)\n-> [human evaluate]\n-> (reviewed_video_1: artifact visual) + (video_assessment_1: evaluation language)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

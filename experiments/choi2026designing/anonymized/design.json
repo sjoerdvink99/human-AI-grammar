@@ -1,0 +1,35 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: instruction record) + (r2_1: artifact language)\n-> [model_1 extract]\n-> (r1_1: instruction record) + (r2_1: artifact language) + (r3_1: artifact record)\n-> [tool_1 evaluate]\n-> (r1_1: instruction record) + (r2_1: artifact language) + (r3_1: artifact record) + (r4_1: evaluation categorical)\n-> [model_1 generate]~\n-> (r1_1: instruction record) + (r2_1: artifact language) + (r5_1: artifact language)\n-> [human specify]\n-> (r1_1: instruction record) + (r2_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r2_1: artifact language) + (r3_1: artifact record)\n-> [model_1 generate]~\n-> (r6_1: artifact language)\n-> [human specify]\n-> (r7_1: artifact language)\n-> [model_1 extract]\n-> (r8_1: instruction record) + (r9_1: artifact record)\n-> [model_1 generate]~\n-> (r10_1: artifact language)\n-> [human evaluate]\n-> (r10_1: artifact language) + (r11_1: evaluation language)\n-> [model_1 modify]~\n-> (r10_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r10_1: artifact language) + (r8_1: instruction record)\n-> [model_1 generate]~\n-> (r12_1: artifact language)\n-> [human specify]\n-> (r10_1: artifact language) + (r13_1: instruction record)\n-> [model_1 translate]~\n-> (r10_1: artifact language) + (r14_1: instruction language)\n-> [model_2 generate]~\n-> (r10_1: artifact language) + (r15_1: artifact audio)\n-> [tool_2 extract]\n-> (r10_1: artifact language) + (r15_1: artifact audio) + (r16_1: artifact record) + (r17_1: artifact record)\n-> [tool_3 match]\n-> (r15_1: artifact audio) + (r18_1: artifact record) + (r17_1: artifact record)\n-> [tool_4 extract]\n-> (r15_1: artifact audio) + (r18_1: artifact record) + (r17_1: artifact record) + (r19_1: artifact tabular)\n-> [tool_5 translate]\n-> (r15_1: artifact audio) + (r20_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r15_1: artifact audio) + (r20_1: artifact visual) + (r10_1: artifact language)\n-> [model_1 generate]~\n-> (r15_1: artifact audio) + (r20_1: artifact visual) + (r10_1: artifact language) + (r21_1: artifact language)\n-> [human evaluate]\n-> (r15_1: artifact audio) + (r10_1: artifact language) + (r22_1: evaluation language)\n-> [model_1 generate]~\n-> (r15_1: artifact audio) + (r10_1: artifact language) + (r23_1: artifact language)\n-> [human specify]\n-> (r24_1: artifact language)\n-> [model_1 generate]~\n-> (r25_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r15_1: artifact audio) + (r10_1: artifact language) + (r13_1: instruction record) + (r22_1: evaluation language)\n-> [human modify]\n-> (r10_1: artifact language) + (r13_2: instruction record)\n-> [model_1 translate]~\n-> (r10_1: artifact language) + (r14_2: instruction language)\n-> [model_2 generate]~\n-> (r10_1: artifact language) + (r15_2: artifact audio)\n-> [tool_2 extract]\n-> (r10_1: artifact language) + (r15_2: artifact audio) + (r16_2: artifact record) + (r17_2: artifact record)\n-> [tool_3 match]\n-> (r15_2: artifact audio) + (r18_2: artifact record) + (r17_2: artifact record)\n-> [tool_4 extract]\n-> (r15_2: artifact audio) + (r18_2: artifact record) + (r17_2: artifact record) + (r19_2: artifact tabular)\n-> [tool_5 translate]\n-> (r15_2: artifact audio) + (r20_2: artifact visual)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

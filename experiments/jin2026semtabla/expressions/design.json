@@ -1,0 +1,35 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(tables_1: artifact tabular)*\n-> [tool_1 select]\n-> (tables_1: artifact tabular)* + (samples_1: artifact tabular)*\n-> [tool_1 extract]\n-> (tables_1: artifact tabular)* + (samples_1: artifact tabular)* + (detected_features_1: artifact record)*\n-> [tool_1 evaluate]\n-> (tables_1: artifact tabular)* + (samples_1: artifact tabular)* + (detected_features_1: artifact record)* + (counterexamples_1: artifact tabular)\n-> [tool_1 expand]\n-> (tables_1: artifact tabular)* + (samples_1: artifact tabular)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(tables_1: artifact tabular)* + (detected_features_1: artifact record)*\n-> [tool_1 extract]\n-> (tables_1: artifact tabular)* + (column_attributes_1: artifact record)*\n-> [tool_1 assign]\n-> (tables_1: artifact tabular)* + (column_attributes_1: artifact record)* + (rule_taxonomies_1: label categorical)*\n-> [model_1 assign]\n-> (tables_1: artifact tabular)* + (column_attributes_1: artifact record)* + (rule_taxonomies_1: label categorical)* + (predicted_taxonomies_1: label categorical)*\n-> [tool_1 compose]\n-> (tables_1: artifact tabular)* + (column_semantics_1: artifact record)*\n-> [tool_1 extract]\n-> (tables_1: artifact tabular)* + (column_semantics_1: artifact record)* + (key_relations_1: artifact graph)\n-> [tool_1 extract]\n-> (tables_1: artifact tabular)* + (column_semantics_1: artifact record)* + (key_relations_1: artifact graph) + (functional_dependencies_1: artifact graph)\n-> [tool_1 assign]\n-> (column_semantics_1: artifact record)* + (key_relations_1: artifact graph) + (functional_dependencies_1: artifact graph) + (table_labels_1: label categorical)*\n-> [model_2 assign]\n-> (column_semantics_1: artifact record)* + (key_relations_1: artifact graph) + (functional_dependencies_1: artifact graph) + (table_labels_1: label categorical)* + (table_types_1: label categorical)*\n-> [tool_1 compose]\n-> (semantic_profile_1: artifact record)\n-> [tool_2 translate]\n-> (semantic_profile_1: artifact record) + (semantic_views_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(tables_1: artifact tabular)* + (semantic_profile_1: artifact record) + (semantic_views_1: artifact visual)\n-> [human select]\n-> (tables_1: artifact tabular)* + (semantic_profile_1: artifact record) + (selected_feature_1: selection record)\n-> [tool_1 translate]\n-> (tables_1: artifact tabular)* + (selected_feature_1: selection record) + (validation_queries_1: artifact formal)*\n-> [tool_1 execute]\n-> (selected_feature_1: selection record) + (validation_queries_1: artifact formal)* + (supporting_samples_1: artifact tabular) + (counterexamples_2: artifact tabular)\n-> [tool_2 translate]\n-> (validation_view_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(semantic_profile_1: artifact record) + (semantic_views_1: artifact visual)\n-> [human modify]\n-> (semantic_profile_2: artifact record)\n-> [tool_1 assign]\n-> (semantic_profile_2: artifact record) + (refined_table_labels_1: label categorical)*\n-> [model_2 assign]\n-> (semantic_profile_2: artifact record) + (refined_table_labels_1: label categorical)* + (refined_table_types_1: label categorical)*\n-> [tool_2 translate]\n-> (semantic_profile_2: artifact record) + (updated_semantic_views_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(column_semantics_1: artifact record)* + (table_labels_1: label categorical)* + (table_types_1: label categorical)*\n-> [human modify]\n-> (column_semantics_1: artifact record)* + (table_labels_1: label categorical)* + (table_types_2: label categorical)*\n-> [model_2 train]\n-> (updated_table_classifier_1: artifact graph)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

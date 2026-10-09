@@ -1,0 +1,83 @@
+{
+  "name": "System X",
+  "goal": "End-to-end PDF-to-video authoring workflow, including optional script editing and per-scene regeneration.",
+  "description": "the system helps researchers turn an uploaded academic PDF into a short-form science communication video by generating hook-and-script choices, narrated visual scenes, captions, and an editable attribution screen. Users select and refine the script and regenerate individual scenes before assembling the final video. Actors: model_1 = large language model; model_2 = video generation model; model_3 = text-to-speech model; tool_1 = backend processing routines; tool_2 = video editing and concatenation tool.",
+  "processes": [
+    {
+      "name": "Generate hooks and scripts",
+      "description": "After a researcher uploads a PDF paper, model_1 extracts concrete findings, develops and rates engaging hooks, and creates four matching eight-scene script options.",
+      "rawExpression": "(paper_1: artifact language)\n-> [model_1 extract]\n-> (paper_1: artifact language) + (findings_1: artifact language)*\n-> [model_1 generate]~\n-> (paper_1: artifact language) + (story_ideas_1: artifact language)*\n-> [model_1 generate]~\n-> (paper_1: artifact language) + (hooks_1: artifact language)*\n-> [model_1 evaluate]\n-> (paper_1: artifact language) + (hooks_1: artifact language)* + (hook_ratings_1: evaluation numeric)*\n-> [model_1 select]\n-> (paper_1: artifact language) + (shortlisted_hooks_1: artifact language)*\n-> [model_1 generate]~\n-> (script_options_1: artifact record)*"
+    },
+    {
+      "name": "Choose script and voiceover style",
+      "description": "When four hook-and-script options appear, the researcher chooses one. model_1 recommends a voiceover tone, which the researcher accepts or customizes, and merges it with the default fast-speaking style.",
+      "rawExpression": "(script_options_1: artifact record)*\n-> [human select]\n-> (script_1: artifact record)\n-> [tool_1 compose]\n-> (script_1: artifact record) + (baseline_voice_style_1: instruction language)\n-> [model_1 generate]~\n-> (script_1: artifact record) + (baseline_voice_style_1: instruction language) + (tone_suggestion_1: instruction language)\n-> [human specify]\n-> (script_1: artifact record) + (baseline_voice_style_1: instruction language) + (tone_preference_1: instruction language)\n-> [model_1 compose]~\n-> (script_1: artifact record) + (voice_style_1: instruction language)"
+    },
+    {
+      "name": "Refine the script",
+      "description": "After selecting a script, the researcher can edit its wording in the script editor. The researcher can edit it again at any time, or use the original script unchanged.",
+      "rawExpression": "(script_1: artifact record)\n-> [human modify]\n-> (script_1: artifact record)"
+    },
+    {
+      "name": "Prepare storyboard and generate clips",
+      "description": "After the script and voice style are set, model_1 segments the script and writes visual prompts for its scenes. The researcher generates clips together or individually; a speech model narrates them, model_2 generates timed visuals, and tool_2 combines video, voice and captions.",
+      "rawExpression": "(script_1: artifact record) + (voice_style_1: instruction language)\n-> [model_1 decompose]\n-> (scene_scripts_1: artifact language)* + (voice_style_1: instruction language)\n-> [model_1 generate]~\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language)\n-> [human specify]\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_request_1: instruction categorical)\n-> [model_3 generate]~\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_audio_1: artifact audio)*\n-> [tool_1 extract]\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_audio_1: artifact audio)* + (scene_durations_1: artifact numeric)*\n-> [model_2 generate]~\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_audio_1: artifact audio)* + (scene_videos_1: artifact visual)*\n-> [tool_2 compose]\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)*"
+    },
+    {
+      "name": "Regenerate a scene",
+      "description": "After reviewing storyboard clips, the researcher can request another version of any scene. The system produces and replaces that clip; this can repeat until its visuals are satisfactory.",
+      "rawExpression": "(scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)*\n-> [human select]\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (scene_selection_1: selection categorical)\n-> [human specify]\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (scene_selection_1: selection categorical) + (regeneration_request_1: instruction categorical)\n-> [model_3 generate]~\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (scene_selection_1: selection categorical) + (replacement_audio_1: artifact audio)\n-> [tool_1 extract]\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (scene_selection_1: selection categorical) + (replacement_audio_1: artifact audio) + (replacement_duration_1: artifact numeric)\n-> [model_2 generate]~\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (scene_selection_1: selection categorical) + (replacement_audio_1: artifact audio) + (replacement_video_1: artifact visual)\n-> [tool_2 compose]\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (scene_selection_1: selection categorical) + (replacement_clip_1: artifact multimodal)\n-> [tool_1 modify]\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)*"
+    },
+    {
+      "name": "Revise a storyboard scene",
+      "description": "After clips have been generated, the researcher can change a scene script. model_1 updates its visual prompt, and the scene is generated again; this can repeat until the scene is satisfactory.",
+      "rawExpression": "(scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)*\n-> [human modify]\n-> (scene_scripts_2: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)*\n-> [model_1 generate]~\n-> (scene_scripts_2: artifact language)* + (visual_prompts_2: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)*\n-> [model_3 generate]~\n-> (scene_scripts_2: artifact language)* + (visual_prompts_2: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (revised_audio_1: artifact audio)\n-> [tool_1 extract]\n-> (scene_scripts_2: artifact language)* + (visual_prompts_2: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (revised_audio_1: artifact audio) + (revised_duration_1: artifact numeric)\n-> [model_2 generate]~\n-> (scene_scripts_2: artifact language)* + (visual_prompts_2: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (revised_audio_1: artifact audio) + (revised_video_1: artifact visual)\n-> [tool_2 compose]\n-> (scene_scripts_2: artifact language)* + (visual_prompts_2: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)* + (revised_clip_1: artifact multimodal)\n-> [tool_1 modify]\n-> (scene_scripts_1: artifact language)* + (visual_prompts_1: instruction language)* + (voice_style_1: instruction language) + (scene_clips_1: artifact multimodal)*"
+    },
+    {
+      "name": "Add credits and merge video",
+      "description": "After the storyboard clips are complete, the system extracts the paper’s first-page screenshot and author names for an editable credit scene. The researcher edits the attribution, approves scenes and requests the final merge, producing a single MP4 video.",
+      "rawExpression": "(scene_clips_1: artifact multimodal)* + (paper_1: artifact language)\n-> [tool_1 extract]\n-> (scene_clips_1: artifact multimodal)* + (paper_screenshot_1: artifact visual) + (paper_authors_1: artifact language)*\n-> [tool_1 compose]\n-> (scene_clips_1: artifact multimodal)* + (paper_screenshot_1: artifact visual) + (credit_text_1: artifact language)\n-> [human modify]\n-> (scene_clips_1: artifact multimodal)* + (paper_screenshot_1: artifact visual) + (credit_text_2: artifact language)\n-> [tool_1 compose]\n-> (scene_clips_1: artifact multimodal)* + (credit_scene_1: artifact visual)\n-> [human select]\n-> (approved_clips_1: artifact multimodal)* + (credit_scene_1: artifact visual)\n-> [human specify]\n-> (approved_clips_1: artifact multimodal)* + (credit_scene_1: artifact visual) + (merge_request_1: instruction categorical)\n-> [tool_2 translate]\n-> (approved_clips_1: artifact multimodal)* + (credit_clip_1: artifact multimodal)\n-> [tool_2 compose]\n-> (final_video_1: artifact multimodal)"
+    }
+  ],
+  "representations": {
+    "paper": "the research paper PDF the researcher uploads",
+    "findings": "concrete findings extracted from the paper",
+    "story_ideas": "ideas for telling the paper's story to a general audience",
+    "hooks": "attention-grabbing opening lines for a short video",
+    "hook_ratings": "a score for how engaging each hook is",
+    "shortlisted_hooks": "the best-rated hooks",
+    "script_options": "four script options, each a hook with an eight-scene script",
+    "script": "the chosen script",
+    "baseline_voice_style": "the default narration style, fast-speaking",
+    "tone_suggestion": "a suggested narration tone for this script",
+    "tone_preference": "the tone the researcher accepts or writes",
+    "voice_style": "the final narration style instruction",
+    "scene_scripts": "the narration text for each scene",
+    "visual_prompts": "a prompt describing the visuals for each scene",
+    "scene_request": "a request to generate all scenes or one scene",
+    "scene_audio": "the narrated voice-over for each scene",
+    "scene_durations": "the length of each scene's narration",
+    "scene_videos": "generated video for each scene, timed to its narration",
+    "scene_clips": "each scene's video combined with voice-over and captions",
+    "scene_selection": "the scene the researcher picks",
+    "regeneration_request": "a request to generate the picked scene again",
+    "replacement_audio": "new narration for the picked scene",
+    "replacement_duration": "the length of the new narration",
+    "replacement_video": "new video for the picked scene",
+    "replacement_clip": "the new combined clip for the picked scene",
+    "revised_audio": "narration for an edited scene script",
+    "revised_duration": "the length of that narration",
+    "revised_video": "video for the edited scene",
+    "revised_clip": "the combined clip for the edited scene",
+    "paper_screenshot": "an image of the paper's first page",
+    "paper_authors": "the paper's author names",
+    "credit_text": "the attribution text for the closing credits",
+    "credit_scene": "the closing credit screen with the first-page image and attribution",
+    "approved_clips": "the scene clips the researcher approves",
+    "merge_request": "the request to merge everything into the final video",
+    "credit_clip": "the credit screen turned into a video clip",
+    "final_video": "the finished short vertical video file"
+  },
+  "references": [],
+  "images": []
+}

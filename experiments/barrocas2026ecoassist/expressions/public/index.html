@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>System X — energy-aware page builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>System X <small>energy-aware page builder</small></h1>
+    <nav>
+      <button class="tab active" data-tab="build">Build</button>
+      <button class="tab" data-tab="train">Train optimizer</button>
+    </nav>
+  </header>
+
+  <main id="build" class="panel">
+    <!-- Process 2: request_1 + model_choice_1 -> [model_1 generate]~ -> code_1 -->
+    <section class="step" id="step-generate">
+      <h2><span class="num">1</span> Describe the page</h2>
+      <textarea id="request" rows="3" placeholder="e.g. A landing page for a neighbourhood bakery with a menu, opening hours and a contact form"></textarea>
+      <div class="row">
+        <div class="seg" id="model-choice" role="radiogroup" aria-label="Generator model"></div>
+        <button id="btn-generate" class="primary">Generate page</button>
+        <span class="status" id="generate-status"></span>
+      </div>
+      <details id="code1-box" hidden>
+        <summary>Generated code (code_1)</summary>
+        <pre id="code1" class="code"></pre>
+      </details>
+    </section>
+
+    <!-- Process 3: code_1 + optimizer_weights_1 -> ... -> code_3 -->
+    <section class="step" id="step-optimize" hidden>
+      <h2><span class="num">2</span> Optimize for display energy</h2>
+      <div class="row">
+        <button id="btn-optimize" class="primary">Optimize</button>
+        <span class="muted" id="weights-info"></span>
+      </div>
+      <ol class="pipeline" id="pipeline"></ol>
+      <div class="compare" id="compare" hidden>
+        <figure>
+          <figcaption>Before <b id="energy-before"></b></figcaption>
+          <div class="shot"><img id="render-before" alt="baseline rendering"></div>
+        </figure>
+        <figure>
+          <figcaption>After <b id="energy-after"></b></figcaption>
+          <div class="shot"><img id="render-after" alt="optimized rendering"></div>
+        </figure>
+      </div>
+      <div class="savings" id="savings" hidden></div>
+    </section>
+
+    <!-- Process 3: diff_1 -> [human select] -> selected_edits_1 -> [tool_5 modify] -> code_3 -->
+    <section class="step" id="step-review" hidden>
+      <h2><span class="num">3</span> Review edits</h2>
+      <div class="row">
+        <button id="sel-all">Select all</button>
+        <button id="sel-none">Select none</button>
+        <span class="muted" id="sel-count"></span>
+        <button id="btn-apply" class="primary push">Apply selected edits</button>
+      </div>
+      <div id="diff"></div>
+    </section>
+
+    <!-- Process 4: code_3 -> [tool_5 translate] -> preview_1 -->
+    <section class="step" id="step-preview" hidden>
+      <h2><span class="num">4</span> Preview</h2>
+      <div class="row">
+        <span class="muted" id="preview-info"></span>
+        <button id="btn-download" class="push">Download HTML</button>
+      </div>
+      <iframe id="preview" sandbox="allow-scripts" title="preview of code_3"></iframe>
+      <details><summary>Final code (code_3)</summary><pre id="code3" class="code"></pre></details>
+    </section>
+  </main>
+
+  <!-- Process 1 -->
+  <main id="train" class="panel" hidden>
+    <section class="step">
+      <h2>Train the energy optimizer (model_2)</h2>
+      <p class="muted">Renders every training page, applies rule-based energy edits, measures the savings of each
+        variant, keeps pairs that save energy, and fits one weight per edit strategy. The optimizer model uses these weights
+        when it rewrites generated pages.</p>
+      <div class="row"><button id="btn-train" class="primary">Run training</button><span class="muted" id="train-pages"></span></div>
+      <pre id="train-log" class="log" hidden></pre>
+    </section>
+    <section class="step">
+      <h2>Optimizer weights</h2>
+      <div id="weights"></div>
+    </section>
+    <section class="step" id="pairs-box" hidden>
+      <h2>Training pairs</h2>
+      <table id="pairs"></table>
+    </section>
+  </main>
+  <script src="app.js" type="module"></script>
+</body>
+</html>

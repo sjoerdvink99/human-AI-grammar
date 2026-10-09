@@ -1,0 +1,30 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(notebook_1: artifact record) + (rules_1: instruction record)*\n-> [human specify]\n-> (notebook_1: artifact record) + (rules_1: instruction record)* + (prompt_1: instruction language)\n-> [tool_1 extract]\n-> (context_1: artifact record) + (rules_1: instruction record)* + (prompt_1: instruction language)\n-> [model_1 match]\n-> (context_1: artifact record) + (rules_1: instruction record)* + (prompt_1: instruction language) + (triggered_rules_1: selection record)*\n-> [model_2 modify]~\n-> (prompt_1: instruction language) + (prompt_2: instruction language) + (lint_messages_1: evaluation record)*\n-> [human select]\n-> (prompt_2: instruction language)\n-> [model_4 generate]~\n-> (code_1: artifact formal)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(prompt_1: instruction language) + (context_1: artifact record) + (triggered_rules_1: selection record)* + (rules_1: instruction record)*\n-> [model_3 generate]~\n-> (rule_proposals_1: instruction record)* + (rules_1: instruction record)*\n-> [human modify]\n-> (rule_proposals_2: instruction record)* + (rules_1: instruction record)*\n-> [human select]\n-> (accepted_rules_1: instruction record)* + (rules_1: instruction record)*\n-> [tool_2 compose]\n-> (rules_2: instruction record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(rules_2: instruction record)*\n-> [human modify]\n-> (rules_3: instruction record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(rules_2: instruction record)*\n-> [human select]\n-> (active_rules_1: selection record)*"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

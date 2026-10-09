@@ -1,0 +1,8 @@
+[
+  {"id":"g_seed01","title":"Report missing values first","when":"Any analysis that aggregates, filters, or models columns","instruction":"Before computing results, report the count and share of missing values for every column used, and state how they are handled (dropped or imputed).","source":"seed","updatedAt":"2026-11-24T00:00:00.000Z"},
+  {"id":"g_seed02","title":"Use medians for skewed money columns","when":"Summarising revenue, price, income, or other monetary columns","instruction":"Report the median alongside the mean and flag the column as skewed when mean exceeds median by more than 20%.","source":"seed","updatedAt":"2026-11-24T00:00:00.000Z"},
+  {"id":"g_seed03","title":"Label charts fully","when":"The request asks for a chart or plot","instruction":"Every chart has a title, axis labels with units, and a source note naming the data file.","source":"seed","updatedAt":"2026-11-24T00:00:00.000Z"},
+  {"id":"g_seed04","title":"Parse dates explicitly","when":"A date or datetime column is used","instruction":"Parse date columns with an explicit format and state the time range covered by the data.","source":"seed","updatedAt":"2026-11-24T00:00:00.000Z"},
+  {"id":"g_seed05","title":"Show group sizes","when":"Results are grouped or compared across categories","instruction":"Include the number of rows in each group next to every grouped statistic and flag groups with fewer than 10 rows.","source":"seed","updatedAt":"2026-11-24T00:00:00.000Z"},
+  {"id":"g_seed06","title":"Do not claim causation","when":"Comparing groups or computing correlations","instruction":"Describe relationships as associations; never state or imply that one variable causes another.","source":"seed","updatedAt":"2026-11-24T00:00:00.000Z"}
+]

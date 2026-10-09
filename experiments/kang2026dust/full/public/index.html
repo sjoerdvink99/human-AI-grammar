@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System X — weekly highlights</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>System&nbsp;X</h1>
+    <nav>
+      <button data-tab="week" class="tab active">This week</button>
+      <button data-tab="archive" class="tab">Archive</button>
+      <button data-tab="library" class="tab">Library</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tab-week" class="panel"></section>
+    <section id="tab-archive" class="panel hidden">
+      <div class="archive">
+        <aside class="archive-list">
+          <div class="filter" role="group" aria-label="Archive filter">
+            <button data-filter="all" class="chip active">All highlights</button>
+            <button data-filter="remixed" class="chip">With remixes</button>
+          </div>
+          <ul id="archive-items"></ul>
+        </aside>
+        <article id="archive-view" class="archive-view"><p class="muted">Select a highlight to revisit it.</p></article>
+      </div>
+    </section>
+    <section id="tab-library" class="panel hidden">
+      <h2>Your highlights</h2>
+      <p class="muted">Upload your e-book highlights. Supported: Kindle <code>My Clippings.txt</code>, CSV with
+        <code>text,book,author</code> columns, a JSON array of <code>{text, book, author}</code>, or plain text with one
+        highlight per paragraph (optionally ending with a line <code>— Author, Book</code>).</p>
+      <form id="upload-form" class="card">
+        <input type="file" id="upload-file" accept=".txt,.csv,.json,.md">
+        <div class="or">or paste</div>
+        <textarea id="upload-text" rows="6" placeholder="Paste highlights here…"></textarea>
+        <div class="row">
+          <button type="submit" class="primary">Add highlights</button>
+          <button type="button" id="load-sample">Load sample highlights</button>
+          <span id="upload-status" class="muted"></span>
+        </div>
+      </form>
+      <p id="library-summary" class="muted"></p>
+      <ul id="library-books" class="books"></ul>
+    </section>
+  </main>
+
+  <footer class="clock">
+    <span id="clock-label"></span>
+    <button id="next-monday" class="link" title="Demo: simulate time passing">Skip to next Monday</button>
+    <button id="reset-clock" class="link">Back to today</button>
+  </footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

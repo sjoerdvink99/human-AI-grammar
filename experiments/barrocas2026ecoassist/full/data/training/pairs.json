@@ -1,0 +1,2234 @@
+[
+ {
+  "pageId": "page-0001",
+  "patterns": [
+   "infinite-shadow-animation",
+   "layout-animation",
+   "layout-thrashing",
+   "busy-polling",
+   "unminified-assets",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 14.4910604,
+   "cpuJoules": 14.110032,
+   "gpuJoules": 0.3475079999999988,
+   "networkJoules": 0.0335204,
+   "rendererCpuSeconds": 1.175836,
+   "gpuCpuSeconds": 0.019305999999999934,
+   "transferBytes": 167602,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 14.0452736,
+   "cpuJoules": 13.82076,
+   "gpuJoules": 0.19544400000000062,
+   "networkJoules": 0.029069599999999998,
+   "rendererCpuSeconds": 1.15173,
+   "gpuCpuSeconds": 0.010858000000000034,
+   "transferBytes": 145348,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.4457868000000005,
+   "percent": 3.0762883301487065
+  },
+  "visualMismatch": 0.0023507254464285713,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0004",
+  "patterns": [
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "busy-polling",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 7.509718199999999,
+   "cpuJoules": 3.4183319999999995,
+   "gpuJoules": 4.089708,
+   "networkJoules": 0.0016782,
+   "rendererCpuSeconds": 0.284861,
+   "gpuCpuSeconds": 0.22720600000000002,
+   "transferBytes": 8391,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 6.680630000000002,
+   "cpuJoules": 2.583828,
+   "gpuJoules": 4.095090000000001,
+   "networkJoules": 0.001712,
+   "rendererCpuSeconds": 0.215319,
+   "gpuCpuSeconds": 0.22750500000000007,
+   "transferBytes": 8560,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.8290881999999975,
+   "percent": 11.040203878755365
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0005",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "layout-thrashing",
+   "non-passive-scroll"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 7.646731600000001,
+   "cpuJoules": 2.7710879999999998,
+   "gpuJoules": 4.874616000000001,
+   "networkJoules": 0.0010276,
+   "rendererCpuSeconds": 0.230924,
+   "gpuCpuSeconds": 0.27081200000000005,
+   "transferBytes": 5138,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 7.2676954,
+   "cpuJoules": 2.6364,
+   "gpuJoules": 4.630302,
+   "networkJoules": 0.0009934,
+   "rendererCpuSeconds": 0.2197,
+   "gpuCpuSeconds": 0.257239,
+   "transferBytes": 4967,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.3790362000000007,
+   "percent": 4.956839337737455
+  },
+  "visualMismatch": 0.0030691964285714285,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0006",
+  "patterns": [
+   "layout-animation",
+   "blanket-will-change",
+   "non-passive-scroll",
+   "eager-images",
+   "unminified-assets",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 6.597489599999999,
+   "cpuJoules": 5.2323,
+   "gpuJoules": 1.3276079999999988,
+   "networkJoules": 0.0375816,
+   "rendererCpuSeconds": 0.436025,
+   "gpuCpuSeconds": 0.07375599999999993,
+   "transferBytes": 187908,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 5.557620200000003,
+   "cpuJoules": 3.8481120000000004,
+   "gpuJoules": 1.676106000000002,
+   "networkJoules": 0.0334022,
+   "rendererCpuSeconds": 0.320676,
+   "gpuCpuSeconds": 0.09311700000000012,
+   "transferBytes": 167011,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.0398693999999962,
+   "percent": 15.761592106185303
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0009",
+  "patterns": [
+   "fast-timer",
+   "blanket-will-change",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 3.071120400000004,
+   "cpuJoules": 2.30544,
+   "gpuJoules": 0.7644600000000041,
+   "networkJoules": 0.0012204,
+   "rendererCpuSeconds": 0.19212,
+   "gpuCpuSeconds": 0.04247000000000023,
+   "transferBytes": 6102,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.580452199999999,
+   "cpuJoules": 1.95426,
+   "gpuJoules": 0.624941999999999,
+   "networkJoules": 0.0012502,
+   "rendererCpuSeconds": 0.162855,
+   "gpuCpuSeconds": 0.034718999999999944,
+   "transferBytes": 6251,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.4906682000000049,
+   "percent": 15.976846755991861
+  },
+  "visualMismatch": 0.00013113839285714286,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0010",
+  "patterns": [
+   "infinite-shadow-animation",
+   "layout-animation",
+   "layout-thrashing",
+   "busy-polling",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 14.529022599999998,
+   "cpuJoules": 14.175912,
+   "gpuJoules": 0.32257799999999737,
+   "networkJoules": 0.0305326,
+   "rendererCpuSeconds": 1.181326,
+   "gpuCpuSeconds": 0.017920999999999854,
+   "transferBytes": 152663,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 13.738012399999999,
+   "cpuJoules": 13.552871999999999,
+   "gpuJoules": 0.1561679999999983,
+   "networkJoules": 0.0289724,
+   "rendererCpuSeconds": 1.129406,
+   "gpuCpuSeconds": 0.008675999999999906,
+   "transferBytes": 144862,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.7910101999999988,
+   "percent": 5.4443455817874415
+  },
+  "visualMismatch": 0.0025599888392857143,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0011",
+  "patterns": [
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "non-passive-scroll",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 8.241122000000004,
+   "cpuJoules": 3.2278199999999995,
+   "gpuJoules": 5.011632000000004,
+   "networkJoules": 0.0016699999999999998,
+   "rendererCpuSeconds": 0.268985,
+   "gpuCpuSeconds": 0.2784240000000002,
+   "transferBytes": 8350,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 7.566384000000004,
+   "cpuJoules": 2.7150600000000003,
+   "gpuJoules": 4.849614000000003,
+   "networkJoules": 0.00171,
+   "rendererCpuSeconds": 0.226255,
+   "gpuCpuSeconds": 0.2694230000000002,
+   "transferBytes": 8550,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.6747380000000005,
+   "percent": 8.187453116214032
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0012",
+  "patterns": [
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "busy-polling"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 7.951724199999999,
+   "cpuJoules": 3.77604,
+   "gpuJoules": 4.174649999999999,
+   "networkJoules": 0.0010341999999999999,
+   "rendererCpuSeconds": 0.31467,
+   "gpuCpuSeconds": 0.23192499999999994,
+   "transferBytes": 5171,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 6.6361432,
+   "cpuJoules": 2.4912720000000004,
+   "gpuJoules": 4.143888,
+   "networkJoules": 0.0009832,
+   "rendererCpuSeconds": 0.207606,
+   "gpuCpuSeconds": 0.23021599999999998,
+   "transferBytes": 4916,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.315580999999999,
+   "percent": 16.544600477969283
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0014",
+  "patterns": [
+   "fast-timer",
+   "layout-animation",
+   "busy-polling",
+   "non-passive-scroll"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 3.1669532000000005,
+   "cpuJoules": 1.907772,
+   "gpuJoules": 1.2583080000000004,
+   "networkJoules": 0.0008732,
+   "rendererCpuSeconds": 0.158981,
+   "gpuCpuSeconds": 0.06990600000000002,
+   "transferBytes": 4366,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.910796400000001,
+   "cpuJoules": 1.595196,
+   "gpuJoules": 1.314756000000001,
+   "networkJoules": 0.0008443999999999999,
+   "rendererCpuSeconds": 0.132933,
+   "gpuCpuSeconds": 0.07304200000000005,
+   "transferBytes": 4222,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.2561567999999994,
+   "percent": 8.088430230039375
+  },
+  "visualMismatch": 0.0031277901785714286,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0017",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "busy-polling",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 23.444457800000002,
+   "cpuJoules": 20.672184,
+   "gpuJoules": 2.7427139999999977,
+   "networkJoules": 0.029559799999999997,
+   "rendererCpuSeconds": 1.722682,
+   "gpuCpuSeconds": 0.15237299999999987,
+   "transferBytes": 147799,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 20.8801266,
+   "cpuJoules": 17.50788,
+   "gpuJoules": 3.3442380000000007,
+   "networkJoules": 0.028008599999999998,
+   "rendererCpuSeconds": 1.45899,
+   "gpuCpuSeconds": 0.18579100000000004,
+   "transferBytes": 140043,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 2.5643312000000016,
+   "percent": 10.937899361443117
+  },
+  "visualMismatch": 0.000047433035714285714,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0018",
+  "patterns": [
+   "busy-polling",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 1.2257396000000027,
+   "cpuJoules": 0.984996,
+   "gpuJoules": 0.23895000000000266,
+   "networkJoules": 0.0017936,
+   "rendererCpuSeconds": 0.082083,
+   "gpuCpuSeconds": 0.013275000000000148,
+   "transferBytes": 8968,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 1.1686959999999966,
+   "cpuJoules": 0.9827159999999999,
+   "gpuJoules": 0.1841219999999968,
+   "networkJoules": 0.0018579999999999998,
+   "rendererCpuSeconds": 0.081893,
+   "gpuCpuSeconds": 0.010228999999999822,
+   "transferBytes": 9290,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.05704360000000608,
+   "percent": 4.6538106462421505
+  },
+  "visualMismatch": 0.004803292410714285,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0020",
+  "patterns": [
+   "layout-animation",
+   "layout-thrashing",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 1.4389176000000072,
+   "cpuJoules": 1.17876,
+   "gpuJoules": 0.2580840000000073,
+   "networkJoules": 0.0020736,
+   "rendererCpuSeconds": 0.09823,
+   "gpuCpuSeconds": 0.014338000000000406,
+   "transferBytes": 10368,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 1.3206132000000037,
+   "cpuJoules": 1.054464,
+   "gpuJoules": 0.26400600000000374,
+   "networkJoules": 0.0021432,
+   "rendererCpuSeconds": 0.087872,
+   "gpuCpuSeconds": 0.014667000000000208,
+   "transferBytes": 10716,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.11830440000000353,
+   "percent": 8.221763358791563
+  },
+  "visualMismatch": 0.0048367745535714286,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0021",
+  "patterns": [
+   "fast-timer",
+   "layout-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "eager-images",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 2.628439599999997,
+   "cpuJoules": 2.0282400000000003,
+   "gpuJoules": 0.5948459999999969,
+   "networkJoules": 0.0053536,
+   "rendererCpuSeconds": 0.16902,
+   "gpuCpuSeconds": 0.033046999999999827,
+   "transferBytes": 26768,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 1.4115425999999915,
+   "cpuJoules": 1.138392,
+   "gpuJoules": 0.2706659999999914,
+   "networkJoules": 0.0024846,
+   "rendererCpuSeconds": 0.094866,
+   "gpuCpuSeconds": 0.015036999999999523,
+   "transferBytes": 12423,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.2168970000000054,
+   "percent": 46.297316476285275
+  },
+  "visualMismatch": 0.00008510044642857143,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0023",
+  "patterns": [
+   "blanket-will-change",
+   "layout-thrashing",
+   "busy-polling"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 1.5944536000000036,
+   "cpuJoules": 1.237896,
+   "gpuJoules": 0.35573400000000355,
+   "networkJoules": 0.0008236,
+   "rendererCpuSeconds": 0.103158,
+   "gpuCpuSeconds": 0.019763000000000197,
+   "transferBytes": 4118,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 1.0832639999999887,
+   "cpuJoules": 0.8860680000000001,
+   "gpuJoules": 0.1964159999999886,
+   "networkJoules": 0.00078,
+   "rendererCpuSeconds": 0.073839,
+   "gpuCpuSeconds": 0.010911999999999367,
+   "transferBytes": 3900,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.5111896000000149,
+   "percent": 32.06048768054547
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0026",
+  "patterns": [
+   "fast-timer",
+   "eager-images",
+   "unminified-assets",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 3.0720682000000115,
+   "cpuJoules": 2.6836320000000002,
+   "gpuJoules": 0.35155800000001136,
+   "networkJoules": 0.0368782,
+   "rendererCpuSeconds": 0.223636,
+   "gpuCpuSeconds": 0.01953100000000063,
+   "transferBytes": 184391,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.0631249999999994,
+   "cpuJoules": 1.7716919999999998,
+   "gpuJoules": 0.25871399999999944,
+   "networkJoules": 0.032719,
+   "rendererCpuSeconds": 0.147641,
+   "gpuCpuSeconds": 0.01437299999999997,
+   "transferBytes": 163595,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.008943200000012,
+   "percent": 32.842474004971905
+  },
+  "visualMismatch": 0.0049720982142857145,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0028",
+  "patterns": [
+   "blanket-will-change",
+   "unminified-assets",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 1.4574038000000011,
+   "cpuJoules": 1.3416,
+   "gpuJoules": 0.08155800000000113,
+   "networkJoules": 0.0342458,
+   "rendererCpuSeconds": 0.1118,
+   "gpuCpuSeconds": 0.004531000000000063,
+   "transferBytes": 171229,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 1.1785191999999927,
+   "cpuJoules": 0.972156,
+   "gpuJoules": 0.1765439999999927,
+   "networkJoules": 0.029819199999999997,
+   "rendererCpuSeconds": 0.081013,
+   "gpuCpuSeconds": 0.009807999999999595,
+   "transferBytes": 149096,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.2788846000000085,
+   "percent": 19.135712422323056
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0029",
+  "patterns": [
+   "fast-timer",
+   "busy-polling",
+   "eager-images",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 2.529907599999985,
+   "cpuJoules": 2.051196,
+   "gpuJoules": 0.47260799999998504,
+   "networkJoules": 0.0061036,
+   "rendererCpuSeconds": 0.170933,
+   "gpuCpuSeconds": 0.02625599999999917,
+   "transferBytes": 30518,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 1.3571085999999966,
+   "cpuJoules": 1.1034599999999999,
+   "gpuJoules": 0.25034399999999657,
+   "networkJoules": 0.0033046,
+   "rendererCpuSeconds": 0.091955,
+   "gpuCpuSeconds": 0.01390799999999981,
+   "transferBytes": 16523,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.1727989999999884,
+   "percent": 46.35738475191724
+  },
+  "visualMismatch": 0.004903738839285714,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0030",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "busy-polling"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 6.5381067999999924,
+   "cpuJoules": 3.2072279999999997,
+   "gpuJoules": 3.329999999999993,
+   "networkJoules": 0.0008788,
+   "rendererCpuSeconds": 0.267269,
+   "gpuCpuSeconds": 0.1849999999999996,
+   "transferBytes": 4394,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 6.2211566000000005,
+   "cpuJoules": 2.328684,
+   "gpuJoules": 3.891636,
+   "networkJoules": 0.0008366,
+   "rendererCpuSeconds": 0.194057,
+   "gpuCpuSeconds": 0.216202,
+   "transferBytes": 4183,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.31695019999999197,
+   "percent": 4.847736656733603
+  },
+  "visualMismatch": 0.00009068080357142857,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0034",
+  "patterns": [
+   "infinite-shadow-animation",
+   "non-passive-scroll"
+  ],
+  "rulesApplied": [
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 7.335063200000001,
+   "cpuJoules": 2.608524,
+   "gpuJoules": 4.725558000000001,
+   "networkJoules": 0.0009812,
+   "rendererCpuSeconds": 0.217377,
+   "gpuCpuSeconds": 0.26253100000000007,
+   "transferBytes": 4906,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 7.2271734000000025,
+   "cpuJoules": 2.513112,
+   "gpuJoules": 4.713102000000003,
+   "networkJoules": 0.0009594,
+   "rendererCpuSeconds": 0.209426,
+   "gpuCpuSeconds": 0.26183900000000015,
+   "transferBytes": 4797,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.10788979999999881,
+   "percent": 1.4708775788053032
+  },
+  "visualMismatch": 0.003140345982142857,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0035",
+  "patterns": [
+   "fast-timer",
+   "layout-animation",
+   "blanket-will-change",
+   "non-passive-scroll",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 3.141020000000015,
+   "cpuJoules": 2.044836,
+   "gpuJoules": 1.0947960000000148,
+   "networkJoules": 0.001388,
+   "rendererCpuSeconds": 0.170403,
+   "gpuCpuSeconds": 0.06082200000000082,
+   "transferBytes": 6940,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.9163234000000013,
+   "cpuJoules": 1.6344599999999998,
+   "gpuJoules": 1.2804480000000016,
+   "networkJoules": 0.0014154,
+   "rendererCpuSeconds": 0.136205,
+   "gpuCpuSeconds": 0.07113600000000009,
+   "transferBytes": 7077,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.22469660000001346,
+   "percent": 7.153618888132276
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0036",
+  "patterns": [
+   "layout-thrashing",
+   "eager-images",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 1.0578859999999979,
+   "cpuJoules": 0.8987640000000001,
+   "gpuJoules": 0.15301799999999766,
+   "networkJoules": 0.006104,
+   "rendererCpuSeconds": 0.074897,
+   "gpuCpuSeconds": 0.00850099999999987,
+   "transferBytes": 30520,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 0.9870833999999957,
+   "cpuJoules": 0.876072,
+   "gpuJoules": 0.10771199999999581,
+   "networkJoules": 0.0032993999999999996,
+   "rendererCpuSeconds": 0.073006,
+   "gpuCpuSeconds": 0.005983999999999767,
+   "transferBytes": 16497,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.07080260000000216,
+   "percent": 6.692838358764773
+  },
+  "visualMismatch": 0.0048018973214285715,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0038",
+  "patterns": [
+   "fast-timer",
+   "layout-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "non-passive-scroll",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 3.109310199999999,
+   "cpuJoules": 2.362476,
+   "gpuJoules": 0.7421759999999988,
+   "networkJoules": 0.0046581999999999995,
+   "rendererCpuSeconds": 0.196873,
+   "gpuCpuSeconds": 0.041231999999999935,
+   "transferBytes": 23291,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.724775999999994,
+   "cpuJoules": 1.9199519999999999,
+   "gpuJoules": 0.8031059999999943,
+   "networkJoules": 0.001718,
+   "rendererCpuSeconds": 0.159996,
+   "gpuCpuSeconds": 0.044616999999999685,
+   "transferBytes": 8590,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.38453420000000493,
+   "percent": 12.367186779884651
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0039",
+  "patterns": [
+   "busy-polling",
+   "eager-images",
+   "unminified-assets",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 2.9714908000000047,
+   "cpuJoules": 2.617356,
+   "gpuJoules": 0.3171960000000045,
+   "networkJoules": 0.0369388,
+   "rendererCpuSeconds": 0.218113,
+   "gpuCpuSeconds": 0.01762200000000025,
+   "transferBytes": 184694,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.788889200000005,
+   "cpuJoules": 2.460648,
+   "gpuJoules": 0.29547000000000523,
+   "networkJoules": 0.0327712,
+   "rendererCpuSeconds": 0.205054,
+   "gpuCpuSeconds": 0.01641500000000029,
+   "transferBytes": 163856,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.18260159999999948,
+   "percent": 6.145117460905455
+  },
+  "visualMismatch": 0.0048018973214285715,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0040",
+  "patterns": [
+   "infinite-shadow-animation",
+   "layout-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "non-passive-scroll",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 9.679734600000018,
+   "cpuJoules": 4.503036,
+   "gpuJoules": 5.174604000000018,
+   "networkJoules": 0.0020946,
+   "rendererCpuSeconds": 0.375253,
+   "gpuCpuSeconds": 0.287478000000001,
+   "transferBytes": 10473,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 7.8584772000000065,
+   "cpuJoules": 2.918688,
+   "gpuJoules": 4.937652000000007,
+   "networkJoules": 0.0021371999999999997,
+   "rendererCpuSeconds": 0.243224,
+   "gpuCpuSeconds": 0.2743140000000004,
+   "transferBytes": 10686,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.821257400000011,
+   "percent": 18.815158423868436
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0042",
+  "patterns": [
+   "infinite-shadow-animation",
+   "layout-thrashing",
+   "non-passive-scroll"
+  ],
+  "rulesApplied": [
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 7.552366799999999,
+   "cpuJoules": 2.6629199999999997,
+   "gpuJoules": 4.888529999999999,
+   "networkJoules": 0.0009168,
+   "rendererCpuSeconds": 0.22191,
+   "gpuCpuSeconds": 0.27158499999999997,
+   "transferBytes": 4584,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 7.467410200000002,
+   "cpuJoules": 2.5954800000000002,
+   "gpuJoules": 4.871052000000002,
+   "networkJoules": 0.0008782,
+   "rendererCpuSeconds": 0.21629,
+   "gpuCpuSeconds": 0.27061400000000013,
+   "transferBytes": 4391,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.08495659999999639,
+   "percent": 1.124900342499207
+  },
+  "visualMismatch": 0.004133649553571429,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0045",
+  "patterns": [
+   "fast-timer",
+   "blanket-will-change",
+   "eager-images",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 2.9860230000000065,
+   "cpuJoules": 2.315112,
+   "gpuJoules": 0.6650280000000066,
+   "networkJoules": 0.005882999999999999,
+   "rendererCpuSeconds": 0.192926,
+   "gpuCpuSeconds": 0.03694600000000037,
+   "transferBytes": 29415,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.5607861999999972,
+   "cpuJoules": 1.9709880000000002,
+   "gpuJoules": 0.5867279999999973,
+   "networkJoules": 0.0030702,
+   "rendererCpuSeconds": 0.164249,
+   "gpuCpuSeconds": 0.03259599999999985,
+   "transferBytes": 15351,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.4252368000000093,
+   "percent": 14.240908392199536
+  },
+  "visualMismatch": 0.0001478794642857143,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0047",
+  "patterns": [
+   "infinite-shadow-animation",
+   "layout-animation",
+   "blanket-will-change",
+   "busy-polling",
+   "non-passive-scroll",
+   "eager-images",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 25.36063719999999,
+   "cpuJoules": 22.079484,
+   "gpuJoules": 3.247955999999988,
+   "networkJoules": 0.033197199999999996,
+   "rendererCpuSeconds": 1.839957,
+   "gpuCpuSeconds": 0.18044199999999933,
+   "transferBytes": 165986,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 21.07238659999999,
+   "cpuJoules": 17.484036,
+   "gpuJoules": 3.556457999999992,
+   "networkJoules": 0.0318926,
+   "rendererCpuSeconds": 1.457003,
+   "gpuCpuSeconds": 0.19758099999999956,
+   "transferBytes": 159463,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 4.288250599999998,
+   "percent": 16.909080659850297
+  },
+  "visualMismatch": 0.03819056919642857,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0049",
+  "patterns": [
+   "fast-timer",
+   "eager-images",
+   "unminified-assets",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 4.647408399999994,
+   "cpuJoules": 4.1089080000000004,
+   "gpuJoules": 0.502523999999994,
+   "networkJoules": 0.0359764,
+   "rendererCpuSeconds": 0.342409,
+   "gpuCpuSeconds": 0.027917999999999665,
+   "transferBytes": 179882,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 4.461935799999983,
+   "cpuJoules": 3.875628,
+   "gpuJoules": 0.5544899999999835,
+   "networkJoules": 0.0318178,
+   "rendererCpuSeconds": 0.322969,
+   "gpuCpuSeconds": 0.030804999999999083,
+   "transferBytes": 159089,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.1854726000000113,
+   "percent": 3.9908823162606395
+  },
+  "visualMismatch": 0.004884207589285715,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0050",
+  "patterns": [
+   "layout-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "busy-polling"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 2.767129799999987,
+   "cpuJoules": 2.051484,
+   "gpuJoules": 0.714869999999987,
+   "networkJoules": 0.0007758,
+   "rendererCpuSeconds": 0.170957,
+   "gpuCpuSeconds": 0.03971499999999928,
+   "transferBytes": 3879,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.6361782000000202,
+   "cpuJoules": 1.9930919999999999,
+   "gpuJoules": 0.6423660000000204,
+   "networkJoules": 0.0007201999999999999,
+   "rendererCpuSeconds": 0.166091,
+   "gpuCpuSeconds": 0.035687000000001134,
+   "transferBytes": 3601,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.13095159999996664,
+   "percent": 4.732398169394412
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0052",
+  "patterns": [
+   "infinite-shadow-animation",
+   "layout-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "eager-images",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 15.905905600000015,
+   "cpuJoules": 15.527591999999999,
+   "gpuJoules": 0.345186000000016,
+   "networkJoules": 0.0331276,
+   "rendererCpuSeconds": 1.293966,
+   "gpuCpuSeconds": 0.019177000000000888,
+   "transferBytes": 165638,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 13.560530400000012,
+   "cpuJoules": 13.357188,
+   "gpuJoules": 0.17152200000001017,
+   "networkJoules": 0.0318204,
+   "rendererCpuSeconds": 1.113099,
+   "gpuCpuSeconds": 0.009529000000000565,
+   "transferBytes": 159102,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 2.345375200000003,
+   "percent": 14.745310697682005
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0054",
+  "patterns": [
+   "layout-thrashing",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 1.069608400000008,
+   "cpuJoules": 0.920832,
+   "gpuJoules": 0.14691600000000804,
+   "networkJoules": 0.0018604,
+   "rendererCpuSeconds": 0.076736,
+   "gpuCpuSeconds": 0.008162000000000447,
+   "transferBytes": 9302,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 1.0191057999999775,
+   "cpuJoules": 0.902736,
+   "gpuJoules": 0.11444399999997756,
+   "networkJoules": 0.0019257999999999999,
+   "rendererCpuSeconds": 0.075228,
+   "gpuCpuSeconds": 0.0063579999999987535,
+   "transferBytes": 9629,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.05050260000003037,
+   "percent": 4.721597175193276
+  },
+  "visualMismatch": 0.004803292410714285,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0055",
+  "patterns": [
+   "infinite-shadow-animation",
+   "layout-animation",
+   "blanket-will-change",
+   "busy-polling",
+   "unminified-assets",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 23.114428200000003,
+   "cpuJoules": 20.320608,
+   "gpuJoules": 2.759436000000001,
+   "networkJoules": 0.0343842,
+   "rendererCpuSeconds": 1.693384,
+   "gpuCpuSeconds": 0.15330200000000005,
+   "transferBytes": 171921,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 21.474234600000003,
+   "cpuJoules": 17.950104,
+   "gpuJoules": 3.4941960000000023,
+   "networkJoules": 0.0299346,
+   "rendererCpuSeconds": 1.495842,
+   "gpuCpuSeconds": 0.19412200000000013,
+   "transferBytes": 149673,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.6401936,
+   "percent": 7.0959730684577345
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0057",
+  "patterns": [
+   "blanket-will-change",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 0.899113599999988,
+   "cpuJoules": 0.776928,
+   "gpuJoules": 0.11737799999998799,
+   "networkJoules": 0.0048075999999999995,
+   "rendererCpuSeconds": 0.064744,
+   "gpuCpuSeconds": 0.006520999999999333,
+   "transferBytes": 24038,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 0.8115449999999836,
+   "cpuJoules": 0.7230719999999999,
+   "gpuJoules": 0.08657999999998367,
+   "networkJoules": 0.001893,
+   "rendererCpuSeconds": 0.060256,
+   "gpuCpuSeconds": 0.004809999999999093,
+   "transferBytes": 9465,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.08756860000000433,
+   "percent": 9.739436707442252
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0058",
+  "patterns": [
+   "layout-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "busy-polling"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 3.1992029999999922,
+   "cpuJoules": 2.431884,
+   "gpuJoules": 0.766259999999992,
+   "networkJoules": 0.001059,
+   "rendererCpuSeconds": 0.202657,
+   "gpuCpuSeconds": 0.04256999999999955,
+   "transferBytes": 5295,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.7129305999999933,
+   "cpuJoules": 2.06952,
+   "gpuJoules": 0.6424019999999935,
+   "networkJoules": 0.0010086,
+   "rendererCpuSeconds": 0.17246,
+   "gpuCpuSeconds": 0.03568899999999964,
+   "transferBytes": 5043,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.48627239999999894,
+   "percent": 15.199798199739126
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0059",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 7.985566200000002,
+   "cpuJoules": 3.9660720000000005,
+   "gpuJoules": 4.0144860000000016,
+   "networkJoules": 0.0050082,
+   "rendererCpuSeconds": 0.330506,
+   "gpuCpuSeconds": 0.2230270000000001,
+   "transferBytes": 25041,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 6.734826799999991,
+   "cpuJoules": 2.540604,
+   "gpuJoules": 4.19214599999999,
+   "networkJoules": 0.0020767999999999997,
+   "rendererCpuSeconds": 0.211717,
+   "gpuCpuSeconds": 0.23289699999999947,
+   "transferBytes": 10384,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.2507394000000112,
+   "percent": 15.662501176184739
+  },
+  "visualMismatch": 0.00008231026785714285,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0062",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "busy-polling",
+   "non-passive-scroll"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 9.172982199999984,
+   "cpuJoules": 4.329204,
+   "gpuJoules": 4.8426659999999835,
+   "networkJoules": 0.0011122,
+   "rendererCpuSeconds": 0.360767,
+   "gpuCpuSeconds": 0.2690369999999991,
+   "transferBytes": 5561,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 7.489406400000002,
+   "cpuJoules": 2.718636,
+   "gpuJoules": 4.769712000000002,
+   "networkJoules": 0.0010584,
+   "rendererCpuSeconds": 0.226553,
+   "gpuCpuSeconds": 0.2649840000000001,
+   "transferBytes": 5292,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.683575799999982,
+   "percent": 18.35363639973034
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0065",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "eager-images",
+   "unminified-assets",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 23.486429600000015,
+   "cpuJoules": 21.007559999999998,
+   "gpuJoules": 2.4419340000000176,
+   "networkJoules": 0.0369356,
+   "rendererCpuSeconds": 1.75063,
+   "gpuCpuSeconds": 0.13566300000000098,
+   "transferBytes": 184678,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 20.402546599999997,
+   "cpuJoules": 17.442828000000002,
+   "gpuJoules": 2.926961999999996,
+   "networkJoules": 0.0327566,
+   "rendererCpuSeconds": 1.453569,
+   "gpuCpuSeconds": 0.16260899999999978,
+   "transferBytes": 163783,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 3.083883000000018,
+   "percent": 13.130488765308183
+  },
+  "visualMismatch": 0.00007672991071428571,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0071",
+  "patterns": [
+   "fast-timer",
+   "layout-animation",
+   "blanket-will-change",
+   "busy-polling"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 3.0147975999999956,
+   "cpuJoules": 2.266236,
+   "gpuJoules": 0.7477559999999954,
+   "networkJoules": 0.0008056,
+   "rendererCpuSeconds": 0.188853,
+   "gpuCpuSeconds": 0.041541999999999746,
+   "transferBytes": 4028,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.5917130000000004,
+   "cpuJoules": 1.985208,
+   "gpuJoules": 0.6057360000000003,
+   "networkJoules": 0.0007689999999999999,
+   "rendererCpuSeconds": 0.165434,
+   "gpuCpuSeconds": 0.033652000000000015,
+   "transferBytes": 3845,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.42308459999999526,
+   "percent": 14.033598806102138
+  },
+  "visualMismatch": 0.00009905133928571428,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0077",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "non-passive-scroll"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 8.237709199999983,
+   "cpuJoules": 3.39228,
+   "gpuJoules": 4.844501999999984,
+   "networkJoules": 0.0009272,
+   "rendererCpuSeconds": 0.28269,
+   "gpuCpuSeconds": 0.26913899999999913,
+   "transferBytes": 4636,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 7.624874000000003,
+   "cpuJoules": 2.7717,
+   "gpuJoules": 4.852296000000003,
+   "networkJoules": 0.000878,
+   "rendererCpuSeconds": 0.230975,
+   "gpuCpuSeconds": 0.26957200000000014,
+   "transferBytes": 4390,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.6128351999999806,
+   "percent": 7.439388610610118
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0079",
+  "patterns": [
+   "infinite-shadow-animation",
+   "layout-animation",
+   "blanket-will-change",
+   "busy-polling",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 23.623652200000016,
+   "cpuJoules": 20.758248000000002,
+   "gpuJoules": 2.834910000000015,
+   "networkJoules": 0.0304942,
+   "rendererCpuSeconds": 1.729854,
+   "gpuCpuSeconds": 0.15749500000000083,
+   "transferBytes": 152471,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 21.342417799999993,
+   "cpuJoules": 17.761380000000003,
+   "gpuJoules": 3.5521019999999908,
+   "networkJoules": 0.028935799999999998,
+   "rendererCpuSeconds": 1.480115,
+   "gpuCpuSeconds": 0.1973389999999995,
+   "transferBytes": 144679,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 2.2812344000000238,
+   "percent": 9.656569529075703
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0081",
+  "patterns": [
+   "blanket-will-change",
+   "busy-polling",
+   "non-passive-scroll",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 3.766955600000012,
+   "cpuJoules": 1.8304680000000002,
+   "gpuJoules": 1.9314360000000121,
+   "networkJoules": 0.0050516,
+   "rendererCpuSeconds": 0.152539,
+   "gpuCpuSeconds": 0.10730200000000067,
+   "transferBytes": 25258,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 3.302742200000038,
+   "cpuJoules": 1.2354,
+   "gpuJoules": 2.065212000000038,
+   "networkJoules": 0.0021302,
+   "rendererCpuSeconds": 0.10295,
+   "gpuCpuSeconds": 0.11473400000000211,
+   "transferBytes": 10651,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.464213399999974,
+   "percent": 12.323304261934293
+  },
+  "visualMismatch": 0.005859375,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0082",
+  "patterns": [
+   "infinite-shadow-animation",
+   "layout-animation",
+   "layout-thrashing",
+   "busy-polling",
+   "eager-images",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 6.886111599999967,
+   "cpuJoules": 2.59962,
+   "gpuJoules": 4.2806159999999664,
+   "networkJoules": 0.0058756,
+   "rendererCpuSeconds": 0.216635,
+   "gpuCpuSeconds": 0.23781199999999814,
+   "transferBytes": 29378,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 6.646581400000025,
+   "cpuJoules": 2.6346119999999997,
+   "gpuJoules": 4.008942000000026,
+   "networkJoules": 0.0030274,
+   "rendererCpuSeconds": 0.219551,
+   "gpuCpuSeconds": 0.22271900000000144,
+   "transferBytes": 15137,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.2395301999999413,
+   "percent": 3.478453645740253
+  },
+  "visualMismatch": 0.0048018973214285715,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0083",
+  "patterns": [
+   "fast-timer",
+   "blanket-will-change",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 3.243489999999988,
+   "cpuJoules": 2.474208,
+   "gpuJoules": 0.7677179999999879,
+   "networkJoules": 0.0015639999999999999,
+   "rendererCpuSeconds": 0.206184,
+   "gpuCpuSeconds": 0.04265099999999933,
+   "transferBytes": 7820,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.6465773999999795,
+   "cpuJoules": 2.0266800000000003,
+   "gpuJoules": 0.6182819999999793,
+   "networkJoules": 0.0016154,
+   "rendererCpuSeconds": 0.16889,
+   "gpuCpuSeconds": 0.03434899999999885,
+   "transferBytes": 8077,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.5969126000000085,
+   "percent": 18.40340497427187
+  },
+  "visualMismatch": 0.00013253348214285713,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0089",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "non-passive-scroll",
+   "eager-images",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 7.928413599999958,
+   "cpuJoules": 3.1407360000000004,
+   "gpuJoules": 4.7822039999999575,
+   "networkJoules": 0.0054735999999999995,
+   "rendererCpuSeconds": 0.261728,
+   "gpuCpuSeconds": 0.26567799999999764,
+   "transferBytes": 27368,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 7.167121399999957,
+   "cpuJoules": 2.635992,
+   "gpuJoules": 4.528511999999957,
+   "networkJoules": 0.0026173999999999998,
+   "rendererCpuSeconds": 0.219666,
+   "gpuCpuSeconds": 0.2515839999999976,
+   "transferBytes": 13087,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.7612922000000015,
+   "percent": 9.602074745444732
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0091",
+  "patterns": [
+   "non-passive-scroll",
+   "eager-images",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "passive-listeners",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 2.330589000000019,
+   "cpuJoules": 1.03302,
+   "gpuJoules": 1.2922380000000189,
+   "networkJoules": 0.005331,
+   "rendererCpuSeconds": 0.086085,
+   "gpuCpuSeconds": 0.07179100000000105,
+   "transferBytes": 26655,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.198140799999966,
+   "cpuJoules": 1.018056,
+   "gpuJoules": 1.1775959999999657,
+   "networkJoules": 0.0024887999999999998,
+   "rendererCpuSeconds": 0.084838,
+   "gpuCpuSeconds": 0.06542199999999809,
+   "transferBytes": 12444,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.13244820000005308,
+   "percent": 5.683035490172313
+  },
+  "visualMismatch": 0.006194196428571428,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0094",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "blanket-will-change",
+   "layout-thrashing",
+   "unminified-assets"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 8.291841000000023,
+   "cpuJoules": 3.841968,
+   "gpuJoules": 4.445154000000024,
+   "networkJoules": 0.004719,
+   "rendererCpuSeconds": 0.320164,
+   "gpuCpuSeconds": 0.2469530000000013,
+   "transferBytes": 23595,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 6.876354799999982,
+   "cpuJoules": 2.5028040000000003,
+   "gpuJoules": 4.371767999999982,
+   "networkJoules": 0.0017828,
+   "rendererCpuSeconds": 0.208567,
+   "gpuCpuSeconds": 0.24287599999999898,
+   "transferBytes": 8914,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 1.415486200000041,
+   "percent": 17.070831435383734
+  },
+  "visualMismatch": 0.00010044642857142857,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0096",
+  "patterns": [
+   "layout-animation",
+   "blanket-will-change",
+   "eager-images"
+  ],
+  "rulesApplied": [
+   "remove-blanket-will-change",
+   "lazy-images",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 2.546371200000013,
+   "cpuJoules": 1.850448,
+   "gpuJoules": 0.6945840000000132,
+   "networkJoules": 0.0013392,
+   "rendererCpuSeconds": 0.154204,
+   "gpuCpuSeconds": 0.03858800000000073,
+   "transferBytes": 6696,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 2.4948478000000454,
+   "cpuJoules": 1.8686639999999999,
+   "gpuJoules": 0.6248160000000453,
+   "networkJoules": 0.0013678,
+   "rendererCpuSeconds": 0.155722,
+   "gpuCpuSeconds": 0.03471200000000252,
+   "transferBytes": 6839,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.0515233999999678,
+   "percent": 2.023404914411832
+  },
+  "visualMismatch": 0,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0097",
+  "patterns": [
+   "layout-animation",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 4.502495999999996,
+   "cpuJoules": 3.846252,
+   "gpuJoules": 0.6252659999999963,
+   "networkJoules": 0.030978,
+   "rendererCpuSeconds": 0.320521,
+   "gpuCpuSeconds": 0.034736999999999796,
+   "transferBytes": 154890,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 3.7316449999999857,
+   "cpuJoules": 3.2435400000000003,
+   "gpuJoules": 0.4586579999999856,
+   "networkJoules": 0.029446999999999997,
+   "rendererCpuSeconds": 0.270295,
+   "gpuCpuSeconds": 0.0254809999999992,
+   "transferBytes": 147235,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 0.7708510000000106,
+   "percent": 17.120526037113887
+  },
+  "visualMismatch": 0.0027022879464285716,
+  "consoleErrors": []
+ },
+ {
+  "pageId": "page-0098",
+  "patterns": [
+   "fast-timer",
+   "infinite-shadow-animation",
+   "layout-animation",
+   "blanket-will-change",
+   "non-passive-scroll",
+   "heavy-dom"
+  ],
+  "rulesApplied": [
+   "clamp-fast-timers",
+   "remove-blanket-will-change",
+   "passive-listeners",
+   "pause-hidden-animations",
+   "lightningcss",
+   "terser",
+   "html-minifier-terser"
+  ],
+  "baselineEnergy": {
+   "joules": 26.193460799999976,
+   "cpuJoules": 22.778196,
+   "gpuJoules": 3.385673999999973,
+   "networkJoules": 0.029590799999999997,
+   "rendererCpuSeconds": 1.898183,
+   "gpuCpuSeconds": 0.1880929999999985,
+   "transferBytes": 147954,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "optimizedEnergy": {
+   "joules": 21.90538320000004,
+   "cpuJoules": 17.8524,
+   "gpuJoules": 4.0249440000000405,
+   "networkJoules": 0.0280392,
+   "rendererCpuSeconds": 1.4877,
+   "gpuCpuSeconds": 0.22360800000000225,
+   "transferBytes": 140196,
+   "windowMs": 1000,
+   "runs": 1
+  },
+  "savings": {
+   "joules": 4.288077599999937,
+   "percent": 16.370794347266784
+  },
+  "visualMismatch": 0.04427455357142857,
+  "consoleErrors": []
+ }
+]

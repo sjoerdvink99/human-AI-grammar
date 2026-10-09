@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System X — rooms from words</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>System X</h1>
+    <span class="sub">describe a room · point and speak to edit · learn your preferences</span>
+    <span class="spacer"></span>
+    <span id="versions" class="pill"></span>
+    <button id="reset" class="ghost" title="Delete preference memory and retrieval policy">Reset learning</button>
+  </header>
+
+  <main>
+    <!-- Process 1: request -->
+    <section id="left" class="panel">
+      <h2>1 · Request</h2>
+      <textarea id="request" rows="4" placeholder="e.g. A cozy 4x4 bedroom with a reading corner and a desk for working from home"></textarea>
+      <div class="row">
+        <button id="generate" class="primary">Generate room</button>
+        <span id="gen-status" class="muted"></span>
+      </div>
+      <div class="examples">
+        <span class="muted">Try:</span>
+        <button class="chip ex">Living room for movie nights, no plants</button>
+        <button class="chip ex">Small home office with lots of books</button>
+        <button class="chip ex">Dining room seating 6 with a sideboard</button>
+        <button class="chip ex">Kids room with a play area</button>
+      </div>
+      <h3>Pipeline</h3>
+      <ol id="steps" class="steps"></ol>
+    </section>
+
+    <!-- Scene (spatial artifact) + Process 2 controls -->
+    <section id="center" class="panel">
+      <div class="scene-head">
+        <h2>Room</h2>
+        <span id="room-info" class="muted"></span>
+        <span class="spacer"></span>
+        <button id="undo" class="ghost" disabled>Undo edit</button>
+      </div>
+      <div id="canvas-wrap">
+        <canvas id="scene"></canvas>
+        <div id="empty" class="empty">Describe a room and press <b>Generate room</b>.</div>
+      </div>
+      <div id="edit-bar" class="edit-bar disabled">
+        <div class="targets"><span class="muted">2 · Point:</span> <span id="targets">click objects (shift-click for more), click the floor for a location</span></div>
+        <div class="row">
+          <button id="mic" class="mic" title="Hold to speak">🎙 Hold to speak</button>
+          <input id="transcript" placeholder="…or type a command, e.g. “move this next to that”" />
+          <button id="apply" class="primary">Apply</button>
+        </div>
+        <div class="row small">
+          <span id="speech-status" class="muted"></span>
+          <audio id="speech-audio" controls hidden></audio>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inspectors -->
+    <section id="right" class="panel">
+      <nav class="tabs">
+        <button data-tab="trace" class="active">Retrieval</button>
+        <button data-tab="log">Edits</button>
+        <button data-tab="learn">3 · Learn</button>
+        <button data-tab="memory">Memory &amp; policy</button>
+      </nav>
+      <div id="tab-trace" class="tab active"><p class="muted">The retrieval trace appears after generation.</p></div>
+      <div id="tab-log" class="tab"><p class="muted">Voice edits appear here.</p></div>
+      <div id="tab-learn" class="tab">
+        <p class="muted">When you are happy with the room, finish the session. The system extracts your spatial preferences
+          into memory and trains the retrieval policy from which retrieved affordances the final room realizes.</p>
+        <button id="learn" class="primary" disabled>Finish session &amp; learn</button>
+        <div id="learn-out"></div>
+      </div>
+      <div id="tab-memory" class="tab"></div>
+    </section>
+  </main>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pandas
+scikit-learn
+python-multipart
+# tests
+pytest
+httpx2

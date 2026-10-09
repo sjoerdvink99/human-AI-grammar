@@ -1,0 +1,40 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: instruction language)\n-> [tool compose]\n-> (r2_1: instruction record)\n-> [model generate]~\n-> (r3_1: artifact formal)\n-> [tool translate]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual)\n-> [human select]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r7_1: selection record)\n-> [tool translate]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r7_1: selection record) + (r8_1: selection visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record) + (r7_1: selection record)\n-> [human specify]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record) + (r7_1: selection record) + (r9_1: instruction record)\n-> [tool modify]\n-> (r3_2: artifact formal) + (r7_1: selection record)\n-> [tool translate]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record) + (r7_1: selection record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record)\n-> [human select]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record) + (r10_1: selection record)\n-> [human specify]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record) + (r10_1: selection record) + (r11_1: instruction record)\n-> [tool modify]\n-> (r3_2: artifact formal)\n-> [tool translate]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record)\n-> [human select]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record) + (r12_1: selection record)\n-> [human specify]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record) + (r12_1: selection record) + (r13_1: instruction language)\n-> [tool extract]\n-> (r3_1: artifact formal) + (r12_1: selection record) + (r13_1: instruction language) + (r14_1: artifact formal)\n-> [tool compose]\n-> (r3_1: artifact formal) + (r12_1: selection record) + (r14_1: artifact formal) + (r15_1: instruction record)\n-> [model modify]~\n-> (r3_1: artifact formal) + (r12_1: selection record) + (r14_2: artifact formal)\n-> [tool modify]\n-> (r3_2: artifact formal)\n-> [tool translate]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record)\n-> [human specify]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record) + (r16_1: instruction language)\n-> [tool compose]\n-> (r3_1: artifact formal) + (r2_2: instruction record)\n-> [model generate]~\n-> (r3_2: artifact formal)\n-> [tool translate]\n-> (r3_1: artifact formal) + (r4_1: artifact graph) + (r5_1: artifact visual) + (r6_1: artifact record)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

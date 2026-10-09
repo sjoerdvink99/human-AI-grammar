@@ -1,0 +1,50 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(learning_content_1: instruction language)\n-> [model translate]~\n-> (concept_graph_1: artifact graph)\n-> [model generate]~\n-> (concept_graph_1: artifact graph) + (scenarios_1: artifact language)*\n-> [human select]\n-> (concept_graph_1: artifact graph) + (scenario_1: instruction language)\n-> [model translate]~\n-> (scenario_graph_1: artifact graph)\n-> [model generate]~\n-> (scenario_graph_1: artifact graph) + (learning_goals_1: instruction language)*\n-> [human select]\n-> (scenario_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [model select]\n-> (learning_goal_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [model extract]\n-> (learning_goal_graph_1: artifact graph) + (learning_goal_1: instruction language) + (experiment_factors_1: artifact record)\n-> [model generate]~\n-> (learning_goal_graph_1: artifact graph) + (learning_goal_1: instruction language) + (procedure_1: artifact language)\n-> [model generate]~\n-> (ui_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [model translate]~\n-> (ui_graph_1: artifact graph) + (learning_goal_1: instruction language) + (simulation_code_1: artifact formal)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(concept_graph_1: artifact graph)\n-> [human modify]\n-> (concept_graph_2: artifact graph)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(simulation_code_1: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [tool_2 execute]\n-> (simulation_code_1: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language) + (javascript_errors_1: evaluation language)*\n-> [model modify]~\n-> (simulation_code_2: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [model generate]~\n-> (simulation_code_2: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language) + (test_cases_1: artifact record)*\n-> [tool_2 execute]\n-> (simulation_code_2: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language) + (test_cases_1: artifact record)* + (test_results_1: artifact record)* + (test_screenshots_1: artifact visual)*\n-> [model evaluate]~\n-> (simulation_code_2: artifact formal) + (ui_graph_1: artifact graph) + (test_cases_1: artifact record)* + (test_assessment_1: evaluation language)\n-> [model modify]~\n-> (simulation_code_3: artifact formal) + (ui_graph_1: artifact graph) + (test_cases_1: artifact record)*\n-> [tool_1 execute]\n-> (simulation_code_3: artifact formal) + (ui_graph_1: artifact graph) + (test_cases_1: artifact record)* + (simulation_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(test_cases_1: artifact record)* + (simulation_code_3: artifact formal) + (simulation_1: artifact visual)\n-> [human select]\n-> (ui_test_1: selection record) + (simulation_code_3: artifact formal)\n-> [tool_1 execute]\n-> (ui_test_1: selection record) + (ui_test_result_1: artifact visual) + (simulation_code_3: artifact formal)\n-> [human evaluate]\n-> (ui_test_feedback_1: evaluation categorical) + (simulation_code_3: artifact formal)\n-> [model select]\n-> (repair_target_1: selection categorical) + (ui_test_feedback_1: evaluation categorical) + (simulation_code_3: artifact formal)\n-> [model generate]~\n-> (suggested_repair_1: artifact record) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (approved_repair_1: instruction record) + (simulation_code_3: artifact formal)\n-> [model modify]~\n-> (simulation_code_guided_4: artifact formal)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(simulation_1: artifact visual) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (chat_region_1: selection spatial) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human specify]\n-> (chat_region_1: selection spatial) + (issue_1: instruction language) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [model select]\n-> (repair_target_2: selection categorical) + (issue_1: instruction language) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [model generate]~\n-> (suggested_change_1: artifact record) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (approved_change_1: instruction record) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [tool_1 modify]\n-> (ui_graph_2: artifact graph) + (simulation_code_3: artifact formal)\n-> [model modify]~\n-> (ui_graph_2: artifact graph) + (simulation_code_chat_4: artifact formal)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (selected_node_1: selection categorical) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [model extract]\n-> (selected_node_1: selection categorical) + (assumptions_1: artifact record) + (simulation_code_3: artifact formal)\n-> [human modify]\n-> (assumptions_2: artifact record) + (simulation_code_3: artifact formal)\n-> [model modify]~\n-> (simulation_code_assumptions_4: artifact formal)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(simulation_1: artifact visual) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (redraw_region_1: selection spatial) + (simulation_code_3: artifact formal)\n-> [human specify]\n-> (redraw_region_1: selection spatial) + (sketch_1: instruction visual) + (simulation_code_3: artifact formal)\n-> [model translate]~\n-> (replacement_svg_1: artifact formal) + (redraw_region_1: selection spatial) + (simulation_code_3: artifact formal)\n-> [model modify]~\n-> (simulation_code_redrawn_4: artifact formal)\n-> [tool_1 execute]\n-> (simulation_code_redrawn_4: artifact formal) + (redrawn_simulation_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(simulation_1: artifact visual) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (subgraph_region_1: selection spatial) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [model match]\n-> (subgraph_1: selection graph)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

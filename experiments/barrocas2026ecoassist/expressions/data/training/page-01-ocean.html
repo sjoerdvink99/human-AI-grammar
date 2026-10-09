@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>page-01-ocean</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; background: #ffffff; color: #1b2733; line-height: 1.5; }
+  nav { display: flex; gap: 24px; align-items: center; padding: 16px 40px; background: #f2f6fb; }
+  nav .btn { margin-left: auto; }
+  .hero { background: linear-gradient(135deg, #f2f6fb, #ffffff); padding-bottom: 40px; text-align: center; }
+  .hero h1 { font-size: 48px; margin: 40px 0 8px; }
+  .illus { max-width: 720px; display: block; margin: 24px auto 0; }
+  .btn { background: #1f6feb; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; }
+  .btn.big { padding: 14px 28px; font-size: 18px; display: inline-block; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; padding: 40px; }
+  .card { background: #f2f6fb; border: 1px solid #58a6ff; border-radius: 12px; padding: 20px; }
+  .thumb { height: 120px; border-radius: 8px; background: linear-gradient(120deg, #58a6ff, #1f6feb); }
+  a { color: #1f6feb; }
+  .article { max-width: 720px; margin: 0 auto; padding: 40px 20px; }
+  .meta { color: #1f6feb; }
+  blockquote { border-left: 4px solid #1f6feb; background: #f2f6fb; margin: 0; padding: 16px 24px; font-size: 20px; }
+  .banner { margin-top: 32px; padding: 32px; background: #1f6feb; color: #fff; border-radius: 12px; font-size: 22px; }
+  .dash { display: flex; min-height: 100vh; }
+  .dash aside { width: 220px; background: #1f6feb; color: #fff; padding: 24px; }
+  .dash main { flex: 1; padding: 0 0 40px; }
+  .dash h1 { padding: 0 40px; }
+  .stat b { display: block; font-size: 28px; }
+  .chart { display: flex; align-items: flex-end; gap: 10px; height: 200px; margin: 0 40px; }
+  .bar { flex: 1; background: #58a6ff; border-radius: 4px 4px 0 0; }
+  table { margin: 24px 40px; border-collapse: collapse; width: calc(100% - 80px); }
+  th, td { padding: 10px; border-bottom: 1px solid #f2f6fb; text-align: left; }
+  th { background: #f2f6fb; }
+  .price b { font-size: 32px; }
+  .featured { background: #1f6feb; color: #fff; }
+  .featured .btn { background: #fff; color: #1f6feb; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <nav><strong>Cloud</strong><span>Product</span><span>Pricing</span><span>About</span><a class="btn" href="#">Sign in</a></nav>
+    <h1>Cloud storage for teams</h1>
+    <p>Store, share and collaborate on files from anywhere.</p>
+    <a class="btn big" href="#">Get started</a>
+    <svg class="illus" viewBox="0 0 400 160" width="100%" height="200"><rect width="400" height="160" rx="16" fill="#58a6ff"/><circle cx="90" cy="80" r="50" fill="#1f6feb"/><rect x="170" y="40" width="180" height="20" rx="6" fill="#ffffff"/><rect x="170" y="80" width="140" height="20" rx="6" fill="#ffffff"/></svg>
+  </header><section class="grid">
+    <article class="card"><div class="thumb"></div><h3>Fast</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p>
+    <a href="#">Learn more →</a></article>
+    <article class="card"><div class="thumb"></div><h3>Secure</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p>
+    <a href="#">Learn more →</a></article>
+    <article class="card"><div class="thumb"></div><h3>Shared</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p>
+    <a href="#">Learn more →</a></article>
+    <article class="card"><div class="thumb"></div><h3>Synced</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p>
+    <a href="#">Learn more →</a></article>
+    <article class="card"><div class="thumb"></div><h3>Backed up</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p>
+    <a href="#">Learn more →</a></article>
+    <article class="card"><div class="thumb"></div><h3>Versioned</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p>
+    <a href="#">Learn more →</a></article></section>
+</body>
+</html>

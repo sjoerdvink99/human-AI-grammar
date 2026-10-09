@@ -1,0 +1,13 @@
+{
+  "name": "system-x",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Rule-based prompt linting for notebook code generation (built from a Human-AI grammar design)",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node --test test/",
+    "check": "node --check server/server.js && node --check public/app.js"
+  },
+  "engines": { "node": ">=20" }
+}

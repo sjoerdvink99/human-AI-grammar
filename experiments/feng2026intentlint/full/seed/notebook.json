@@ -1,0 +1,10 @@
+{
+  "cells": [
+    { "id": "c1", "type": "markdown", "source": "# Customer churn analysis\nShared notebook for the retention team. Churn is defined as no purchase in the last 90 days." },
+    { "id": "c2", "type": "code", "source": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom scipy import stats" },
+    { "id": "c3", "type": "code", "source": "customers = pd.read_csv(\"data/customers.csv\")\norders = pd.read_csv(\"data/orders.csv\", parse_dates=[\"order_date\"])\ncustomers.head()" },
+    { "id": "c4", "type": "code", "source": "orders_per_customer = orders.groupby(\"customer_id\").agg(n_orders=(\"order_id\", \"count\"), last_order=(\"order_date\", \"max\"))\ndf = customers.merge(orders_per_customer, on=\"customer_id\", how=\"left\")\nCUTOFF = pd.Timestamp(\"2026-10-01\")\ndf[\"churned\"] = (CUTOFF - df[\"last_order\"]).dt.days > 90" },
+    { "id": "c5", "type": "markdown", "source": "Note: `region` and `plan` have some missing values; `age` is self-reported." },
+    { "id": "c6", "type": "code", "source": "def churn_rate(frame, by):\n    return frame.groupby(by)[\"churned\"].mean().sort_values()\n\nchurn_rate(df, \"plan\")" }
+  ]
+}

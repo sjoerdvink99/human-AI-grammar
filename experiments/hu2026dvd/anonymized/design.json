@@ -1,0 +1,50 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: instruction language) + (r2_1: artifact language)* + (r3_1: artifact language)*\n-> [model_1 generate]~\n-> (r4_1: artifact record)* + (r3_1: artifact language)*\n-> [tool_1 compose]\n-> (r4_1: artifact record)* + (r5_1: instruction record)\n-> [tool_2 execute]\n-> (r4_1: artifact record)* + (r6_1: artifact visual)\n-> [tool_7 compose]\n-> (r4_1: artifact record)* + (r6_1: artifact visual) + (r7_1: artifact visual)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r4_1: artifact record)* + (r3_1: artifact language)* + (r8_1: artifact visual)*\n-> [human select]\n-> (r4_1: artifact record)* + (r3_1: artifact language)* + (r8_1: artifact visual)* + (r9_1: selection record)\n-> [tool_3 select]\n-> (r9_1: selection record) + (r10_1: selection language) + (r11_1: selection visual)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r4_1: artifact record)* + (r6_1: artifact visual) + (r7_1: artifact visual)*\n-> [human evaluate]\n-> (r4_1: artifact record)* + (r6_1: artifact visual) + (r7_1: artifact visual)* + (r12_1: evaluation language)\n-> [human modify]\n-> (r4_2: artifact record)* + (r6_1: artifact visual) + (r7_1: artifact visual)*\n-> [tool_1 compose]\n-> (r4_2: artifact record)* + (r5_2: instruction record) + (r7_1: artifact visual)*\n-> [tool_2 execute]\n-> (r4_2: artifact record)* + (r6_2: artifact visual) + (r7_1: artifact visual)*\n-> [tool_7 compose]\n-> (r4_1: artifact record)* + (r6_1: artifact visual) + (r7_1: artifact visual)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r4_1: artifact record)*\n-> [human select]\n-> (r4_1: artifact record)* + (r13_1: selection record)\n-> [tool_1 compose]\n-> (r14_1: instruction record)\n-> [model_2 generate]~\n-> (r15_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r16_1: artifact tabular)\n-> [human specify]\n-> (r16_1: artifact tabular) + (r17_1: instruction categorical)\n-> [tool_4 translate]\n-> (r18_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r6_1: artifact visual) + (r18_1: artifact visual)\n-> [human select]\n-> (r6_1: artifact visual) + (r18_1: artifact visual) + (r19_1: selection visual)\n-> [human select]\n-> (r6_1: artifact visual) + (r18_1: artifact visual) + (r19_1: selection visual) + (r20_1: selection spatial)\n-> [model_3 extract]\n-> (r6_1: artifact visual) + (r18_1: artifact visual) + (r21_1: selection spatial)\n-> [tool_5 modify]\n-> (r22_1: artifact visual) + (r18_1: artifact visual)\n-> [tool_6 compose]\n-> (r23_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r6_1: artifact visual) + (r18_1: artifact visual)\n-> [human select]\n-> (r6_1: artifact visual) + (r18_1: artifact visual) + (r24_1: selection visual)\n-> [human select]\n-> (r6_1: artifact visual) + (r18_1: artifact visual) + (r24_1: selection visual) + (r25_1: selection spatial)\n-> [model_3 extract]\n-> (r6_1: artifact visual) + (r18_1: artifact visual) + (r26_1: selection spatial)\n-> [tool_5 modify]\n-> (r27_1: artifact visual) + (r18_1: artifact visual)\n-> [human select]\n-> (r27_1: artifact visual) + (r18_1: artifact visual) + (r28_1: selection spatial)\n-> [tool_6 compose]\n-> (r29_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r7_1: artifact visual)*\n-> [human select]\n-> (r30_1: artifact visual)\n-> [human evaluate]\n-> (r30_1: artifact visual) + (r31_1: evaluation language)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

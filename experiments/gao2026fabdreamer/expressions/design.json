@@ -1,0 +1,65 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(prompt_1: instruction language)\n-> [model_2 generate]~\n-> (image_candidates_1: artifact visual)*\n-> [human select]\n-> (source_image_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(source_image_1: artifact visual)\n-> [human specify]\n-> (source_image_1: artifact visual) + (image_update_1: instruction language)\n-> [model_2 modify]~\n-> (source_image_2: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(source_image_1: artifact visual)\n-> [model_1 generate]~\n-> (source_image_1: artifact visual) + (layer_plan_1: artifact record)\n-> [human specify]\n-> (source_image_1: artifact visual) + (layer_plan_1: artifact record) + (layer_change_1: instruction language)\n-> [model_1 modify]~\n-> (source_image_1: artifact visual) + (layer_plan_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(source_image_1: artifact visual) + (layer_plan_1: artifact record)\n-> [human select]\n-> (source_image_1: artifact visual) + (confirmed_layers_1: instruction record)\n-> [model_1 extract]\n-> (source_image_1: artifact visual) + (layer_items_1: artifact record)*\n-> [model_1 extract]\n-> (source_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language)\n-> [tool_1 modify]\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_1: artifact spatial)*\n-> [model_1 extract]\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_1: artifact spatial)* + (detection_prompts_1: instruction record)*\n-> [model_3 extract]\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_1: artifact spatial)* + (masks_1: selection spatial)*\n-> [tool_1 translate]\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_2: artifact spatial)*\n-> [model_1 generate]~\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_2: artifact spatial)* + (fill_prompt_1: instruction language)\n-> [model_2 modify]~\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_1: artifact spatial)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(work_image_1: artifact visual) + (detection_prompts_1: instruction record)* + (masks_1: selection spatial)*\n-> [tool_1 evaluate]\n-> (work_image_1: artifact visual) + (detection_prompts_1: instruction record)* + (masks_1: selection spatial)* + (mask_quality_1: evaluation record)*\n-> [model_3 modify]\n-> (work_image_1: artifact visual) + (detection_prompts_1: instruction record)* + (refined_masks_1: selection spatial)*\n-> [tool_1 evaluate]\n-> (work_image_1: artifact visual) + (detection_prompts_1: instruction record)* + (mask_quality_2: evaluation record)*\n-> [model_2 generate]~\n-> (isolated_elements_1: artifact visual)*\n-> [tool_1 extract]\n-> (fallback_masks_1: selection spatial)*\n-> [tool_1 translate]\n-> (fallback_segments_1: artifact spatial)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(grab_request_1: instruction language)\n-> [model_2 generate]~\n-> (grab_candidates_1: artifact visual)*\n-> [human select]\n-> (grab_image_1: artifact visual)\n-> [model_1 evaluate]\n-> (grab_image_1: artifact visual) + (occlusion_1: evaluation categorical)\n-> [model_2 generate]~\n-> (isolated_grab_1: artifact visual)\n-> [tool_1 extract]\n-> (grab_mask_1: selection spatial)\n-> [tool_1 translate]\n-> (grab_element_1: artifact spatial)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(segments_1: artifact spatial)*\n-> [tool_2 compose]\n-> (canvas_1: artifact spatial)\n-> [tool_2 translate]\n-> (canvas_1: artifact spatial) + (preview_1: artifact visual)\n-> [human modify]\n-> (canvas_2: artifact spatial) + (preview_1: artifact visual)\n-> [tool_2 translate]\n-> (canvas_1: artifact spatial) + (preview_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(source_image_1: artifact visual) + (canvas_1: artifact spatial)\n-> [human select]\n-> (source_image_1: artifact visual) + (canvas_1: artifact spatial) + (repair_target_1: selection categorical)\n-> [tool_1 extract]\n-> (element_crop_1: artifact visual) + (repair_target_1: selection categorical)\n-> [model_2 modify]~\n-> (repaired_element_1: artifact visual)\n-> [tool_1 translate]\n-> (repaired_geometry_1: artifact spatial)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (split_target_1: selection categorical)\n-> [human specify]\n-> (canvas_1: artifact spatial) + (split_target_1: selection categorical) + (split_request_1: instruction language)\n-> [model_1 extract]\n-> (part_prompts_1: instruction record)*\n-> [model_3 extract]\n-> (part_masks_1: selection spatial)*\n-> [tool_1 translate]\n-> (split_parts_1: artifact spatial)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(canvas_1: artifact spatial) + (material_settings_1: instruction record)\n-> [tool_3 evaluate]\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record) + (constraint_issues_1: evaluation record)*\n-> [model_4 generate]~\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record) + (constraint_report_1: evaluation language)\n-> [human select]\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record) + (resolution_1: instruction record)\n-> [model_4 translate]\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record) + (fix_call_1: instruction record)\n-> [tool_3 execute]\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(canvas_1: artifact spatial) + (material_settings_1: instruction record)\n-> [tool_1 translate]\n-> (layer_svgs_1: artifact formal)* + (layer_pngs_1: artifact visual)*\n-> [human select]\n-> (layer_svgs_1: artifact formal)* + (layer_pngs_1: artifact visual)* + (export_choice_1: instruction categorical)\n-> [tool_1 compose]\n-> (export_zip_1: artifact record)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

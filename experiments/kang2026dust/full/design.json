@@ -1,0 +1,43 @@
+{
+  "name": "System X",
+  "goal": "Weekly highlight selection, keyword generation, reflection and remixing, optional alternative remix generation, next-week interest specification, and archive browsing.",
+  "description": "tool is an LLM-powered web application that periodically resurfaces users’ e-book highlights as three keywords. Users write reflections on these keywords, which the system synthesizes with the original highlights into new textual remixes. Actors: model = language model; tool = web application.",
+  "processes": [
+    {
+      "name": "Weekly highlight reflection and remix",
+      "description": "After the reader uploads their e-book highlights, tool randomly selects one each Monday, and model generates three keywords while keeping the original quote hidden. The reader writes a short reflection, which the model synthesizes with the original quote into a new remix, revealing the quote and its source.",
+      "rawExpression": "(highlights_1: artifact record)*\n-> [tool select]\n-> (highlights_1: artifact record)* + (highlight_1: artifact record)\n-> [model generate]~\n-> (highlights_1: artifact record)* + (highlight_1: artifact record) + (keywords_1: artifact language)*\n-> [human generate]\n-> (highlights_1: artifact record)* + (highlight_1: artifact record) + (keywords_1: artifact language)* + (response_1: artifact language)\n-> [model compose]~\n-> (highlights_1: artifact record)* + (highlight_1: artifact record) + (keywords_1: artifact language)* + (response_1: artifact language) + (remix_1: artifact language)"
+    },
+    {
+      "name": "Generate an alternative remix",
+      "description": "After viewing a remix, the reader can click Try Again once to request an alternative. model synthesizes the same highlight and reflection into a second remix, allowing the reader to compare both versions.",
+      "rawExpression": "(highlight_1: artifact record) + (response_1: artifact language) + (remix_1: artifact language)\n-> [human specify]\n-> (highlight_1: artifact record) + (response_1: artifact language) + (remix_1: artifact language) + (retry_1: instruction categorical)\n-> [model compose]~\n-> (highlight_1: artifact record) + (response_1: artifact language) + (remix_1: artifact language) + (alternative_remix_1: artifact language)"
+    },
+    {
+      "name": "Set next week's interest",
+      "description": "After a weekly interaction, the reader can optionally submit a word describing their current interest. tool randomly selects a highlight for the following week, and model generates three keywords that include the reader's chosen word.",
+      "rawExpression": "(highlights_1: artifact record)* + (remix_1: artifact language)\n-> [human specify]\n-> (highlights_1: artifact record)* + (remix_1: artifact language) + (interest_1: instruction language)\n-> [tool select]\n-> (remix_1: artifact language) + (highlight_2: artifact record) + (interest_1: instruction language)\n-> [model generate]~\n-> (highlight_2: artifact record) + (interest_1: instruction language) + (keywords_2: artifact language)*"
+    },
+    {
+      "name": "Browse reflection archive",
+      "description": "When the reader opens the tool archive, they can filter the collection to highlights with remixes and select a highlight to revisit. tool displays its original text and associated metadata, including previously generated keywords, written responses, and remixes.",
+      "rawExpression": "(highlights_1: artifact record)* + (remix_1: artifact language)\n-> [human select]\n-> (highlights_1: artifact record)* + (remix_1: artifact language) + (archive_filter_1: selection categorical)\n-> [tool select]\n-> (filtered_highlights_1: artifact record)* + (remix_1: artifact language)\n-> [human select]\n-> (archive_choice_1: selection record)\n-> [tool translate]\n-> (archive_view_1: artifact visual)"
+    }
+  ],
+  "representations": {
+    "highlights": "passages the reader highlighted in their e-books, with book and author",
+    "highlight": "the highlight picked for this week",
+    "keywords": "three keywords that hint at the highlight without showing it",
+    "response": "the reader's short written reflection on the keywords",
+    "remix": "a new text that blends the reflection with the original highlight",
+    "retry": "the reader's request for another version",
+    "alternative_remix": "a second remix of the same highlight and reflection",
+    "interest": "a word for what the reader is interested in now",
+    "archive_filter": "the filter the reader sets in the archive",
+    "filtered_highlights": "the highlights that match the filter",
+    "archive_choice": "the highlight the reader opens",
+    "archive_view": "that highlight with its keywords, reflections and remixes"
+  },
+  "references": [],
+  "images": []
+}

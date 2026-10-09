@@ -1,0 +1,80 @@
+{
+  "name": "System X",
+  "goal": "Artwork preprocessing, agent-supported annotation, optional clarification, and subsequent skill and knowledge reuse.",
+  "description": "the system helps people annotate culturally implicit meanings in artworks through task-specific clustering, recommended labels, explanations, and interactive questions. Its agents turn annotation decisions and interactions into reusable skills and knowledge for later tasks. Actors: model_1 = language model; model_2 = language model; model_3 = language model; model_4 = language model; model_5 = language model; model_6 = language model; model_7 = language model; model_8 = language model; model_9 = language model; model_10 = language model; tool_1 = object detection model; tool_2 = text similarity embedding model; tool_3 = image similarity embedding model.",
+  "processes": [
+    {
+      "name": "Prepare artwork data",
+      "description": "Before annotation, tool_1 detects image regions and assigns basic object labels. An LLM uses the images, metadata, and detected regions to write artwork-level and unit-level descriptions.",
+      "rawExpression": "(artworks_1: artifact visual)* + (artwork_metadata_1: artifact record)*\n-> [tool_1 extract]\n-> (artworks_1: artifact visual)* + (artwork_metadata_1: artifact record)* + (bounding_boxes_1: selection spatial)* + (basic_labels_1: label categorical)*\n-> [model_1 generate]~\n-> (artworks_1: artifact visual)* + (bounding_boxes_1: selection spatial)* + (basic_labels_1: label categorical)* + (artwork_descriptions_1: artifact language)* + (unit_descriptions_1: artifact language)*"
+    },
+    {
+      "name": "Proactively recommend clusters and labels",
+      "description": "For a defined annotation task, the Skill Recommendation Agent proposes the three most relevant skills, and the annotator chooses which to use. The Cluster and Pattern Mining Agent groups artworks and identifies shared patterns; the Label Recommendation Agent scores and recommends labels with rationales, then prioritizes ambiguous, relevant, or high-impact clusters for inspection.",
+      "rawExpression": "(task_1: instruction language) + (artworks_1: artifact visual)* + (artwork_descriptions_1: artifact language)* + (unit_descriptions_1: artifact language)* + (skill_library_1: artifact record)* + (knowledge_base_1: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_2 select]\n-> (task_1: instruction language) + (artworks_1: artifact visual)* + (artwork_descriptions_1: artifact language)* + (unit_descriptions_1: artifact language)* + (suggested_skills_1: selection record)* + (knowledge_base_1: artifact record) + (label_taxonomy_1: artifact graph)\n-> [human select]\n-> (artworks_1: artifact visual)* + (artwork_descriptions_1: artifact language)* + (unit_descriptions_1: artifact language)* + (chosen_skills_1: selection record)* + (knowledge_base_1: artifact record) + (label_taxonomy_1: artifact graph)\n-> [tool_2 translate]\n-> (artworks_1: artifact visual)* + (artwork_descriptions_1: artifact language)* + (unit_descriptions_1: artifact language)* + (text_embeddings_1: artifact numeric)* + (chosen_skills_1: selection record)* + (knowledge_base_1: artifact record) + (label_taxonomy_1: artifact graph)\n-> [tool_3 translate]\n-> (artworks_1: artifact visual)* + (unit_descriptions_1: artifact language)* + (text_embeddings_1: artifact numeric)* + (image_embeddings_1: artifact numeric)* + (chosen_skills_1: selection record)* + (knowledge_base_1: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_3 assign]\n-> (artworks_1: artifact visual)* + (unit_descriptions_1: artifact language)* + (clusters_1: label categorical)* + (chosen_skills_1: selection record)* + (knowledge_base_1: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_3 modify]\n-> (artworks_1: artifact visual)* + (unit_descriptions_1: artifact language)* + (clusters_2: label categorical)* + (chosen_skills_1: selection record)* + (knowledge_base_1: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_3 generate]~\n-> (artworks_1: artifact visual)* + (clusters_2: label categorical)* + (cluster_patterns_1: artifact language)* + (knowledge_base_1: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_4 evaluate]\n-> (artworks_1: artifact visual)* + (clusters_2: label categorical)* + (cluster_patterns_1: artifact language)* + (label_scores_1: evaluation numeric)* + (knowledge_base_1: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_4 select]\n-> (artworks_1: artifact visual)* + (clusters_2: label categorical)* + (cluster_patterns_1: artifact language)* + (recommended_labels_1: label categorical)* + (knowledge_base_1: artifact record)\n-> [model_4 generate]~\n-> (artworks_1: artifact visual)* + (clusters_2: label categorical)* + (cluster_patterns_1: artifact language)* + (recommended_labels_1: label categorical)* + (recommendation_rationales_1: artifact language)*\n-> [model_4 evaluate]\n-> (artworks_1: artifact visual)* + (clusters_2: label categorical)* + (cluster_patterns_1: artifact language)* + (recommended_labels_1: label categorical)* + (recommendation_rationales_1: artifact language)* + (cluster_priorities_1: evaluation numeric)*\n-> [model_4 select]\n-> (artworks_1: artifact visual)* + (clusters_2: label categorical)* + (cluster_patterns_1: artifact language)* + (recommended_labels_1: label categorical)* + (recommendation_rationales_1: artifact language)* + (priority_clusters_1: selection categorical)*"
+    },
+    {
+      "name": "Review and confirm annotations",
+      "description": "When recommended clusters appear, the annotator selects a cluster, checks the proposed labels against the images, patterns, and explanations, and accepts or corrects the labels. The system records the decisions and interaction history.",
+      "rawExpression": "(artworks_1: artifact visual)* + (priority_clusters_1: selection categorical)* + (recommended_labels_1: label categorical)* + (recommendation_rationales_1: artifact language)* + (cluster_patterns_1: artifact language)*\n-> [human select]\n-> (artworks_1: artifact visual)* + (focused_cluster_1: selection categorical) + (recommended_labels_1: label categorical)* + (recommendation_rationales_1: artifact language)* + (cluster_patterns_1: artifact language)*\n-> [human evaluate]\n-> (artworks_1: artifact visual)* + (annotation_feedback_1: evaluation record)* + (recommended_labels_1: label categorical)*\n-> [human assign]\n-> (confirmed_labels_1: label categorical)* + (annotation_feedback_1: evaluation record)*\n-> [tool_4 extract]\n-> (confirmed_labels_1: label categorical)* + (interaction_logs_1: artifact record)*"
+    },
+    {
+      "name": "Ask the chatbot and refine a decision",
+      "description": "During annotation, the user can select an image or cluster and ask the Chatbot Agent about a label, visual evidence, or cultural meaning. The agent responds with explanations and, when relevant, comparisons; the user confirms or corrects the relevant annotation, and the system appends the interaction to its log.",
+      "rawExpression": "(artworks_1: artifact visual)* + (clusters_2: label categorical)* + (recommended_labels_1: label categorical)* + (confirmed_labels_1: label categorical)* + (interaction_logs_1: artifact record)*\n-> [human select]\n-> (artworks_1: artifact visual)* + (clusters_2: label categorical)* + (recommended_labels_1: label categorical)* + (confirmed_labels_1: label categorical)* + (interaction_logs_1: artifact record)* + (chat_focus_1: selection categorical)\n-> [human specify]\n-> (artworks_1: artifact visual)* + (clusters_2: label categorical)* + (recommended_labels_1: label categorical)* + (confirmed_labels_1: label categorical)* + (interaction_logs_1: artifact record)* + (chat_focus_1: selection categorical) + (question_1: instruction language)\n-> [model_5 generate]~\n-> (confirmed_labels_1: label categorical)* + (interaction_logs_1: artifact record)* + (chat_answer_1: artifact language)\n-> [human evaluate]\n-> (confirmed_labels_1: label categorical)* + (interaction_logs_1: artifact record)* + (chat_decision_1: evaluation record)\n-> [human assign]\n-> (confirmed_labels_2: label categorical)* + (interaction_logs_1: artifact record)* + (chat_decision_1: evaluation record)\n-> [tool_4 expand]\n-> (confirmed_labels_2: label categorical)* + (interaction_logs_2: artifact record)*"
+    },
+    {
+      "name": "Distill and manage reusable skills",
+      "description": "After annotation interactions are recorded, the Behavior Mining Agent extracts useful decisions and procedures, and the Skill Generation Agent writes reusable skills. The Skill Management Agent aligns new and existing skill modules, merges or branches overlapping skills, and updates the library.",
+      "rawExpression": "(interaction_logs_2: artifact record)* + (skill_library_1: artifact record)*\n-> [model_6 extract]\n-> (mined_behaviors_1: artifact record)* + (skill_library_1: artifact record)*\n-> [model_7 generate]~\n-> (candidate_skills_1: artifact record)* + (skill_library_1: artifact record)*\n-> [model_8 match]\n-> (candidate_skills_1: artifact record)* + (matching_skills_1: selection record)* + (skill_library_1: artifact record)*\n-> [model_8 evaluate]\n-> (candidate_skills_1: artifact record)* + (skill_differences_1: evaluation record)* + (skill_library_1: artifact record)*\n-> [model_8 modify]~\n-> (skill_library_2: artifact record)*"
+    },
+    {
+      "name": "Accumulate domain knowledge",
+      "description": "After annotation interactions are recorded, the Summary Agent distills task information and the Memory Management Agent integrates the newly acquired cultural and semantic knowledge into the knowledge base for later annotations.",
+      "rawExpression": "(interaction_logs_2: artifact record)* + (confirmed_labels_2: label categorical)* + (knowledge_base_1: artifact record)\n-> [model_9 extract]~\n-> (task_summary_1: artifact language) + (knowledge_base_1: artifact record)\n-> [model_10 modify]\n-> (knowledge_base_2: artifact record)"
+    },
+    {
+      "name": "Reuse accumulated expertise in a later task",
+      "description": "On a subsequent annotation task, the Skill Recommendation Agent selects skills from the updated library for the user to choose. The mining and recommendation agents use the chosen skills and accumulated knowledge to produce context-sensitive clusters, labels, and explanations for the new task.",
+      "rawExpression": "(task_2: instruction language) + (artworks_1: artifact visual)* + (artwork_descriptions_1: artifact language)* + (unit_descriptions_1: artifact language)* + (skill_library_2: artifact record)* + (knowledge_base_2: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_2 select]\n-> (task_2: instruction language) + (artworks_1: artifact visual)* + (unit_descriptions_1: artifact language)* + (suggested_skills_2: selection record)* + (knowledge_base_2: artifact record) + (label_taxonomy_1: artifact graph)\n-> [human select]\n-> (artworks_1: artifact visual)* + (unit_descriptions_1: artifact language)* + (chosen_skills_2: selection record)* + (knowledge_base_2: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_3 assign]\n-> (artworks_1: artifact visual)* + (clusters_3: label categorical)* + (chosen_skills_2: selection record)* + (knowledge_base_2: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_3 generate]~\n-> (artworks_1: artifact visual)* + (clusters_3: label categorical)* + (cluster_patterns_2: artifact language)* + (knowledge_base_2: artifact record) + (label_taxonomy_1: artifact graph)\n-> [model_4 evaluate]\n-> (artworks_1: artifact visual)* + (clusters_3: label categorical)* + (cluster_patterns_2: artifact language)* + (label_scores_2: evaluation numeric)* + (knowledge_base_2: artifact record)\n-> [model_4 select]\n-> (artworks_1: artifact visual)* + (clusters_3: label categorical)* + (cluster_patterns_2: artifact language)* + (recommended_labels_2: label categorical)* + (knowledge_base_2: artifact record)\n-> [model_4 generate]~\n-> (artworks_1: artifact visual)* + (clusters_3: label categorical)* + (recommended_labels_2: label categorical)* + (recommendation_rationales_2: artifact language)*"
+    }
+  ],
+  "representations": {
+    "artworks": "the artwork images to be annotated",
+    "artwork_metadata": "catalog information about each artwork, such as title, period and origin",
+    "bounding_boxes": "image regions detected in each artwork",
+    "basic_labels": "simple object labels for the detected regions",
+    "artwork_descriptions": "a generated description of each whole artwork",
+    "unit_descriptions": "a generated description of each detected region",
+    "task": "the annotation task: which implicit meaning the annotator wants to label",
+    "skill_library": "reusable skills: written procedures for annotation tasks learned from earlier work",
+    "knowledge_base": "accumulated domain knowledge about cultural and semantic meanings",
+    "label_taxonomy": "the hierarchy of possible labels",
+    "suggested_skills": "the three skills the system suggests for the task",
+    "chosen_skills": "the skills the annotator decides to use",
+    "text_embeddings": "embeddings of the descriptions",
+    "image_embeddings": "embeddings of the images",
+    "clusters": "groups of artworks or regions that share a pattern",
+    "cluster_patterns": "a written description of what each cluster has in common",
+    "label_scores": "scores for how well each label fits each cluster",
+    "recommended_labels": "the labels the system recommends per cluster",
+    "recommendation_rationales": "explanations of why each label is recommended",
+    "cluster_priorities": "scores for which clusters the annotator should look at first",
+    "priority_clusters": "the clusters put forward for inspection",
+    "focused_cluster": "the cluster the annotator opens",
+    "annotation_feedback": "the annotator's judgement of the recommended labels",
+    "confirmed_labels": "the labels the annotator accepts or corrects",
+    "interaction_logs": "a record of the annotator's decisions and interactions",
+    "chat_focus": "the image or cluster the user asks about",
+    "question": "the user's question to the chatbot",
+    "chat_answer": "the chatbot's explanation, with comparisons where relevant",
+    "chat_decision": "the user's decision after reading the answer",
+    "mined_behaviors": "useful decisions and procedures found in the logs",
+    "candidate_skills": "new skills written from the mined behaviors",
+    "matching_skills": "existing skills that overlap with a new one",
+    "skill_differences": "how a new skill differs from the existing ones",
+    "task_summary": "a summary of what was learned in the task"
+  },
+  "references": [],
+  "images": []
+}

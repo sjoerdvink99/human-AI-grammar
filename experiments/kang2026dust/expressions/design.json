@@ -1,0 +1,30 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(highlights_1: artifact record)*\n-> [tool select]\n-> (highlights_1: artifact record)* + (highlight_1: artifact record)\n-> [model generate]~\n-> (highlights_1: artifact record)* + (highlight_1: artifact record) + (keywords_1: artifact language)*\n-> [human generate]\n-> (highlights_1: artifact record)* + (highlight_1: artifact record) + (keywords_1: artifact language)* + (response_1: artifact language)\n-> [model compose]~\n-> (highlights_1: artifact record)* + (highlight_1: artifact record) + (keywords_1: artifact language)* + (response_1: artifact language) + (remix_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(highlight_1: artifact record) + (response_1: artifact language) + (remix_1: artifact language)\n-> [human specify]\n-> (highlight_1: artifact record) + (response_1: artifact language) + (remix_1: artifact language) + (retry_1: instruction categorical)\n-> [model compose]~\n-> (highlight_1: artifact record) + (response_1: artifact language) + (remix_1: artifact language) + (alternative_remix_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(highlights_1: artifact record)* + (remix_1: artifact language)\n-> [human specify]\n-> (highlights_1: artifact record)* + (remix_1: artifact language) + (interest_1: instruction language)\n-> [tool select]\n-> (remix_1: artifact language) + (highlight_2: artifact record) + (interest_1: instruction language)\n-> [model generate]~\n-> (highlight_2: artifact record) + (interest_1: instruction language) + (keywords_2: artifact language)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(highlights_1: artifact record)* + (remix_1: artifact language)\n-> [human select]\n-> (highlights_1: artifact record)* + (remix_1: artifact language) + (archive_filter_1: selection categorical)\n-> [tool select]\n-> (filtered_highlights_1: artifact record)* + (remix_1: artifact language)\n-> [human select]\n-> (archive_choice_1: selection record)\n-> [tool translate]\n-> (archive_view_1: artifact visual)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

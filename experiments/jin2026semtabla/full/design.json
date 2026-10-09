@@ -1,0 +1,58 @@
+{
+  "name": "System X",
+  "goal": "End-to-end semantic enrichment, counterexample-driven feature detection, interactive validation, manual refinement, and classifier updates.",
+  "description": "the system analyzes uploaded data tables to identify column semantics, relationships, dependencies, and table types. Users explore the results through linked visualizations, inspect supporting and contradicting examples, and correct inferred semantics. Actors: tool_1 = data profiling, sampling, semantic detection, and SQL validation; tool_2 = interactive visualization interface; model_1 = column taxonomy classification model; model_2 = table classification model.",
+  "processes": [
+    {
+      "name": "Counterexample-Guided Feature Detection",
+      "description": "When semantic detection runs, the backend samples table records, detects candidate features, and checks them against the complete data. Counterexamples are added to the samples and detection repeats until no counterexamples remain or the maximum iteration count is reached.",
+      "rawExpression": "(tables_1: artifact tabular)*\n-> [tool_1 select]\n-> (tables_1: artifact tabular)* + (samples_1: artifact tabular)*\n-> [tool_1 extract]\n-> (tables_1: artifact tabular)* + (samples_1: artifact tabular)* + (detected_features_1: artifact record)*\n-> [tool_1 evaluate]\n-> (tables_1: artifact tabular)* + (samples_1: artifact tabular)* + (detected_features_1: artifact record)* + (counterexamples_1: artifact tabular)\n-> [tool_1 expand]\n-> (tables_1: artifact tabular)* + (samples_1: artifact tabular)*"
+    },
+    {
+      "name": "Semantic Enrichment and Table Profiling",
+      "description": "After uploading a database, the user runs four enrichment stages that identify column attributes and taxonomies, primary and foreign keys, functional dependencies, and table-level labels. A model_1 handles ambiguous column taxonomies, a decision-tree classifier determines table types, and the interface displays the resulting semantics.",
+      "rawExpression": "(tables_1: artifact tabular)* + (detected_features_1: artifact record)*\n-> [tool_1 extract]\n-> (tables_1: artifact tabular)* + (column_attributes_1: artifact record)*\n-> [tool_1 assign]\n-> (tables_1: artifact tabular)* + (column_attributes_1: artifact record)* + (rule_taxonomies_1: label categorical)*\n-> [model_1 assign]\n-> (tables_1: artifact tabular)* + (column_attributes_1: artifact record)* + (rule_taxonomies_1: label categorical)* + (predicted_taxonomies_1: label categorical)*\n-> [tool_1 compose]\n-> (tables_1: artifact tabular)* + (column_semantics_1: artifact record)*\n-> [tool_1 extract]\n-> (tables_1: artifact tabular)* + (column_semantics_1: artifact record)* + (key_relations_1: artifact graph)\n-> [tool_1 extract]\n-> (tables_1: artifact tabular)* + (column_semantics_1: artifact record)* + (key_relations_1: artifact graph) + (functional_dependencies_1: artifact graph)\n-> [tool_1 assign]\n-> (column_semantics_1: artifact record)* + (key_relations_1: artifact graph) + (functional_dependencies_1: artifact graph) + (table_labels_1: label categorical)*\n-> [model_2 assign]\n-> (column_semantics_1: artifact record)* + (key_relations_1: artifact graph) + (functional_dependencies_1: artifact graph) + (table_labels_1: label categorical)* + (table_types_1: label categorical)*\n-> [tool_1 compose]\n-> (semantic_profile_1: artifact record)\n-> [tool_2 translate]\n-> (semantic_profile_1: artifact record) + (semantic_views_1: artifact visual)"
+    },
+    {
+      "name": "Inspect Semantic Evidence",
+      "description": "When the user selects an inferred column attribute, key relationship, or dependency, the backend constructs and executes SQL queries to retrieve supporting and contradicting records. The interface displays the queries, sample rows, and explanations so the user can judge the result.",
+      "rawExpression": "(tables_1: artifact tabular)* + (semantic_profile_1: artifact record) + (semantic_views_1: artifact visual)\n-> [human select]\n-> (tables_1: artifact tabular)* + (semantic_profile_1: artifact record) + (selected_feature_1: selection record)\n-> [tool_1 translate]\n-> (tables_1: artifact tabular)* + (selected_feature_1: selection record) + (validation_queries_1: artifact formal)*\n-> [tool_1 execute]\n-> (selected_feature_1: selection record) + (validation_queries_1: artifact formal)* + (supporting_samples_1: artifact tabular) + (counterexamples_2: artifact tabular)\n-> [tool_2 translate]\n-> (validation_view_1: artifact visual)"
+    },
+    {
+      "name": "Refine Inferred Semantics",
+      "description": "When the user finds an incorrect field classification, relationship, or semantic label, they edit it directly in the interface. The backend updates the affected semantic labels, the decision-tree classifier recomputes the table types, and the visualizations reflect the changes.",
+      "rawExpression": "(semantic_profile_1: artifact record) + (semantic_views_1: artifact visual)\n-> [human modify]\n-> (semantic_profile_2: artifact record)\n-> [tool_1 assign]\n-> (semantic_profile_2: artifact record) + (refined_table_labels_1: label categorical)*\n-> [model_2 assign]\n-> (semantic_profile_2: artifact record) + (refined_table_labels_1: label categorical)* + (refined_table_types_1: label categorical)*\n-> [tool_2 translate]\n-> (semantic_profile_2: artifact record) + (updated_semantic_views_1: artifact visual)"
+    },
+    {
+      "name": "Update Table Classifier from Corrections",
+      "description": "When the user corrects an incorrect table-type classification, the system uses the corrected classification and its associated semantic features to update the decision-tree classifier through active learning for future predictions.",
+      "rawExpression": "(column_semantics_1: artifact record)* + (table_labels_1: label categorical)* + (table_types_1: label categorical)*\n-> [human modify]\n-> (column_semantics_1: artifact record)* + (table_labels_1: label categorical)* + (table_types_2: label categorical)*\n-> [model_2 train]\n-> (updated_table_classifier_1: artifact graph)"
+    }
+  ],
+  "representations": {
+    "tables": "the data tables of an uploaded database",
+    "samples": "a sample of records from each table",
+    "detected_features": "candidate properties found in the samples, such as keys, value patterns and dependencies",
+    "counterexamples": "records in the full data that contradict a detected property",
+    "column_attributes": "measured properties of each column, such as type, uniqueness and value patterns",
+    "rule_taxonomies": "column categories assigned by rules",
+    "predicted_taxonomies": "column categories predicted by a classifier for columns the rules leave ambiguous",
+    "column_semantics": "the combined meaning of each column",
+    "key_relations": "primary keys and the foreign-key links between tables",
+    "functional_dependencies": "columns whose values determine other columns",
+    "table_labels": "labels describing what each table holds",
+    "table_types": "the predicted type of each table",
+    "semantic_profile": "all inferred column meanings, relations, dependencies and table types",
+    "semantic_views": "linked visualizations of the semantic profile",
+    "selected_feature": "the inferred property the user clicks to check",
+    "validation_queries": "SQL queries that test the selected property on the full data",
+    "supporting_samples": "records that support the selected property",
+    "validation_view": "a view showing the queries, supporting and contradicting records, and an explanation",
+    "refined_table_labels": "table labels recomputed after the user's corrections",
+    "refined_table_types": "table types recomputed after the user's corrections",
+    "updated_semantic_views": "the visualizations after the corrections",
+    "updated_table_classifier": "the table-type classifier retrained with the user's corrections"
+  },
+  "references": [],
+  "images": []
+}

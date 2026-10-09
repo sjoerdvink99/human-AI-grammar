@@ -1,0 +1,47 @@
+{
+  "name": "System X",
+  "goal": "Visualization authoring from an input data table, including concept creation, AI-assisted data derivation, example-based reshaping, chart formulation, and refinement of generated transformations.",
+  "description": "tool_1 is an interactive visualization authoring tool that lets users define data concepts through natural language or examples and bind them to visual channels. It uses a language model and a program synthesizer to generate data transformations, presents intermediate code and data for inspection, and renders the resulting visualizations. Actors: model = code-generating language model; tool_1 = visualization authoring application and data transformation backend; tool_2 = enumerative programming-by-example synthesizer.",
+  "processes": [
+    {
+      "name": "Visualize existing data concepts",
+      "description": "After loading a data table, tool_1 makes its columns available as concepts. The user selects a chart type and maps those concepts to visual channels, and the system creates a Vega-Lite specification and renders the visualization without transforming the data.",
+      "rawExpression": "(table_1: artifact tabular)\n-> [tool_1 extract]\n-> (table_1: artifact tabular) + (concepts_1: artifact record)*\n-> [human specify]\n-> (table_1: artifact tabular) + (concepts_1: artifact record)* + (chart_spec_1: instruction record)\n-> [tool_1 translate]\n-> (table_1: artifact tabular) + (vega_spec_1: artifact record)\n-> [tool_1 execute]\n-> (chart_1: artifact visual)"
+    },
+    {
+      "name": "Create and visualize custom concepts by example",
+      "description": "When desired fields are not available in the input table, the user creates custom concepts by naming them and providing example values, then maps them to chart channels. tool_1 asks the user to complete a small table showing how the concepts relate, synthesizes reshaping programs from those examples, and produces candidate tables and visualizations. The user inspects and saves a result, making the newly created concepts available for subsequent charts.",
+      "rawExpression": "(table_1: artifact tabular) + (concepts_1: artifact record)*\n-> [human specify]\n-> (table_1: artifact tabular) + (concepts_1: artifact record)* + (custom_concepts_1: artifact record)*\n-> [human specify]\n-> (table_1: artifact tabular) + (concepts_1: artifact record)* + (custom_concepts_1: artifact record)* + (chart_spec_2: instruction record)\n-> [tool_1 compose]\n-> (table_1: artifact tabular) + (custom_concepts_1: artifact record)* + (chart_spec_2: instruction record) + (example_relation_1: instruction tabular)\n-> [human modify]\n-> (table_1: artifact tabular) + (custom_concepts_1: artifact record)* + (chart_spec_2: instruction record) + (example_relation_2: instruction tabular)\n-> [tool_2 execute]\n-> (table_1: artifact tabular) + (chart_spec_2: instruction record) + (reshaping_programs_1: artifact formal)*\n-> [tool_1 execute]\n-> (chart_spec_2: instruction record) + (candidate_tables_1: artifact tabular)*\n-> [tool_1 translate]\n-> (candidate_tables_1: artifact tabular)* + (vega_spec_2: artifact record)\n-> [tool_1 execute]\n-> (candidate_tables_1: artifact tabular)* + (candidate_charts_1: artifact visual)*\n-> [human select]\n-> (table_2: artifact tabular) + (chart_2: artifact visual)\n-> [tool_1 assign]\n-> (table_2: artifact tabular) + (concepts_2: artifact record)* + (chart_2: artifact visual)"
+    },
+    {
+      "name": "Derive a data concept using natural language",
+      "description": "The user selects existing source concepts, names a new concept, and describes its calculation in natural language. tool_1 constructs contextualized TypeScript prompts, and model generates candidate transformation functions. The system tests the functions and displays executable candidates with example results for the user to inspect and select. It then applies the selected function to the table, and the user can map the resulting concept to a chart.",
+      "rawExpression": "(table_2: artifact tabular) + (concepts_2: artifact record)*\n-> [human specify]\n-> (table_2: artifact tabular) + (concepts_2: artifact record)* + (derivation_request_1: instruction record)\n-> [tool_1 compose]\n-> (table_2: artifact tabular) + (concepts_2: artifact record)* + (derivation_request_1: instruction record) + (llm_prompts_1: instruction formal)*\n-> [model generate]~\n-> (table_2: artifact tabular) + (concepts_2: artifact record)* + (derivation_request_1: instruction record) + (code_candidates_1: artifact formal)*\n-> [tool_1 evaluate]\n-> (table_2: artifact tabular) + (concepts_2: artifact record)* + (derivation_request_1: instruction record) + (valid_codes_1: artifact formal)* + (preview_tables_1: artifact tabular)*\n-> [human select]\n-> (table_2: artifact tabular) + (concepts_2: artifact record)* + (derivation_request_1: instruction record) + (selected_code_1: artifact formal)\n-> [tool_1 execute]\n-> (table_3: artifact tabular) + (concepts_3: artifact record)* + (derivation_request_1: instruction record)\n-> [human specify]\n-> (table_3: artifact tabular) + (concepts_3: artifact record)* + (chart_spec_3: instruction record)\n-> [tool_1 translate]\n-> (table_3: artifact tabular) + (vega_spec_3: artifact record)\n-> [tool_1 execute]\n-> (chart_3: artifact visual)"
+    },
+    {
+      "name": "Refine an incorrect derived concept",
+      "description": "After inspecting a derived column and finding that its calculation does not match the intended result, the user revises the natural-language description. tool_1 sends new contextualized prompts to model, tests the regenerated functions, and presents their results for inspection. The selected corrected function is applied to update the derived column.",
+      "rawExpression": "(table_3: artifact tabular) + (concepts_3: artifact record)* + (derivation_request_1: instruction record)\n-> [human modify]\n-> (table_3: artifact tabular) + (concepts_3: artifact record)* + (derivation_request_2: instruction record)\n-> [tool_1 compose]\n-> (table_3: artifact tabular) + (concepts_3: artifact record)* + (derivation_request_2: instruction record) + (llm_prompts_2: instruction formal)*\n-> [model generate]~\n-> (table_3: artifact tabular) + (concepts_3: artifact record)* + (code_candidates_2: artifact formal)*\n-> [tool_1 evaluate]\n-> (table_3: artifact tabular) + (concepts_3: artifact record)* + (valid_codes_2: artifact formal)* + (preview_tables_2: artifact tabular)*\n-> [human select]\n-> (table_3: artifact tabular) + (concepts_3: artifact record)* + (selected_code_2: artifact formal)\n-> [tool_1 execute]\n-> (table_4: artifact tabular) + (concepts_4: artifact record)*"
+    }
+  ],
+  "representations": {
+    "table": "the data table the user works with; later versions add or reshape columns",
+    "concepts": "the data fields available for charts, each with a name and a data type",
+    "custom_concepts": "new concepts the user names and gives a few example values for, not yet in the table",
+    "chart_spec": "a chart type and the concept placed on each visual channel, such as x, y, and color",
+    "vega_spec": "a Vega-Lite specification of the chart",
+    "chart": "the rendered chart",
+    "example_relation": "a small example table with one column per concept in the chart, which the user fills in to show how the values relate",
+    "reshaping_programs": "programs that reshape the table so it contains the concepts in the chart",
+    "candidate_tables": "the tables produced by the reshaping programs",
+    "candidate_charts": "one chart for each candidate table",
+    "derivation_request": "the source concepts, the name of the new concept, and a natural-language description of how to compute it",
+    "llm_prompts": "prompts asking the model for a function that computes the new concept",
+    "code_candidates": "the functions the model returns",
+    "valid_codes": "the candidate functions that run without errors on the table",
+    "preview_tables": "example rows showing the source values and each valid function's result",
+    "selected_code": "the function the user chooses"
+  },
+  "references": [],
+  "images": []
+}

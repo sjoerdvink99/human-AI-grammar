@@ -1,0 +1,13 @@
+{
+  "name": "system-x",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Weekly e-book highlight resurfacing: keywords, reflection, remix, archive.",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && for f in lib/*.js public/app.js; do node --check $f || exit 1; done",
+    "test": "node --test test/"
+  },
+  "engines": { "node": ">=20" }
+}

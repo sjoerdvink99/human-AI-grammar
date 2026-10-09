@@ -1,0 +1,50 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(dataset_1: artifact tabular)\n-> [tool_1 extract]\n-> (attributes_1: artifact record)\n-> [tool_1 translate]\n-> (dataset_description_1: artifact language)\n-> [model_1 generate]~\n-> (keyword_response_1: artifact language)\n-> [tool_1 extract]\n-> (keywords_1: artifact language)*\n-> [tool_1 translate]\n-> (keywords_1: artifact language)* + (word_cloud_1: artifact visual)\n-> [tool_1 compose]\n-> (image_prompts_1: instruction language)*\n-> [model_2 generate]~\n-> (candidate_images_1: artifact visual)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(candidate_images_1: artifact visual)* + (keywords_1: artifact language)* + (word_cloud_1: artifact visual)\n-> [human specify]\n-> (concept_prompt_1: instruction language)\n-> [tool_1 compose]\n-> (image_prompt_2: instruction language)\n-> [model_2 generate]~\n-> (candidate_images_2: artifact visual)*\n-> [human modify]\n-> (concept_prompt_1: instruction language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(candidate_images_2: artifact visual)*\n-> [human select]\n-> (glyph_image_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(glyph_image_1: artifact visual) + (attributes_1: artifact record)\n-> [human select]\n-> (glyph_image_1: artifact visual) + (regions_1: selection spatial)*\n-> [model_3 extract]\n-> (glyph_image_1: artifact visual) + (masks_1: artifact spatial)*\n-> [human modify]\n-> (glyph_image_1: artifact visual) + (masks_2: artifact spatial)*\n-> [human assign]\n-> (glyph_image_1: artifact visual) + (masks_2: artifact spatial)* + (attribute_mappings_1: label record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(glyph_image_1: artifact visual) + (masks_2: artifact spatial)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_2 extract]\n-> (fragments_1: artifact visual)* + (fragment_edges_1: artifact spatial)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [model_4 generate]~\n-> (fragment_descriptions_1: artifact language)* + (fragment_edges_1: artifact spatial)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_1 compose]\n-> (encoding_prompts_1: instruction language)* + (fragment_edges_1: artifact spatial)*\n-> [model_5 generate]~\n-> (categorical_fragments_1: artifact visual)* + (encoding_prompts_1: instruction language)* + (fragment_edges_1: artifact spatial)*\n-> [human modify]\n-> (encoding_prompts_1: instruction language)* + (fragment_edges_1: artifact spatial)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(categorical_fragments_1: artifact visual)* + (masks_2: artifact spatial)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_3 extract]\n-> (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [human specify]\n-> (assembly_settings_1: instruction record) + (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_3 translate]\n-> (numerical_fragments_1: artifact visual)* + (assembly_settings_1: instruction record) + (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [tool_3 compose]\n-> (glyphs_1: artifact visual)* + (assembly_settings_1: instruction record) + (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)\n-> [human modify]\n-> (assembly_settings_1: instruction record) + (fragment_contours_1: artifact spatial)* + (categorical_fragments_1: artifact visual)* + (attribute_mappings_1: label record)* + (dataset_1: artifact tabular)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [human specify]\n-> (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [tool_4 match]\n-> (layout_recommendation_1: artifact record) + (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [human select]\n-> (layout_1: instruction record) + (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [tool_3 compose]\n-> (fgv_1: artifact visual) + (layout_1: instruction record) + (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)\n-> [human modify]\n-> (layout_1: instruction record) + (placement_settings_1: instruction record) + (glyphs_1: artifact visual)* + (dataset_1: artifact tabular)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(fgv_1: artifact visual)\n-> [human specify]\n-> (fgv_1: artifact visual) + (export_request_1: instruction categorical)\n-> [tool_3 translate]\n-> (fgv_png_1: artifact visual)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

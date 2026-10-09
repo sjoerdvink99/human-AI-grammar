@@ -1,0 +1,1 @@
+ALTER TABLE `systems` ADD `actors` text DEFAULT '{}' NOT NULL;

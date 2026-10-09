@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>System X — semantic enrichment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="/static/vendor/d3.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">System X <span>semantic enrichment of data tables</span></div>
+    <nav id="pipeline" aria-label="pipeline"></nav>
+    <div id="busy" class="busy hidden"><span class="spinner"></span><span id="busy-text">Working…</span></div>
+  </header>
+
+  <div id="layout">
+    <aside id="sidebar">
+      <section>
+        <h3>Database</h3>
+        <label class="file-btn">Upload CSV tables…
+          <input id="upload" type="file" accept=".csv,.tsv,.txt" multiple />
+        </label>
+        <button id="demo" class="secondary">Load demo database</button>
+        <ul id="table-list" class="table-list"></ul>
+      </section>
+      <section>
+        <h3>Feature detection</h3>
+        <div class="field-row">
+          <label>Sample rows <input id="sample-size" type="number" min="10" value="200" /></label>
+          <label>Max iterations <input id="max-iter" type="number" min="1" max="20" value="5" /></label>
+        </div>
+        <div id="detection-summary" class="muted small"></div>
+      </section>
+      <section>
+        <h3>Profile versions</h3>
+        <ol id="versions" class="versions"></ol>
+      </section>
+      <div id="error" class="error hidden"></div>
+    </aside>
+
+    <main>
+      <div class="tabs" role="tablist">
+        <button data-tab="views" class="active">Semantic views</button>
+        <button data-tab="detection">Detection log</button>
+        <button data-tab="data">Data &amp; samples</button>
+        <button data-tab="classifier">Table classifier</button>
+      </div>
+
+      <div id="tab-views" class="tab active">
+        <div id="empty-views" class="empty">Upload tables or load the demo database, then run the pipeline above.</div>
+        <div id="views-grid" class="views-grid hidden">
+          <div class="panel" id="panel-schema">
+            <div class="panel-title">Tables, keys &amp; relationships <span class="hint">click a table or a link</span></div>
+            <svg id="schema"></svg>
+            <div id="type-legend" class="legend"></div>
+          </div>
+          <div class="panel" id="panel-taxonomy">
+            <div class="panel-title">Column taxonomy <span class="hint">hover to highlight</span></div>
+            <svg id="taxonomy-bars"></svg>
+          </div>
+          <div class="panel wide" id="panel-columns">
+            <div class="panel-title">Column semantics <span class="hint">click a column; PK = primary-key part · bars = uniqueness / completeness</span></div>
+            <div id="columns-grid"></div>
+          </div>
+          <div class="panel wide" id="panel-fds">
+            <div class="panel-title">Functional dependencies <span class="hint">click an arc</span></div>
+            <div id="fd-view"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-detection" class="tab"><div id="detection-log"></div></div>
+      <div id="tab-data" class="tab"><div id="data-view"></div></div>
+      <div id="tab-classifier" class="tab"><div id="classifier-view"></div></div>
+    </main>
+
+    <aside id="inspector">
+      <div class="muted">Select a column, table, relationship or dependency to inspect its evidence and correct it.</div>
+    </aside>
+  </div>
+
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact visual)* + (r2_1: artifact record)*\n-> [tool_1 extract]\n-> (r1_1: artifact visual)* + (r2_1: artifact record)* + (r3_1: selection spatial)* + (r4_1: label categorical)*\n-> [model_1 generate]~\n-> (r1_1: artifact visual)* + (r3_1: selection spatial)* + (r4_1: label categorical)* + (r5_1: artifact language)* + (r6_1: artifact language)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r7_1: instruction language) + (r1_1: artifact visual)* + (r5_1: artifact language)* + (r6_1: artifact language)* + (r8_1: artifact record)* + (r9_1: artifact record) + (r10_1: artifact graph)\n-> [model_2 select]\n-> (r7_1: instruction language) + (r1_1: artifact visual)* + (r5_1: artifact language)* + (r6_1: artifact language)* + (r11_1: selection record)* + (r9_1: artifact record) + (r10_1: artifact graph)\n-> [human select]\n-> (r1_1: artifact visual)* + (r5_1: artifact language)* + (r6_1: artifact language)* + (r12_1: selection record)* + (r9_1: artifact record) + (r10_1: artifact graph)\n-> [tool_2 translate]\n-> (r1_1: artifact visual)* + (r5_1: artifact language)* + (r6_1: artifact language)* + (r13_1: artifact numeric)* + (r12_1: selection record)* + (r9_1: artifact record) + (r10_1: artifact graph)\n-> [tool_3 translate]\n-> (r1_1: artifact visual)* + (r6_1: artifact language)* + (r13_1: artifact numeric)* + (r14_1: artifact numeric)* + (r12_1: selection record)* + (r9_1: artifact record) + (r10_1: artifact graph)\n-> [model_3 assign]\n-> (r1_1: artifact visual)* + (r6_1: artifact language)* + (r15_1: label categorical)* + (r12_1: selection record)* + (r9_1: artifact record) + (r10_1: artifact graph)\n-> [model_3 modify]\n-> (r1_1: artifact visual)* + (r6_1: artifact language)* + (r15_2: label categorical)* + (r12_1: selection record)* + (r9_1: artifact record) + (r10_1: artifact graph)\n-> [model_3 generate]~\n-> (r1_1: artifact visual)* + (r15_2: label categorical)* + (r16_1: artifact language)* + (r9_1: artifact record) + (r10_1: artifact graph)\n-> [model_4 evaluate]\n-> (r1_1: artifact visual)* + (r15_2: label categorical)* + (r16_1: artifact language)* + (r17_1: evaluation numeric)* + (r9_1: artifact record) + (r10_1: artifact graph)\n-> [model_4 select]\n-> (r1_1: artifact visual)* + (r15_2: label categorical)* + (r16_1: artifact language)* + (r18_1: label categorical)* + (r9_1: artifact record)\n-> [model_4 generate]~\n-> (r1_1: artifact visual)* + (r15_2: label categorical)* + (r16_1: artifact language)* + (r18_1: label categorical)* + (r19_1: artifact language)*\n-> [model_4 evaluate]\n-> (r1_1: artifact visual)* + (r15_2: label categorical)* + (r16_1: artifact language)* + (r18_1: label categorical)* + (r19_1: artifact language)* + (r20_1: evaluation numeric)*\n-> [model_4 select]\n-> (r1_1: artifact visual)* + (r15_2: label categorical)* + (r16_1: artifact language)* + (r18_1: label categorical)* + (r19_1: artifact language)* + (r21_1: selection categorical)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact visual)* + (r21_1: selection categorical)* + (r18_1: label categorical)* + (r19_1: artifact language)* + (r16_1: artifact language)*\n-> [human select]\n-> (r1_1: artifact visual)* + (r22_1: selection categorical) + (r18_1: label categorical)* + (r19_1: artifact language)* + (r16_1: artifact language)*\n-> [human evaluate]\n-> (r1_1: artifact visual)* + (r23_1: evaluation record)* + (r18_1: label categorical)*\n-> [human assign]\n-> (r24_1: label categorical)* + (r23_1: evaluation record)*\n-> [tool_4 extract]\n-> (r24_1: label categorical)* + (r25_1: artifact record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact visual)* + (r15_2: label categorical)* + (r18_1: label categorical)* + (r24_1: label categorical)* + (r25_1: artifact record)*\n-> [human select]\n-> (r1_1: artifact visual)* + (r15_2: label categorical)* + (r18_1: label categorical)* + (r24_1: label categorical)* + (r25_1: artifact record)* + (r26_1: selection categorical)\n-> [human specify]\n-> (r1_1: artifact visual)* + (r15_2: label categorical)* + (r18_1: label categorical)* + (r24_1: label categorical)* + (r25_1: artifact record)* + (r26_1: selection categorical) + (r27_1: instruction language)\n-> [model_5 generate]~\n-> (r24_1: label categorical)* + (r25_1: artifact record)* + (r28_1: artifact language)\n-> [human evaluate]\n-> (r24_1: label categorical)* + (r25_1: artifact record)* + (r29_1: evaluation record)\n-> [human assign]\n-> (r24_2: label categorical)* + (r25_1: artifact record)* + (r29_1: evaluation record)\n-> [tool_4 expand]\n-> (r24_2: label categorical)* + (r25_2: artifact record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r25_2: artifact record)* + (r8_1: artifact record)*\n-> [model_6 extract]\n-> (r30_1: artifact record)* + (r8_1: artifact record)*\n-> [model_7 generate]~\n-> (r31_1: artifact record)* + (r8_1: artifact record)*\n-> [model_8 match]\n-> (r31_1: artifact record)* + (r32_1: selection record)* + (r8_1: artifact record)*\n-> [model_8 evaluate]\n-> (r31_1: artifact record)* + (r33_1: evaluation record)* + (r8_1: artifact record)*\n-> [model_8 modify]~\n-> (r8_2: artifact record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r25_2: artifact record)* + (r24_2: label categorical)* + (r9_1: artifact record)\n-> [model_9 extract]~\n-> (r34_1: artifact language) + (r9_1: artifact record)\n-> [model_10 modify]\n-> (r9_2: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r7_2: instruction language) + (r1_1: artifact visual)* + (r5_1: artifact language)* + (r6_1: artifact language)* + (r8_2: artifact record)* + (r9_2: artifact record) + (r10_1: artifact graph)\n-> [model_2 select]\n-> (r7_2: instruction language) + (r1_1: artifact visual)* + (r6_1: artifact language)* + (r11_2: selection record)* + (r9_2: artifact record) + (r10_1: artifact graph)\n-> [human select]\n-> (r1_1: artifact visual)* + (r6_1: artifact language)* + (r12_2: selection record)* + (r9_2: artifact record) + (r10_1: artifact graph)\n-> [model_3 assign]\n-> (r1_1: artifact visual)* + (r15_3: label categorical)* + (r12_2: selection record)* + (r9_2: artifact record) + (r10_1: artifact graph)\n-> [model_3 generate]~\n-> (r1_1: artifact visual)* + (r15_3: label categorical)* + (r16_2: artifact language)* + (r9_2: artifact record) + (r10_1: artifact graph)\n-> [model_4 evaluate]\n-> (r1_1: artifact visual)* + (r15_3: label categorical)* + (r16_2: artifact language)* + (r17_2: evaluation numeric)* + (r9_2: artifact record)\n-> [model_4 select]\n-> (r1_1: artifact visual)* + (r15_3: label categorical)* + (r16_2: artifact language)* + (r18_2: label categorical)* + (r9_2: artifact record)\n-> [model_4 generate]~\n-> (r1_1: artifact visual)* + (r15_3: label categorical)* + (r18_2: label categorical)* + (r19_2: artifact language)*"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

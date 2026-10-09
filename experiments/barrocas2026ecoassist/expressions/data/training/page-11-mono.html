@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>page-11-mono</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; background: #ffffff; color: #111111; line-height: 1.5; }
+  nav { display: flex; gap: 24px; align-items: center; padding: 16px 40px; background: #f4f4f4; }
+  nav .btn { margin-left: auto; }
+  .hero { background: linear-gradient(135deg, #f4f4f4, #ffffff); padding-bottom: 40px; text-align: center; }
+  .hero h1 { font-size: 48px; margin: 40px 0 8px; }
+  .illus { max-width: 720px; display: block; margin: 24px auto 0; }
+  .btn { background: #333333; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; }
+  .btn.big { padding: 14px 28px; font-size: 18px; display: inline-block; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; padding: 40px; }
+  .card { background: #f4f4f4; border: 1px solid #999999; border-radius: 12px; padding: 20px; }
+  .thumb { height: 120px; border-radius: 8px; background: linear-gradient(120deg, #999999, #333333); }
+  a { color: #333333; }
+  .article { max-width: 720px; margin: 0 auto; padding: 40px 20px; }
+  .meta { color: #333333; }
+  blockquote { border-left: 4px solid #333333; background: #f4f4f4; margin: 0; padding: 16px 24px; font-size: 20px; }
+  .banner { margin-top: 32px; padding: 32px; background: #333333; color: #fff; border-radius: 12px; font-size: 22px; }
+  .dash { display: flex; min-height: 100vh; }
+  .dash aside { width: 220px; background: #333333; color: #fff; padding: 24px; }
+  .dash main { flex: 1; padding: 0 0 40px; }
+  .dash h1 { padding: 0 40px; }
+  .stat b { display: block; font-size: 28px; }
+  .chart { display: flex; align-items: flex-end; gap: 10px; height: 200px; margin: 0 40px; }
+  .bar { flex: 1; background: #999999; border-radius: 4px 4px 0 0; }
+  table { margin: 24px 40px; border-collapse: collapse; width: calc(100% - 80px); }
+  th, td { padding: 10px; border-bottom: 1px solid #f4f4f4; text-align: left; }
+  th { background: #f4f4f4; }
+  .price b { font-size: 32px; }
+  .featured { background: #333333; color: #fff; }
+  .featured .btn { background: #fff; color: #333333; }
+</style>
+</head>
+<body>
+
+  <div class="dash"><aside><strong>Admin</strong><p>Overview</p><p>Orders</p><p>Customers</p><p>Settings</p></aside>
+  <main><h1>Overview</h1><section class="grid"><div class="card stat"><span>Revenue</span><b>3702</b></div><div class="card stat"><span>Orders</span><b>4936</b></div><div class="card stat"><span>Visitors</span><b>6170</b></div><div class="card stat"><span>Refunds</span><b>7404</b></div></section>
+  <div class="card chart"><div class="bar" style="height:30px"></div><div class="bar" style="height:67px"></div><div class="bar" style="height:104px"></div><div class="bar" style="height:141px"></div><div class="bar" style="height:58px"></div><div class="bar" style="height:95px"></div><div class="bar" style="height:132px"></div><div class="bar" style="height:49px"></div><div class="bar" style="height:86px"></div><div class="bar" style="height:123px"></div><div class="bar" style="height:40px"></div><div class="bar" style="height:77px"></div></div>
+  <table><tr><th>Order</th><th>Customer</th><th>Total</th></tr><tr><td>#1004</td><td>Customer 1</td><td>$42.00</td></tr><tr><td>#1014</td><td>Customer 2</td><td>$84.00</td></tr><tr><td>#1024</td><td>Customer 3</td><td>$126.00</td></tr><tr><td>#1034</td><td>Customer 4</td><td>$168.00</td></tr><tr><td>#1044</td><td>Customer 5</td><td>$210.00</td></tr><tr><td>#1054</td><td>Customer 6</td><td>$252.00</td></tr><tr><td>#1064</td><td>Customer 7</td><td>$294.00</td></tr><tr><td>#1074</td><td>Customer 8</td><td>$336.00</td></tr></table></main></div>
+</body>
+</html>

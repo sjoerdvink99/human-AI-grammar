@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>System X — semantic table profiler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>System X <span>semantic table profiler</span></h1>
+    <nav id="tabs">
+      <button data-tab="features">1 · Sampling &amp; features</button>
+      <button data-tab="profile">2–4 · Semantic profile</button>
+      <button data-tab="training">5 · Table-type training</button>
+    </nav>
+  </header>
+  <div id="layout">
+    <aside id="sidebar"></aside>
+    <main id="main"></main>
+    <section id="drawer" class="hidden"></section>
+  </div>
+  <div id="overlay" class="hidden"><div class="box"><div class="spinner"></div><div id="overlay-log"></div></div></div>
+  <div id="toast" class="hidden"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

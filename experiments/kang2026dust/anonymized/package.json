@@ -1,0 +1,15 @@
+{
+  "name": "system-x-journal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "seed": "node scripts/seed.js",
+    "test": "node --test test/",
+    "check": "node --check server/index.js && node --check server/llm.js && node --check server/tools.js && node --check server/operations.js && node --check server/records.js && node --check public/app.js && node --check public/chart.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

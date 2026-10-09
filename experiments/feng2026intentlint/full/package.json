@@ -1,0 +1,13 @@
+{
+  "name": "system-x",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prompt-time linting and shared collaboration rules for a shared analysis notebook",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test test/",
+    "check": "node --check server/index.js && node --check server/llm.js && node --check server/pipeline.js && node --check server/extract.js && node --check server/rules.js && node --check public/app.js && node --check public/util.js"
+  },
+  "engines": { "node": ">=20" }
+}

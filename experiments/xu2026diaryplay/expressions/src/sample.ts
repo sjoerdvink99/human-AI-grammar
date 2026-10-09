@@ -1,0 +1,3 @@
+export const SAMPLE_STORY = `The storm had trapped everyone at the lighthouse keeper's cottage. Mara, the young keeper, lit the oil lamp in the kitchen and put the kettle on the stove while her grandfather Tomas dozed in his armchair by the fireplace in the sitting room.
+A knock at the door: Elias, a soaked fisherman, stumbled in holding a torn map. "My boat broke loose," he said. Mara wrapped him in a blanket from the bedroom chest and poured him tea.
+Tomas woke, studied the map at the table, and recognised the cove where the wreck of the Selene lay. Together they decided that at dawn Mara would climb to the lamp room and signal the harbour, while Elias rested by the fire.`;

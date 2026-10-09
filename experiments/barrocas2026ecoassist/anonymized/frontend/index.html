@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>System X — chart repair</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>System X <span class="sub">learned chart repair</span></h1>
+  <nav>
+    <button class="tab active" data-tab="create">Create chart</button>
+    <button class="tab" data-tab="train">Train repair model</button>
+  </nav>
+  <div id="model-status" class="pill"></div>
+</header>
+
+<main>
+  <!-- Processes 2 → 3 → 4 -->
+  <section id="tab-create" class="tab-panel">
+    <div class="card">
+      <h2>1 · Describe the chart</h2>
+      <label for="r10">Request <code>r10</code></label>
+      <textarea id="r10" rows="3" placeholder="e.g. Monthly rainfall in Amsterdam, Rotterdam and Utrecht for 2023"></textarea>
+      <label>Chart type <code>r11</code></label>
+      <div id="r11" class="segmented"></div>
+      <button id="btn-create" class="primary">Generate &amp; repair</button>
+      <div id="create-progress" class="progress"></div>
+      <div id="create-error" class="error"></div>
+    </div>
+
+    <div id="repair-view" hidden>
+      <div class="card">
+        <h2>2 · Before and after repair <span id="r17" class="delta"></span></h2>
+        <div class="compare">
+          <figure>
+            <figcaption>Generated <code>r12_1</code> → <code>r13</code> · score <b id="r14-score"></b></figcaption>
+            <img id="r13">
+            <div id="r14" class="metrics"></div>
+          </figure>
+          <figure>
+            <figcaption>Model-repaired <code>r12_2</code> → <code>r15</code> · score <b id="r16-score"></b></figcaption>
+            <img id="r15">
+            <div id="r16" class="metrics"></div>
+          </figure>
+        </div>
+        <details class="gains"><summary>Why: edit priorities from the trained model <code>r9</code></summary>
+          <p id="rationale"></p>
+          <div id="gains"></div>
+        </details>
+      </div>
+
+      <div class="card">
+        <h2>3 · Choose which changes to keep <code>r18</code> → <code>r19</code></h2>
+        <div class="hunk-tools">
+          <button id="sel-all">Select all</button><button id="sel-none">Select none</button>
+          <span id="sel-count"></span>
+        </div>
+        <div id="r18"></div>
+        <button id="btn-apply" class="primary">Apply selected changes</button>
+        <div id="apply-error" class="error"></div>
+      </div>
+
+      <div class="card" id="final-view" hidden>
+        <h2>4 · Final chart <code>r20</code></h2>
+        <div class="final">
+          <div id="r20" class="svg-holder"></div>
+          <div>
+            <h3>Final program <code>r12_3</code></h3>
+            <pre id="r12_3" class="code"></pre>
+            <a id="dl-svg" class="button" download="chart.svg">Download SVG</a>
+            <a id="dl-py" class="button" download="chart.py">Download .py</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process 1 -->
+  <section id="tab-train" class="tab-panel" hidden>
+    <div class="card">
+      <h2>Corpus <code>r1_1</code></h2>
+      <p class="hint">Chart programs used to learn which edits improve readability. Each is rendered and scored,
+        then every edit operator is applied, re-rendered and re-scored. Edits that improve the score become
+        training records for the repair model.</p>
+      <div id="corpus-list" class="corpus-list"></div>
+      <details>
+        <summary>Add a program to the corpus</summary>
+        <input id="new-title" placeholder="Title">
+        <textarea id="new-code" rows="8" class="code" placeholder="import matplotlib.pyplot as plt&#10;..."></textarea>
+        <button id="btn-add">Add</button>
+        <div id="add-error" class="error"></div>
+      </details>
+      <button id="btn-train" class="primary">Build training data &amp; train</button>
+      <div id="train-progress" class="progress"></div>
+      <div id="train-error" class="error"></div>
+    </div>
+
+    <div class="card" id="train-results" hidden>
+      <h2>Training data <span id="train-counts" class="muted"></span></h2>
+      <div id="train-table"></div>
+    </div>
+    <div class="card" id="weights-card" hidden>
+      <h2>Repair model weights <code>r9</code></h2>
+      <p class="hint">Predicted score gain of each edit = weights · metric penalties + bias. Blue = edit helps when
+        that problem is present, orange = edit hurts.</p>
+      <div id="weights"></div>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

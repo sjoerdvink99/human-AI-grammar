@@ -1,0 +1,30 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact record) + (r2_1: instruction record)*\n-> [human specify]\n-> (r1_1: artifact record) + (r2_1: instruction record)* + (r3_1: instruction language)\n-> [tool_1 extract]\n-> (r4_1: artifact record) + (r2_1: instruction record)* + (r3_1: instruction language)\n-> [model_1 match]\n-> (r4_1: artifact record) + (r2_1: instruction record)* + (r3_1: instruction language) + (r5_1: selection record)*\n-> [model_2 modify]~\n-> (r3_1: instruction language) + (r3_2: instruction language) + (r6_1: evaluation record)*\n-> [human select]\n-> (r3_2: instruction language)\n-> [model_4 generate]~\n-> (r7_1: artifact formal)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r3_1: instruction language) + (r4_1: artifact record) + (r5_1: selection record)* + (r2_1: instruction record)*\n-> [model_3 generate]~\n-> (r8_1: instruction record)* + (r2_1: instruction record)*\n-> [human modify]\n-> (r8_2: instruction record)* + (r2_1: instruction record)*\n-> [human select]\n-> (r9_1: instruction record)* + (r2_1: instruction record)*\n-> [tool_2 compose]\n-> (r2_2: instruction record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r2_2: instruction record)*\n-> [human modify]\n-> (r2_3: instruction record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r2_2: instruction record)*\n-> [human select]\n-> (r10_1: selection record)*"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

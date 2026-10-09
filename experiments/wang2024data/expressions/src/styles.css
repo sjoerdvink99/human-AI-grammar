@@ -1,0 +1,58 @@
+:root { --bg:#f6f7f9; --panel:#fff; --line:#dde1e6; --text:#1d232b; --muted:#6b7480; --accent:#2f6fde; --custom:#b35c00; --derived:#7a3fc0; --hl:#fff6dd; font-family: system-ui, -apple-system, Segoe UI, sans-serif; font-size:14px; color:var(--text); background:var(--bg); }
+* { box-sizing: border-box; }
+body { margin:0; }
+header { display:flex; align-items:center; gap:12px; padding:10px 16px; background:var(--panel); border-bottom:1px solid var(--line); }
+header h1 { font-size:18px; margin:0; }
+.spacer { flex:1; }
+.muted { color:var(--muted); }
+.small { font-size:12px; }
+.error { color:#b3261e; }
+main { display:grid; grid-template-columns: 250px 1fr 200px; gap:12px; padding:12px; align-items:start; }
+.center { display:flex; flex-direction:column; gap:12px; min-width:0; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px; }
+h2 { font-size:15px; margin:0 0 8px; }
+h3 { font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:12px 0 6px; }
+button { font:inherit; padding:5px 10px; border:1px solid var(--line); background:#fff; border-radius:6px; cursor:pointer; }
+button:disabled { opacity:.5; cursor:default; }
+button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+button.link { border:none; background:none; color:var(--accent); padding:0 4px; }
+button.wide { width:100%; margin-top:12px; }
+input, select, textarea { font:inherit; padding:4px 6px; border:1px solid var(--line); border-radius:5px; }
+.concept-chip { display:flex; align-items:center; gap:6px; padding:4px 8px; margin:3px 0; border:1px solid var(--line); border-radius:14px; cursor:grab; background:#fafbfc; }
+.concept-chip.custom { border-color:var(--custom); border-style:dashed; color:var(--custom); }
+.concept-chip.derived { border-color:var(--derived); color:var(--derived); }
+.concept-name { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.type-icon { font-size:11px; color:var(--muted); width:24px; text-align:center; }
+.new-concept { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.new-concept h3 { width:100%; }
+.new-concept input { flex:1; min-width:0; }
+.shelf-head, .row-actions { display:flex; align-items:center; gap:8px; }
+.row-actions h2 { margin:0; }
+.channels { display:grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap:6px; margin-top:10px; }
+.channel { display:flex; align-items:center; gap:6px; padding:5px 8px; border:1px dashed var(--line); border-radius:6px; }
+.channel.filled { border-style:solid; }
+.channel.custom { border-color:var(--custom); }
+.channel select { flex:1; min-width:0; }
+.channel select.agg { flex:0 0 auto; width:72px; }
+.channel-name { width:44px; font-weight:600; color:var(--muted); }
+.chart-view { min-height:200px; }
+.data-table { overflow:auto; max-height:320px; }
+.data-table table, .example-grid { border-collapse:collapse; font-size:12px; }
+.data-table th, .data-table td, .example-grid th, .example-grid td { border-bottom:1px solid var(--line); padding:3px 8px; text-align:left; white-space:nowrap; }
+th.hl, td.hl { background:var(--hl); }
+.example-grid input { width:120px; }
+.candidates { display:grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap:10px; margin-top:10px; }
+.candidate { border:1px solid var(--line); border-radius:8px; padding:8px; display:flex; flex-direction:column; gap:6px; overflow:hidden; }
+.code, .prompt { background:#f3f5f8; border-radius:6px; padding:8px; font-size:12px; overflow:auto; margin:0; white-space:pre-wrap; }
+.tok-keyword { color:#7a3fc0; } .tok-string { color:#0b7a3e; } .tok-number { color:#b35c00; } .tok-comment { color:#8a929c; font-style:italic; }
+.derive form { display:flex; flex-direction:column; gap:10px; }
+.derive label { display:flex; flex-direction:column; gap:4px; }
+.source-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+.chip { flex-direction:row !important; align-items:center; gap:4px; padding:2px 8px; border:1px solid var(--line); border-radius:12px; cursor:pointer; }
+.chip.on { border-color:var(--accent); background:#eaf1fd; }
+.chip input { display:none; }
+.rejected { margin-top:6px; }
+.history { display:flex; flex-direction:column; gap:6px; }
+.chart-thumb { text-align:left; }
+.chart-thumb.active { border-color:var(--accent); background:#eaf1fd; }
+.upload input { width:200px; }

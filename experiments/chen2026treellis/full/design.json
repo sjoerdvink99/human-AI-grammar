@@ -1,0 +1,57 @@
+{
+  "name": "System X",
+  "goal": "Interactive generation, structural inspection, and progressive refinement. Global re-prompting and the three local edit modes are alternatives over a shared, continuously updated scene, not a fixed sequence.",
+  "description": "tool generates 3D models as editable assembly trees in a textual scene format from text prompts and presents synchronized model, structure, and parameter views. Users can inspect parts and refine the scene through global prompting, direct parameter changes, manual structure edits, or node-scoped AI editing. Actors: model = large language model; tool = web-based scene editing and rendering application.",
+  "processes": [
+    {
+      "name": "Generate initial model",
+      "description": "The user enters a text description. tool assembles a constrained scene generation request for model, which produces an editable scene; the application renders its 3D geometry, assembly tree, and adjustable parameters.",
+      "rawExpression": "(prompt_1: instruction language)\n-> [tool compose]\n-> (generation_input_1: instruction record)\n-> [model generate]~\n-> (scene_1: artifact formal)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)"
+    },
+    {
+      "name": "Inspect and select a component",
+      "description": "After generation, the user clicks a part in the 3D viewport or its node in the Structure Tree. tool resolves the selected scene node and highlights the corresponding part in both views.",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual)\n-> [human select]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (selected_node_1: selection record)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (selected_node_1: selection record) + (linked_highlight_1: selection visual)"
+    },
+    {
+      "name": "Adjust part parameters",
+      "description": "With a component selected, the user adjusts its geometry, transforms, name, or color through the Parameter Panel. tool updates the corresponding scene fields and immediately refreshes the views; adjustments can repeat until the part is satisfactory.",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (selected_node_1: selection record)\n-> [human specify]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (selected_node_1: selection record) + (parameter_edit_1: instruction record)\n-> [tool modify]\n-> (scene_2: artifact formal) + (selected_node_1: selection record)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (selected_node_1: selection record)"
+    },
+    {
+      "name": "Edit assembly structure manually",
+      "description": "The user selects a node or subassembly in the Structure Tree and adds, removes, or reorganizes nodes. tool changes the scene hierarchy and refreshes the synchronized views; the user can repeat these edits as needed.",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)\n-> [human select]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (structure_target_1: selection record)\n-> [human specify]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (structure_target_1: selection record) + (structure_edit_1: instruction record)\n-> [tool modify]\n-> (scene_2: artifact formal)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)"
+    },
+    {
+      "name": "Refine a selected subassembly with AI",
+      "description": "The user selects a node and describes a local change. tool extracts its scene subtree and sends it with the request to model, which returns a replacement fragment; tool patches only that region and refreshes the views. The user can repeat the edit until satisfied.",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)\n-> [human select]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (ai_target_1: selection record)\n-> [human specify]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (ai_target_1: selection record) + (local_request_1: instruction language)\n-> [tool extract]\n-> (scene_1: artifact formal) + (ai_target_1: selection record) + (local_request_1: instruction language) + (subtree_1: artifact formal)\n-> [tool compose]\n-> (scene_1: artifact formal) + (ai_target_1: selection record) + (subtree_1: artifact formal) + (scoped_input_1: instruction record)\n-> [model modify]~\n-> (scene_1: artifact formal) + (ai_target_1: selection record) + (subtree_2: artifact formal)\n-> [tool modify]\n-> (scene_2: artifact formal)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)"
+    },
+    {
+      "name": "Regenerate with current-scene context",
+      "description": "After creating a draft, the user can submit another global prompt using the current scene as context. model produces a complete replacement scene that tool renders in the synchronized views; this can repeat as the user continues refining the object.",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)\n-> [human specify]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (followup_prompt_1: instruction language)\n-> [tool compose]\n-> (scene_1: artifact formal) + (generation_input_2: instruction record)\n-> [model generate]~\n-> (scene_2: artifact formal)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)"
+    }
+  ],
+  "representations": {
+    "prompt": "the user's text description of the 3D object to create",
+    "generation_input": "the request sent to the model: the user's description plus instructions that constrain the output format",
+    "scene": "a textual scene description of the 3D model as a tree of named parts and subassemblies, each with geometry, transforms and color",
+    "structure_tree": "the assembly hierarchy of the scene shown as a tree of nodes",
+    "model_view": "the rendered 3D view of the scene",
+    "parameters": "the editable values of a part: geometry, transforms, name and color",
+    "selected_node": "the part or tree node the user clicked",
+    "linked_highlight": "the highlight showing the selected part in both the 3D view and the tree",
+    "parameter_edit": "a change the user makes to a part's values",
+    "structure_target": "the node or subassembly the user picks to restructure",
+    "structure_edit": "adding, removing or moving nodes in the hierarchy",
+    "ai_target": "the node the user picks for a local AI edit",
+    "local_request": "the user's text description of a change to that node",
+    "subtree": "the part of the scene description under the selected node",
+    "scoped_input": "the request sent to the model for a local edit: the subtree plus the change description",
+    "followup_prompt": "a new text description for the whole object, given with the current scene as context"
+  },
+  "references": [],
+  "images": []
+}

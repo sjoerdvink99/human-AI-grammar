@@ -1,0 +1,15 @@
+{
+  "name": "system-x",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/",
+    "check": "node --check server.js && node --check src/model.js && node --check src/tools.js && node --check src/steps.js && node --check src/library.js && node --check public/app.js"
+  },
+  "dependencies": {
+    "@highlightjs/cdn-assets": "^11.12.0",
+    "express": "^4.22.3"
+  }
+}

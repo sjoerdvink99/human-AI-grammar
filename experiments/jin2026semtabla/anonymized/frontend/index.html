@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>System X — data model builder</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>System X <span>tables → data model</span></h1>
+    <div class="controls">
+      <button id="btn-sample">Load sample tables</button>
+      <label class="file">Upload CSVs <input id="file-input" type="file" accept=".csv" multiple /></label>
+      <label>Initial sample <input id="initial-sample" type="number" value="50" min="1" /> rows</label>
+      <button id="btn-run" disabled>Profile &amp; build model</button>
+    </div>
+    <div id="status"></div>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="tab-profile" class="active">1 · Tables &amp; profiling</button>
+    <button data-tab="tab-model">2 · Data model</button>
+    <button data-tab="tab-classifier">3 · Columns &amp; classifier</button>
+  </nav>
+
+  <main>
+    <!-- Process 1 -->
+    <section id="tab-profile" class="tab active">
+      <div id="tables-list" class="cards"></div>
+      <h2>Sampling rounds <small>select → extract → evaluate → expand, until every column is settled</small></h2>
+      <div id="rounds"></div>
+      <h2>Sample adequacy (r4) <small>and column profiles (r3)</small></h2>
+      <div id="profiles"></div>
+    </section>
+
+    <!-- Processes 2, 3, 4 -->
+    <section id="tab-model" class="tab">
+      <div class="model-layout">
+        <div class="diagram-wrap">
+          <div class="diagram-bar">
+            <span id="model-version"></span>
+            <span id="model1-info"></span>
+            <span class="hint">Click an entity, column or relationship to explore it · drag headers to move</span>
+          </div>
+          <div class="diagram-scroll"><svg id="diagram"></svg></div>
+          <details class="graphs">
+            <summary>Intermediate graphs (r9 column inclusions, r10 table graph)</summary>
+            <div id="graphs"></div>
+          </details>
+        </div>
+        <aside class="side">
+          <nav class="subtabs">
+            <button data-sub="sub-explore" class="active">Explore selection</button>
+            <button data-sub="sub-edit">Edit model</button>
+          </nav>
+          <div id="sub-explore" class="sub active">
+            <p class="empty">Select something in the diagram.</p>
+          </div>
+          <div id="sub-edit" class="sub"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Process 5 -->
+    <section id="tab-classifier" class="tab">
+      <p class="lead">Columns (r8) with their rule-based key label (r11) and the classifier's key label (r12).
+        Correct the classifier's labels, then retrain it. The trained decision tree (r22) is shown below.</p>
+      <div id="columns-table"></div>
+      <div class="train-bar">
+        <button id="btn-train" disabled>Retrain classifier on corrected labels</button>
+        <span id="train-info"></span>
+      </div>
+      <h2>Key-role classifier <small id="tree-info"></small></h2>
+      <div class="tree-scroll"><svg id="tree"></svg></div>
+    </section>
+  </main>
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>

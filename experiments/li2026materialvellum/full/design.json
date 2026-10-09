@@ -1,0 +1,50 @@
+{
+  "name": "System X",
+  "goal": "The implemented urban design, ikebana, and graphic design probes, including their material interactions and generation pipelines.",
+  "description": "A multi-touch design interface that turns gestures on digital elastic bands, clay, magnets, and sand into constraints for AI-generated visual designs. Its probes support urban layouts, flower arrangements, and graphic posters. Actors: model_1 = diffusion model with ControlNet Depth and Scribble conditioning and LayerDiffuse transparency support; model_2 = language model; tool_1 = physics engine; tool_2 = 3D rendering library; tool_3 = application preprocessing and postprocessing pipeline.",
+  "processes": [
+    {
+      "name": "Urban neighborhood design",
+      "description": "Starting with a site, the user draws elastic zoning boundaries, reshapes building density as clay, and positions function magnets. The application converts zones into a template-based 3D city, renders density edits with depth-conditioned model_1, and inpaints functions into the nearest blocks; bands and magnets enforce bounds and compatibility as the user moves them.",
+      "rawExpression": "(urban_site_1: artifact spatial)\n-> [human specify]\n-> (urban_site_1: artifact spatial) + (zoning_bands_1: instruction spatial)*\n-> [tool_1 modify]\n-> (zoning_bands_2: instruction spatial)*\n-> [tool_3 compose]\n-> (urban_plan_1: artifact spatial)\n-> [tool_2 translate]\n-> (city_model_1: artifact spatial)\n-> [tool_3 translate]\n-> (city_model_1: artifact spatial) + (density_grid_1: instruction spatial)\n-> [human modify]\n-> (city_model_1: artifact spatial) + (density_grid_2: instruction spatial)\n-> [tool_2 modify]\n-> (city_model_2: artifact spatial)\n-> [tool_3 translate]\n-> (depth_map_1: artifact visual)\n-> [model_1 generate]~\n-> (render_1: artifact visual)\n-> [human specify]\n-> (render_1: artifact visual) + (function_magnets_1: instruction spatial)*\n-> [tool_1 modify]\n-> (render_1: artifact visual) + (function_magnets_2: instruction spatial)*\n-> [tool_3 translate]\n-> (render_1: artifact visual) + (inpainting_masks_1: selection spatial)* + (function_prompts_1: instruction language)*\n-> [model_1 modify]~\n-> (render_2: artifact visual)"
+    },
+    {
+      "name": "Ikebana flower arrangement",
+      "description": "The user positions magnetic circles for the three main flower-arrangement elements and can add flowers or leaves. The magnetic interface enforces spatial and proportional rules, then converts the arrangement to scribble conditioning for model_1 to generate a flower image.",
+      "rawExpression": "(ikebana_canvas_1: artifact spatial)\n-> [human specify]\n-> (ikebana_elements_1: instruction spatial)*\n-> [tool_1 modify]\n-> (ikebana_elements_2: instruction spatial)*\n-> [tool_3 translate]\n-> (scribble_map_1: artifact visual) + (ikebana_prompt_1: instruction language)\n-> [model_1 generate]~\n-> (ikebana_image_1: artifact visual)"
+    },
+    {
+      "name": "Graphic poster design",
+      "description": "Starting with a design theme and square canvas, the user adds and reshapes sand clusters and labels their roles by voice. Cluster size and density control the output: model_2 generates text, model_1 generates transparent imagery, and the application assembles them into a poster.",
+      "rawExpression": "(poster_theme_1: instruction language) + (poster_canvas_1: artifact spatial)\n-> [human specify]\n-> (poster_theme_1: instruction language) + (sand_clusters_1: instruction spatial)*\n-> [human modify]\n-> (poster_theme_1: instruction language) + (sand_clusters_2: instruction spatial)*\n-> [human specify]\n-> (poster_theme_1: instruction language) + (sand_clusters_2: instruction spatial)* + (spoken_roles_1: instruction audio)*\n-> [tool_3 translate]\n-> (poster_theme_1: instruction language) + (sand_clusters_2: instruction spatial)* + (element_roles_1: label categorical)*\n-> [tool_3 compose]\n-> (poster_theme_1: instruction language) + (element_specs_1: instruction record)*\n-> [model_2 generate]~\n-> (element_specs_1: instruction record)* + (text_elements_1: artifact language)*\n-> [model_1 generate]~\n-> (element_specs_1: instruction record)* + (text_elements_1: artifact language)* + (image_elements_1: artifact visual)*\n-> [tool_3 compose]\n-> (poster_1: artifact visual)"
+    }
+  ],
+  "representations": {
+    "urban_site": "the empty site the user plans a neighborhood on",
+    "zoning_bands": "elastic bands the user draws to mark zone boundaries",
+    "urban_plan": "the zones and blocks of the neighborhood",
+    "city_model": "a simple 3D city built from templates for each zone",
+    "density_grid": "building density the user shapes like clay",
+    "depth_map": "a depth image of the 3D city",
+    "render": "a generated image of the neighborhood",
+    "function_magnets": "magnets that mark functions such as a park or school, which attract or repel each other",
+    "inpainting_masks": "the blocks nearest each magnet, to be repainted",
+    "function_prompts": "text describing each function for repainting",
+    "ikebana_canvas": "the canvas for a flower arrangement",
+    "ikebana_elements": "magnetic circles for the main flowers and leaves, kept in proportion by the interface",
+    "scribble_map": "a line drawing of the arrangement",
+    "ikebana_prompt": "text describing the arrangement",
+    "ikebana_image": "the generated flower arrangement image",
+    "poster_theme": "the theme of the poster",
+    "poster_canvas": "the square poster canvas",
+    "sand_clusters": "clusters of sand the user adds and reshapes; their size and density set an element's size and weight",
+    "spoken_roles": "the user's spoken labels for what each cluster is, such as title or image",
+    "element_roles": "the role of each cluster",
+    "element_specs": "each element's role, position, size and content request",
+    "text_elements": "generated poster text",
+    "image_elements": "generated images with transparent backgrounds",
+    "poster": "the assembled poster"
+  },
+  "references": [],
+  "images": []
+}

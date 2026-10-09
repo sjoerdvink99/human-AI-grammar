@@ -1,0 +1,91 @@
+{
+  "name": "System X",
+  "goal": "End-to-end simulation authoring, including forward generation through task-level abstractions, direct graph refinement, automated and guided testing, inverse correction, visual editing, and inspection of connections between simulation elements and their underlying graph.",
+  "description": "the system helps teachers create interactive educational simulations through a sequence of AI-generated, editable concept, scenario, learning goal, and interaction graphs. Teachers can inspect and correct these graphs, test the resulting simulation, and repair implementation errors without editing code directly. Actors: model = language model; tool_1 = web browser and interface runtime; tool_2 = headless browser automation library.",
+  "processes": [
+    {
+      "name": "Generate Interactive Simulation",
+      "description": "The teacher enters learning content, and model creates a concept graph and suggests teaching scenarios. The teacher chooses a scenario and a learning goal, after which model produces a scenario graph, a goal-focused graph, an experimental procedure, a UI interaction graph, and executable simulation code.",
+      "rawExpression": "(learning_content_1: instruction language)\n-> [model translate]~\n-> (concept_graph_1: artifact graph)\n-> [model generate]~\n-> (concept_graph_1: artifact graph) + (scenarios_1: artifact language)*\n-> [human select]\n-> (concept_graph_1: artifact graph) + (scenario_1: instruction language)\n-> [model translate]~\n-> (scenario_graph_1: artifact graph)\n-> [model generate]~\n-> (scenario_graph_1: artifact graph) + (learning_goals_1: instruction language)*\n-> [human select]\n-> (scenario_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [model select]\n-> (learning_goal_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [model extract]\n-> (learning_goal_graph_1: artifact graph) + (learning_goal_1: instruction language) + (experiment_factors_1: artifact record)\n-> [model generate]~\n-> (learning_goal_graph_1: artifact graph) + (learning_goal_1: instruction language) + (procedure_1: artifact language)\n-> [model generate]~\n-> (ui_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [model translate]~\n-> (ui_graph_1: artifact graph) + (learning_goal_1: instruction language) + (simulation_code_1: artifact formal)"
+    },
+    {
+      "name": "Refine Task-Level Graph",
+      "description": "After model generates a graph, the teacher can directly add, remove, or rename nodes and links to correct its content. This is illustrated by editing the initial Concept Graph before continuing with simulation design; the same editing controls are available for later graphs.",
+      "rawExpression": "(concept_graph_1: artifact graph)\n-> [human modify]\n-> (concept_graph_2: artifact graph)"
+    },
+    {
+      "name": "Automated Simulation Testing and Repair",
+      "description": "After simulation code is generated, tool_2 runs it and detects JavaScript errors, which model fixes. model then generates structured interaction tests, tool_2 executes them and captures results and screenshots, and model checks the outcomes against the learning goal and corrects the code when necessary. The resulting simulation is displayed in the browser.",
+      "rawExpression": "(simulation_code_1: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [tool_2 execute]\n-> (simulation_code_1: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language) + (javascript_errors_1: evaluation language)*\n-> [model modify]~\n-> (simulation_code_2: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language)\n-> [model generate]~\n-> (simulation_code_2: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language) + (test_cases_1: artifact record)*\n-> [tool_2 execute]\n-> (simulation_code_2: artifact formal) + (ui_graph_1: artifact graph) + (learning_goal_1: instruction language) + (test_cases_1: artifact record)* + (test_results_1: artifact record)* + (test_screenshots_1: artifact visual)*\n-> [model evaluate]~\n-> (simulation_code_2: artifact formal) + (ui_graph_1: artifact graph) + (test_cases_1: artifact record)* + (test_assessment_1: evaluation language)\n-> [model modify]~\n-> (simulation_code_3: artifact formal) + (ui_graph_1: artifact graph) + (test_cases_1: artifact record)*\n-> [tool_1 execute]\n-> (simulation_code_3: artifact formal) + (ui_graph_1: artifact graph) + (test_cases_1: artifact record)* + (simulation_1: artifact visual)"
+    },
+    {
+      "name": "Guided UI Testing and Repair",
+      "description": "When interface-related tests require human verification, the teacher can play a generated test and inspect the simulation's response. If the teacher reports unexpected behavior, model proposes a correction at the relevant abstraction level, and the teacher approves it before the code is updated.",
+      "rawExpression": "(test_cases_1: artifact record)* + (simulation_code_3: artifact formal) + (simulation_1: artifact visual)\n-> [human select]\n-> (ui_test_1: selection record) + (simulation_code_3: artifact formal)\n-> [tool_1 execute]\n-> (ui_test_1: selection record) + (ui_test_result_1: artifact visual) + (simulation_code_3: artifact formal)\n-> [human evaluate]\n-> (ui_test_feedback_1: evaluation categorical) + (simulation_code_3: artifact formal)\n-> [model select]\n-> (repair_target_1: selection categorical) + (ui_test_feedback_1: evaluation categorical) + (simulation_code_3: artifact formal)\n-> [model generate]~\n-> (suggested_repair_1: artifact record) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (approved_repair_1: instruction record) + (simulation_code_3: artifact formal)\n-> [model modify]~\n-> (simulation_code_guided_4: artifact formal)"
+    },
+    {
+      "name": "Chat-Guided Inverse Correction",
+      "description": "After inspecting the simulation, the teacher can annotate a problematic region and describe the issue in chat. model identifies the relevant abstraction and generates a suggested change in an editable widget; when the teacher accepts the change, the system updates the graph and model revises the simulation code.",
+      "rawExpression": "(simulation_1: artifact visual) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (chat_region_1: selection spatial) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human specify]\n-> (chat_region_1: selection spatial) + (issue_1: instruction language) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [model select]\n-> (repair_target_2: selection categorical) + (issue_1: instruction language) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [model generate]~\n-> (suggested_change_1: artifact record) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (approved_change_1: instruction record) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [tool_1 modify]\n-> (ui_graph_2: artifact graph) + (simulation_code_3: artifact formal)\n-> [model modify]~\n-> (ui_graph_2: artifact graph) + (simulation_code_chat_4: artifact formal)"
+    },
+    {
+      "name": "Edit Code Assumptions",
+      "description": "When the teacher wants to correct hidden implementation assumptions, they select a node in the UI Graph and inspect the assumptions model extracts from the code. The teacher edits those assumptions in a text widget, and model revises the simulation code to reflect the changes.",
+      "rawExpression": "(ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (selected_node_1: selection categorical) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [model extract]\n-> (selected_node_1: selection categorical) + (assumptions_1: artifact record) + (simulation_code_3: artifact formal)\n-> [human modify]\n-> (assumptions_2: artifact record) + (simulation_code_3: artifact formal)\n-> [model modify]~\n-> (simulation_code_assumptions_4: artifact formal)"
+    },
+    {
+      "name": "Redraw Simulation Visual",
+      "description": "When a visual element does not match the teacher's intent, they circle it in the simulation and draw a rough replacement sketch. model converts the sketch into an SVG, replaces the original graphic in the code, and the browser displays the updated simulation.",
+      "rawExpression": "(simulation_1: artifact visual) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (redraw_region_1: selection spatial) + (simulation_code_3: artifact formal)\n-> [human specify]\n-> (redraw_region_1: selection spatial) + (sketch_1: instruction visual) + (simulation_code_3: artifact formal)\n-> [model translate]~\n-> (replacement_svg_1: artifact formal) + (redraw_region_1: selection spatial) + (simulation_code_3: artifact formal)\n-> [model modify]~\n-> (simulation_code_redrawn_4: artifact formal)\n-> [tool_1 execute]\n-> (simulation_code_redrawn_4: artifact formal) + (redrawn_simulation_1: artifact visual)"
+    },
+    {
+      "name": "Inspect Simulation Subgraph",
+      "description": "When the teacher wants to understand how a visible part of the simulation relates to its implementation, they circle that region using the Subgraph Selector. model uses the annotated simulation, code, and UI Graph to identify and display the corresponding nodes and connections.",
+      "rawExpression": "(simulation_1: artifact visual) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [human select]\n-> (subgraph_region_1: selection spatial) + (ui_graph_1: artifact graph) + (simulation_code_3: artifact formal)\n-> [model match]\n-> (subgraph_1: selection graph)"
+    }
+  ],
+  "representations": {
+    "learning_content": "the topic or text the teacher wants to teach",
+    "concept_graph": "the concepts in the content and how they relate",
+    "scenarios": "suggested teaching scenarios for a simulation",
+    "scenario": "the scenario the teacher picks",
+    "scenario_graph": "the objects and relations in that scenario",
+    "learning_goals": "suggested learning goals",
+    "learning_goal": "the goal the teacher picks",
+    "learning_goal_graph": "the part of the scenario that matters for the goal",
+    "experiment_factors": "the variables a student can change and observe",
+    "procedure": "the steps of the experiment a student carries out",
+    "ui_graph": "the interface elements of the simulation and how they connect",
+    "simulation_code": "the simulation as runnable web code",
+    "javascript_errors": "errors raised when the code runs",
+    "test_cases": "interaction tests for the simulation",
+    "test_results": "the outcome of running each test",
+    "test_screenshots": "screenshots captured during the tests",
+    "test_assessment": "whether the results meet the learning goal",
+    "simulation": "the running simulation in the browser",
+    "ui_test": "a test the teacher plays back to check",
+    "ui_test_result": "what the simulation did during that test",
+    "ui_test_feedback": "the teacher's report of unexpected behavior",
+    "repair_target": "the graph level where the problem lies",
+    "suggested_repair": "a proposed correction",
+    "approved_repair": "the correction the teacher approves",
+    "simulation_code_guided": "the code after that correction",
+    "chat_region": "the part of the simulation the teacher marks",
+    "issue": "the teacher's chat description of the problem",
+    "suggested_change": "a proposed change shown in an editable widget",
+    "approved_change": "the change the teacher accepts",
+    "simulation_code_chat": "the code after that change",
+    "selected_node": "the interface graph node the teacher selects",
+    "assumptions": "assumptions the code makes about that node, in plain text",
+    "simulation_code_assumptions": "the code after the teacher edits the assumptions",
+    "redraw_region": "the visual element the teacher circles",
+    "sketch": "the teacher's rough replacement drawing",
+    "replacement_svg": "the sketch turned into a clean SVG",
+    "simulation_code_redrawn": "the code with the new graphic",
+    "redrawn_simulation": "the simulation showing the new graphic",
+    "subgraph_region": "the part of the simulation the teacher circles to inspect",
+    "subgraph": "the interface graph nodes and links for that part"
+  },
+  "references": [],
+  "images": []
+}

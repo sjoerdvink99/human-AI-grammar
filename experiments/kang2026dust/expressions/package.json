@@ -1,0 +1,13 @@
+{
+  "name": "system-x-highlight-remix",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Resurface reading highlights, respond to them, and remix them with a model.",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test test/",
+    "check": "node --check server/index.js && node --check server/model.js && node --check server/tools.js && node --check server/operations.js && node --check server/store.js && node --check public/app.js && node --check public/card.js"
+  },
+  "engines": { "node": ">=20" }
+}

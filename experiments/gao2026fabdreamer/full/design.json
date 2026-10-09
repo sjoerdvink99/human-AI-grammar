@@ -1,0 +1,112 @@
+{
+  "name": "System X",
+  "goal": "The three-stage Decompose–Create–Prepare workflow and its optional image sourcing, element extraction, and editing paths, through export of fabrication files; physical cutting and assembly are outside the software process.",
+  "description": "An AI-assisted image-to-physical design tool that decomposes an image into editable depth-ordered elements, supports layered composition with a live 3D preview, and checks geometric fabrication constraints before exporting cut-and-engrave SVGs. Actors: model_1 = vision-language model; model_2 = image generation and editing model; model_3 = image segmentation model; model_4 = language model with tool calling; tool_1 = image processing, mask conversion, and SVG export pipeline; tool_2 = interactive canvas layout and 3D preview; tool_3 = geometric constraint detection and SVG editing tools.",
+  "processes": [
+    {
+      "name": "Generate source image",
+      "description": "When a user enters a text prompt instead of uploading a photo, the image model generates three candidate images and the user chooses one to take into the design workflow.",
+      "rawExpression": "(prompt_1: instruction language)\n-> [model_2 generate]~\n-> (image_candidates_1: artifact visual)*\n-> [human select]\n-> (source_image_1: artifact visual)"
+    },
+    {
+      "name": "Refine source image",
+      "description": "After uploading or generating an image, the user can request a change in natural language, and the image model regenerates the entire image as a separately retained version. Each version can be analyzed independently.",
+      "rawExpression": "(source_image_1: artifact visual)\n-> [human specify]\n-> (source_image_1: artifact visual) + (image_update_1: instruction language)\n-> [model_2 modify]~\n-> (source_image_2: artifact visual)"
+    },
+    {
+      "name": "Propose and revise depth layers",
+      "description": "Given an uploaded or generated image, the vision-language model proposes a depth-ordered layer structure. The user can request layer changes or add overlooked elements repeatedly until confirming the proposal.",
+      "rawExpression": "(source_image_1: artifact visual)\n-> [model_1 generate]~\n-> (source_image_1: artifact visual) + (layer_plan_1: artifact record)\n-> [human specify]\n-> (source_image_1: artifact visual) + (layer_plan_1: artifact record) + (layer_change_1: instruction language)\n-> [model_1 modify]~\n-> (source_image_1: artifact visual) + (layer_plan_1: artifact record)"
+    },
+    {
+      "name": "Decompose and reconstruct layers",
+      "description": "After the user confirms the proposal, a vision-language model describes the elements and image style, then locates elements for SAM2 to segment; vector paths are extracted, and an image model fills the removed regions. Extraction and inpainting repeat front to back until all layers are processed.",
+      "rawExpression": "(source_image_1: artifact visual) + (layer_plan_1: artifact record)\n-> [human select]\n-> (source_image_1: artifact visual) + (confirmed_layers_1: instruction record)\n-> [model_1 extract]\n-> (source_image_1: artifact visual) + (layer_items_1: artifact record)*\n-> [model_1 extract]\n-> (source_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language)\n-> [tool_1 modify]\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_1: artifact spatial)*\n-> [model_1 extract]\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_1: artifact spatial)* + (detection_prompts_1: instruction record)*\n-> [model_3 extract]\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_1: artifact spatial)* + (masks_1: selection spatial)*\n-> [tool_1 translate]\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_2: artifact spatial)*\n-> [model_1 generate]~\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_2: artifact spatial)* + (fill_prompt_1: instruction language)\n-> [model_2 modify]~\n-> (work_image_1: artifact visual) + (layer_items_1: artifact record)* + (style_1: artifact language) + (segments_1: artifact spatial)*"
+    },
+    {
+      "name": "Recover difficult segmentations",
+      "description": "If an initial SAM2 mask fails confidence or bounding-box checks, the system feeds it back into SAM2 for refinement. When that is still inadequate, the image model redraws the object on a uniform background and image differencing recovers the mask.",
+      "rawExpression": "(work_image_1: artifact visual) + (detection_prompts_1: instruction record)* + (masks_1: selection spatial)*\n-> [tool_1 evaluate]\n-> (work_image_1: artifact visual) + (detection_prompts_1: instruction record)* + (masks_1: selection spatial)* + (mask_quality_1: evaluation record)*\n-> [model_3 modify]\n-> (work_image_1: artifact visual) + (detection_prompts_1: instruction record)* + (refined_masks_1: selection spatial)*\n-> [tool_1 evaluate]\n-> (work_image_1: artifact visual) + (detection_prompts_1: instruction record)* + (mask_quality_2: evaluation record)*\n-> [model_2 generate]~\n-> (isolated_elements_1: artifact visual)*\n-> [tool_1 extract]\n-> (fallback_masks_1: selection spatial)*\n-> [tool_1 translate]\n-> (fallback_segments_1: artifact spatial)*"
+    },
+    {
+      "name": "Grab an additional element",
+      "description": "When the user describes a desired object, the image model offers candidate images and the user chooses one for extraction. For a partially hidden object, the system completes it generatively and removes the plain background to obtain an editable element.",
+      "rawExpression": "(grab_request_1: instruction language)\n-> [model_2 generate]~\n-> (grab_candidates_1: artifact visual)*\n-> [human select]\n-> (grab_image_1: artifact visual)\n-> [model_1 evaluate]\n-> (grab_image_1: artifact visual) + (occlusion_1: evaluation categorical)\n-> [model_2 generate]~\n-> (isolated_grab_1: artifact visual)\n-> [tool_1 extract]\n-> (grab_mask_1: selection spatial)\n-> [tool_1 translate]\n-> (grab_element_1: artifact spatial)"
+    },
+    {
+      "name": "Compose layers with live preview",
+      "description": "After segmentation, Auto Layout places extracted elements on their layer canvases and the system builds a textured stacked 3D preview. The user repeatedly moves, scales, rotates, regroups, and adjusts elements while the preview refreshes, stopping when ready to prepare the design.",
+      "rawExpression": "(segments_1: artifact spatial)*\n-> [tool_2 compose]\n-> (canvas_1: artifact spatial)\n-> [tool_2 translate]\n-> (canvas_1: artifact spatial) + (preview_1: artifact visual)\n-> [human modify]\n-> (canvas_2: artifact spatial) + (preview_1: artifact visual)\n-> [tool_2 translate]\n-> (canvas_1: artifact spatial) + (preview_1: artifact visual)"
+    },
+    {
+      "name": "Repair a noisy element",
+      "description": "During composition, the user selects an element with poor edges. The image model regenerates a clean version using the original image crop, and the system converts the result to reusable geometry without rerunning all layers.",
+      "rawExpression": "(source_image_1: artifact visual) + (canvas_1: artifact spatial)\n-> [human select]\n-> (source_image_1: artifact visual) + (canvas_1: artifact spatial) + (repair_target_1: selection categorical)\n-> [tool_1 extract]\n-> (element_crop_1: artifact visual) + (repair_target_1: selection categorical)\n-> [model_2 modify]~\n-> (repaired_element_1: artifact visual)\n-> [tool_1 translate]\n-> (repaired_geometry_1: artifact spatial)"
+    },
+    {
+      "name": "Split a compound element",
+      "description": "During composition, the user selects an element and asks in chat to separate its parts. A vision-language model detects the requested sub-elements, SAM2 masks them, and vector conversion yields independently placeable pieces.",
+      "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (split_target_1: selection categorical)\n-> [human specify]\n-> (canvas_1: artifact spatial) + (split_target_1: selection categorical) + (split_request_1: instruction language)\n-> [model_1 extract]\n-> (part_prompts_1: instruction record)*\n-> [model_3 extract]\n-> (part_masks_1: selection spatial)*\n-> [tool_1 translate]\n-> (split_parts_1: artifact spatial)*"
+    },
+    {
+      "name": "Check and resolve fabrication constraints",
+      "description": "Entering Prepare mode triggers checks for floating components and material-dependent thin features; the agent explains the warnings and offers remedies. The user chooses whether and how to act, and the agent invokes geometry tools before checking again, until issues are resolved or the user proceeds to export.",
+      "rawExpression": "(canvas_1: artifact spatial) + (material_settings_1: instruction record)\n-> [tool_3 evaluate]\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record) + (constraint_issues_1: evaluation record)*\n-> [model_4 generate]~\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record) + (constraint_report_1: evaluation language)\n-> [human select]\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record) + (resolution_1: instruction record)\n-> [model_4 translate]\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record) + (fix_call_1: instruction record)\n-> [tool_3 execute]\n-> (canvas_1: artifact spatial) + (material_settings_1: instruction record)"
+    },
+    {
+      "name": "Export fabrication files",
+      "description": "After reviewing cut and engraving paths, the user exports the layered design. The application packages one SVG and one PNG for each layer into a ZIP for fabrication software.",
+      "rawExpression": "(canvas_1: artifact spatial) + (material_settings_1: instruction record)\n-> [tool_1 translate]\n-> (layer_svgs_1: artifact formal)* + (layer_pngs_1: artifact visual)*\n-> [human select]\n-> (layer_svgs_1: artifact formal)* + (layer_pngs_1: artifact visual)* + (export_choice_1: instruction categorical)\n-> [tool_1 compose]\n-> (export_zip_1: artifact record)"
+    }
+  ],
+  "representations": {
+    "prompt": "the user's text description of an image to start from",
+    "image_candidates": "three generated candidate images",
+    "source_image": "the uploaded or chosen image the design starts from; refinements make new versions",
+    "image_update": "the user's text request to change the source image",
+    "layer_plan": "a proposed list of depth-ordered layers and the elements on each",
+    "layer_change": "the user's text request to change the layer plan or add a missed element",
+    "confirmed_layers": "the layer plan the user confirms",
+    "layer_items": "descriptions of the elements to extract on each layer",
+    "style": "a description of the image's visual style",
+    "work_image": "the image being processed, with already extracted elements removed and filled in",
+    "segments": "extracted elements as vector shapes, each on its layer",
+    "detection_prompts": "locations or descriptions of elements for the segmentation model",
+    "masks": "pixel masks for the elements",
+    "fill_prompt": "a text prompt for filling the region left by removed elements",
+    "mask_quality": "checks of mask confidence and bounding box fit",
+    "refined_masks": "masks after a refinement pass",
+    "isolated_elements": "elements redrawn alone on a plain background when masking fails",
+    "fallback_masks": "masks recovered by comparing the redrawn element with its background",
+    "fallback_segments": "vector shapes from the recovered masks",
+    "grab_request": "the user's text description of an extra object to add",
+    "grab_candidates": "generated candidate images of that object",
+    "grab_image": "the candidate the user picks",
+    "occlusion": "whether the object is partly hidden",
+    "isolated_grab": "the completed object on a plain background",
+    "grab_mask": "the mask of the extra object",
+    "grab_element": "the extra object as a vector shape",
+    "canvas": "the layered composition: elements placed on each layer's canvas",
+    "preview": "a textured 3D preview of the stacked layers",
+    "repair_target": "the element with poor edges the user selects",
+    "element_crop": "the crop of the original image around that element",
+    "repaired_element": "a clean regenerated version of the element",
+    "repaired_geometry": "the repaired element as a vector shape",
+    "split_target": "the element the user wants to split",
+    "split_request": "the user's text request saying which parts to separate",
+    "part_prompts": "locations of the requested parts",
+    "part_masks": "masks for the parts",
+    "split_parts": "the parts as separate vector shapes",
+    "material_settings": "the material and its thickness, which set the fabrication limits",
+    "constraint_issues": "detected problems such as floating parts or features too thin to cut",
+    "constraint_report": "an explanation of the problems with suggested fixes",
+    "resolution": "the fix the user chooses",
+    "fix_call": "the geometry operation that applies the fix",
+    "layer_svgs": "one cut-and-engrave SVG file per layer",
+    "layer_pngs": "one image per layer",
+    "export_choice": "what the user chooses to export",
+    "export_zip": "a ZIP of the layer files for fabrication software"
+  },
+  "references": [],
+  "images": []
+}

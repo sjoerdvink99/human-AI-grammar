@@ -1,0 +1,30 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact formal)*\n-> [tool_1 execute]\n-> (r1_1: artifact formal)* + (r2_1: artifact visual)*\n-> [tool_2 evaluate]\n-> (r1_1: artifact formal)* + (r3_1: evaluation numeric)*\n-> [tool_3 modify]\n-> (r1_1: artifact formal)* + (r1_2: artifact formal)* + (r3_1: evaluation numeric)*\n-> [tool_1 execute]\n-> (r1_1: artifact formal)* + (r1_2: artifact formal)* + (r3_1: evaluation numeric)* + (r4_1: artifact visual)*\n-> [tool_2 evaluate]\n-> (r1_1: artifact formal)* + (r1_2: artifact formal)* + (r3_1: evaluation numeric)* + (r5_1: evaluation numeric)*\n-> [tool_4 evaluate]\n-> (r1_1: artifact formal)* + (r1_2: artifact formal)* + (r3_1: evaluation numeric)* + (r5_1: evaluation numeric)* + (r6_1: evaluation numeric)*\n-> [tool_4 compose]\n-> (r7_1: artifact record)*\n-> [tool_4 select]\n-> (r8_1: artifact record)*\n-> [model_2 train]\n-> (r9_1: artifact numeric)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r10_1: instruction language) + (r11_1: instruction categorical)\n-> [model_1 generate]~\n-> (r12_1: artifact formal)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r12_1: artifact formal) + (r9_1: artifact numeric)\n-> [tool_1 execute]\n-> (r12_1: artifact formal) + (r9_1: artifact numeric) + (r13_1: artifact visual)\n-> [tool_2 evaluate]\n-> (r12_1: artifact formal) + (r9_1: artifact numeric) + (r14_1: evaluation numeric)\n-> [model_2 modify]~\n-> (r12_1: artifact formal) + (r12_2: artifact formal) + (r14_1: evaluation numeric)\n-> [tool_1 execute]\n-> (r12_1: artifact formal) + (r12_2: artifact formal) + (r14_1: evaluation numeric) + (r15_1: artifact visual)\n-> [tool_2 evaluate]\n-> (r12_1: artifact formal) + (r12_2: artifact formal) + (r14_1: evaluation numeric) + (r16_1: evaluation numeric)\n-> [tool_5 evaluate]\n-> (r12_1: artifact formal) + (r12_2: artifact formal) + (r14_1: evaluation numeric) + (r16_1: evaluation numeric) + (r17_1: evaluation numeric)\n-> [tool_5 extract]\n-> (r12_1: artifact formal) + (r12_2: artifact formal) + (r14_1: evaluation numeric) + (r16_1: evaluation numeric) + (r17_1: evaluation numeric) + (r18_1: artifact formal)\n-> [human select]\n-> (r12_1: artifact formal) + (r18_1: artifact formal) + (r19_1: selection formal)*\n-> [tool_5 modify]\n-> (r12_3: artifact formal)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r12_3: artifact formal)\n-> [tool_5 translate]\n-> (r20_1: artifact visual)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

@@ -1,0 +1,55 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(source_documents_1: artifact language)*\n-> [model_1 extract]\n-> (domain_entities_1: artifact record)* + (domain_relations_1: artifact record)*\n-> [tool_1 compose]\n-> (knowledge_graph_1: artifact graph)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(draft_1: artifact language) + (canvas_1: artifact graph)\n-> [tool_2 compose]\n-> (semantic_frame_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(draft_1: artifact language) + (semantic_frame_1: artifact record) + (knowledge_graph_1: artifact graph)\n-> [model_1 extract]\n-> (draft_concepts_1: artifact record)* + (draft_1: artifact language) + (knowledge_graph_1: artifact graph)\n-> [model_2 translate]\n-> (concept_vectors_1: artifact numeric)* + (draft_1: artifact language) + (knowledge_graph_1: artifact graph)\n-> [tool_1 match]\n-> (candidate_facts_1: artifact record)* + (draft_1: artifact language)\n-> [tool_3 select]\n-> (highlight_spans_1: selection language)* + (candidate_facts_1: artifact record)* + (draft_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(highlight_spans_1: selection language)* + (candidate_facts_1: artifact record)* + (draft_1: artifact language)\n-> [human select]\n-> (clicked_span_1: selection language) + (candidate_facts_1: artifact record)*\n-> [model_1 generate]~\n-> (card_explanation_1: artifact language) + (clicked_span_1: selection language) + (candidate_facts_1: artifact record)*\n-> [tool_3 compose]\n-> (highlight_card_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(semantic_frame_1: artifact record) + (knowledge_graph_1: artifact graph)\n-> [human specify]\n-> (query_1: instruction language) + (semantic_frame_1: artifact record) + (knowledge_graph_1: artifact graph)\n-> [model_1 extract]\n-> (query_concepts_1: artifact record)* + (query_1: instruction language) + (knowledge_graph_1: artifact graph)\n-> [model_2 translate]\n-> (query_vectors_1: artifact numeric)* + (query_1: instruction language) + (knowledge_graph_1: artifact graph)\n-> [tool_1 match]\n-> (query_facts_1: artifact record)* + (query_1: instruction language)\n-> [model_1 generate]~\n-> (query_answer_1: artifact language) + (query_facts_1: artifact record)*\n-> [tool_3 compose]\n-> (query_answer_1: artifact language) + (query_cards_1: artifact record)*\n-> [tool_3 match]\n-> (query_answer_1: artifact language) + (query_cards_1: artifact record)* + (text_card_links_1: artifact record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(canvas_1: artifact graph) + (highlight_card_1: artifact record) + (query_cards_1: artifact record)*\n-> [human select]\n-> (canvas_1: artifact graph) + (chosen_highlight_card_1: selection record) + (chosen_query_card_1: selection record)\n-> [tool_3 compose]\n-> (canvas_2: artifact graph)\n-> [tool_1 match]\n-> (canvas_2: artifact graph) + (related_edges_1: artifact graph)\n-> [tool_3 compose]\n-> (canvas_3: artifact graph)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(canvas_3: artifact graph) + (draft_1: artifact language)\n-> [human select]\n-> (gold_node_1: selection record) + (canvas_3: artifact graph) + (draft_1: artifact language)\n-> [tool_3 match]\n-> (origin_span_1: selection language) + (draft_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(canvas_3: artifact graph) + (query_answer_1: artifact language)\n-> [human select]\n-> (silver_node_1: selection record) + (canvas_3: artifact graph) + (query_answer_1: artifact language)\n-> [tool_3 match]\n-> (query_turn_1: selection language) + (query_answer_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(draft_1: artifact language) + (canvas_3: artifact graph)\n-> [human modify]\n-> (draft_2: artifact language) + (canvas_3: artifact graph)\n-> [tool_2 compose]\n-> (semantic_frame_2: artifact record) + (draft_2: artifact language) + (canvas_3: artifact graph)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

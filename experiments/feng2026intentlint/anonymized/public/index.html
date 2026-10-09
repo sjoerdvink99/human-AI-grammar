@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System X — guideline-aware analysis assistant</title>
+  <link rel="stylesheet" href="/vendor/hljs/styles/github.min.css" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>System X</h1>
+    <span class="sub">Ask about your data — guided by your team's analysis guidelines</span>
+  </header>
+
+  <main class="layout">
+    <!-- Left column: r1 / r4 and the library r2 (processes 3 and 4) -->
+    <aside class="col left">
+      <section class="panel" id="dataset-panel">
+        <h2>Dataset <small class="rid">r1</small></h2>
+        <div class="row">
+          <label class="btn file">Upload CSV / JSON<input type="file" id="file-input" accept=".csv,.json,text/csv,application/json" hidden /></label>
+          <button class="btn ghost" id="load-sample">Load sample (orders.csv)</button>
+        </div>
+        <div id="dataset-info" class="muted">No dataset loaded.</div>
+        <details id="profile-box" hidden>
+          <summary>Data profile <small class="rid">r4</small></summary>
+          <div id="profile"></div>
+        </details>
+      </section>
+
+      <section class="panel" id="library-panel">
+        <div class="panel-head">
+          <h2>Guideline library <small class="rid">r2</small></h2>
+          <button class="btn small" id="add-guideline">+ Add</button>
+        </div>
+        <div class="row selection-bar">
+          <span id="selection-count" class="muted">0 selected <small class="rid">r10</small></span>
+          <button class="btn small ghost" id="select-all">Select all</button>
+          <button class="btn small ghost" id="select-none">Clear</button>
+          <button class="btn small" id="export-selected" disabled>Export selected</button>
+        </div>
+        <div id="library"></div>
+      </section>
+    </aside>
+
+    <!-- Right column: process 1 pipeline and process 2 suggestions -->
+    <section class="col right">
+      <section class="panel" id="request-panel">
+        <h2>Your request <small class="rid">r3_1</small></h2>
+        <textarea id="request" rows="3" placeholder="e.g. Which region brings in the most revenue per month, and how satisfied are its customers?"></textarea>
+        <div class="row">
+          <button class="btn primary" id="run">Run</button>
+          <span id="run-hint" class="muted">Load a dataset first.</span>
+        </div>
+        <ol class="steps" id="steps">
+          <li data-step="extract">Profile dataset <small>tool</small></li>
+          <li data-step="match">Match guidelines <small>model</small></li>
+          <li data-step="refine">Refine request <small>model</small></li>
+          <li data-step="select">Review refinement <small>you</small></li>
+          <li data-step="code">Generate code <small>model</small></li>
+        </ol>
+        <div id="error" class="error" hidden></div>
+      </section>
+
+      <section class="panel" id="match-panel" hidden>
+        <h2>Matched guidelines <small class="rid">r5</small></h2>
+        <ul id="matches" class="matches"></ul>
+      </section>
+
+      <section class="panel" id="refine-panel" hidden>
+        <div class="panel-head">
+          <h2>Refined request <small class="rid">r3_2</small></h2>
+          <div id="refine-tabs" class="tabs"></div>
+        </div>
+        <div class="compare">
+          <div><h3>Original <small class="rid">r3_1</small></h3><div id="original-text" class="prose"></div></div>
+          <div><h3>Refined</h3><div id="refined-text" class="prose"></div></div>
+        </div>
+        <h3>How each guideline was handled <small class="rid">r6</small></h3>
+        <ul id="evaluations" class="evaluations"></ul>
+        <div class="row">
+          <button class="btn primary" id="accept-refined">Use this refined request → generate code</button>
+          <button class="btn ghost" id="regen-refined">Regenerate refinement</button>
+        </div>
+      </section>
+
+      <section class="panel" id="code-panel" hidden>
+        <div class="panel-head">
+          <h2>Generated code <small class="rid">r7</small></h2>
+          <div class="row">
+            <button class="btn small ghost" id="copy-code">Copy</button>
+            <button class="btn small ghost" id="download-code">Download .py</button>
+            <button class="btn small ghost" id="regen-code">Regenerate</button>
+          </div>
+        </div>
+        <pre><code id="code" class="language-python"></code></pre>
+      </section>
+
+      <section class="panel" id="suggest-panel" hidden>
+        <div class="panel-head">
+          <h2>Suggested new guidelines <small class="rid">r8</small></h2>
+          <button class="btn" id="suggest">Suggest guidelines from this request</button>
+        </div>
+        <p class="muted">Edit the suggestions, tick the ones to keep, then add them to the library.</p>
+        <div id="suggestions"></div>
+        <div class="row" id="compose-row" hidden>
+          <button class="btn primary" id="compose">Add selected to library</button>
+          <span id="compose-count" class="muted"></span>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <template id="guideline-tpl">
+    <div class="guideline">
+      <div class="g-head">
+        <input type="checkbox" class="g-select" title="Select (r10)" />
+        <strong class="g-title"></strong>
+        <span class="badge src"></span>
+        <span class="g-actions">
+          <button class="link g-edit">Edit</button>
+          <button class="link danger g-delete">Delete</button>
+        </span>
+      </div>
+      <div class="g-when"></div>
+      <div class="g-instruction"></div>
+      <div class="g-match" hidden></div>
+    </div>
+  </template>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

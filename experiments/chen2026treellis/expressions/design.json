@@ -1,0 +1,40 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(prompt_1: instruction language)\n-> [tool compose]\n-> (generation_input_1: instruction record)\n-> [model generate]~\n-> (scene_1: artifact formal)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual)\n-> [human select]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (selected_node_1: selection record)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (selected_node_1: selection record) + (linked_highlight_1: selection visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (selected_node_1: selection record)\n-> [human specify]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (selected_node_1: selection record) + (parameter_edit_1: instruction record)\n-> [tool modify]\n-> (scene_2: artifact formal) + (selected_node_1: selection record)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (selected_node_1: selection record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)\n-> [human select]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (structure_target_1: selection record)\n-> [human specify]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (structure_target_1: selection record) + (structure_edit_1: instruction record)\n-> [tool modify]\n-> (scene_2: artifact formal)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)\n-> [human select]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (ai_target_1: selection record)\n-> [human specify]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (ai_target_1: selection record) + (local_request_1: instruction language)\n-> [tool extract]\n-> (scene_1: artifact formal) + (ai_target_1: selection record) + (local_request_1: instruction language) + (subtree_1: artifact formal)\n-> [tool compose]\n-> (scene_1: artifact formal) + (ai_target_1: selection record) + (subtree_1: artifact formal) + (scoped_input_1: instruction record)\n-> [model modify]~\n-> (scene_1: artifact formal) + (ai_target_1: selection record) + (subtree_2: artifact formal)\n-> [tool modify]\n-> (scene_2: artifact formal)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)\n-> [human specify]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record) + (followup_prompt_1: instruction language)\n-> [tool compose]\n-> (scene_1: artifact formal) + (generation_input_2: instruction record)\n-> [model generate]~\n-> (scene_2: artifact formal)\n-> [tool translate]\n-> (scene_1: artifact formal) + (structure_tree_1: artifact graph) + (model_view_1: artifact visual) + (parameters_1: artifact record)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

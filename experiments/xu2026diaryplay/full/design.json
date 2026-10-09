@@ -1,0 +1,65 @@
+{
+  "name": "System X",
+  "goal": "Authoring of vignette elements and player-facing runtime interaction, including optional persona refinement and divergence guidance.",
+  "description": "the system helps everyday storytellers turn a short written story into a playable 2D interactive vignette by extracting and refining its environment, characters, and events. During play, its LLM-powered Controlled Divergence Module plans NPC behavior that responds to player actions while preserving the author-defined key events. Actors: model = language model; tool_1 = greedy object-placement and path-finding algorithms; tool_2 = HTML5 game framework.",
+  "processes": [
+    {
+      "name": "Build the environment and characters",
+      "description": "After the author enters an everyday story, model extracts the people, selects and labels a room layout, and proposes objects that the system places. The author adjusts rooms and objects and fills in the characters' persona fields.",
+      "rawExpression": "(story_1: artifact language) + (layouts_1: artifact spatial)*\n-> [model extract]\n-> (story_1: artifact language) + (layouts_1: artifact spatial)* + (characters_1: artifact record)*\n-> [model select]\n-> (story_1: artifact language) + (layout_1: artifact spatial) + (characters_1: artifact record)*\n-> [model assign]\n-> (story_1: artifact language) + (layout_1: artifact spatial) + (characters_1: artifact record)* + (room_labels_1: label language)*\n-> [human modify]\n-> (story_1: artifact language) + (layout_1: artifact spatial) + (characters_1: artifact record)* + (room_labels_2: label language)*\n-> [model generate]~\n-> (story_1: artifact language) + (layout_1: artifact spatial) + (characters_1: artifact record)* + (room_labels_2: label language)* + (objects_1: artifact record)*\n-> [tool_1 execute]\n-> (story_1: artifact language) + (environment_1: artifact spatial) + (characters_1: artifact record)* + (objects_1: artifact record)*\n-> [model assign]\n-> (story_1: artifact language) + (environment_1: artifact spatial) + (characters_1: artifact record)* + (objects_2: artifact record)*\n-> [human modify]\n-> (story_1: artifact language) + (environment_2: artifact spatial) + (characters_1: artifact record)* + (objects_3: artifact record)*\n-> [human modify]\n-> (story_1: artifact language) + (environment_2: artifact spatial) + (characters_2: artifact record)* + (objects_3: artifact record)*"
+    },
+    {
+      "name": "Refine a character through simulated dialogue",
+      "description": "When the author tests an NPC in conversation, model replies using its persona and the story context, and the author can correct the reply. The model suggests personality traits from that dialogue, which the author selects to update the character.",
+      "rawExpression": "(story_1: artifact language) + (characters_2: artifact record)*\n-> [human specify]\n-> (story_1: artifact language) + (characters_2: artifact record)* + (message_1: instruction language)\n-> [model generate]~\n-> (story_1: artifact language) + (characters_2: artifact record)* + (message_1: instruction language) + (reply_1: artifact language)\n-> [human modify]\n-> (story_1: artifact language) + (characters_2: artifact record)* + (message_1: instruction language) + (reply_2: artifact language)\n-> [model generate]~\n-> (story_1: artifact language) + (characters_2: artifact record)* + (reply_2: artifact language) + (traits_1: label language)*\n-> [human select]\n-> (story_1: artifact language) + (characters_2: artifact record)* + (reply_2: artifact language) + (traits_1: label language)* + (trait_choice_1: selection language)\n-> [human modify]\n-> (story_1: artifact language) + (characters_3: artifact record)*"
+    },
+    {
+      "name": "Schedule and refine key events",
+      "description": "Using the story, completed personas, and environment, model extracts character actions and their objects, groups concurrent activities into events, and puts them in chronological order. The author fixes missing or incorrect activities and object assignments, completing the vignette for play.",
+      "rawExpression": "(story_1: artifact language) + (environment_2: artifact spatial) + (objects_3: artifact record)* + (characters_3: artifact record)*\n-> [model extract]\n-> (story_1: artifact language) + (environment_2: artifact spatial) + (objects_3: artifact record)* + (characters_3: artifact record)* + (activities_1: artifact record)*\n-> [model compose]\n-> (story_1: artifact language) + (environment_2: artifact spatial) + (characters_3: artifact record)* + (events_1: artifact record)*\n-> [model assign]\n-> (story_1: artifact language) + (environment_2: artifact spatial) + (characters_3: artifact record)* + (events_2: artifact record)*\n-> [human modify]\n-> (story_1: artifact language) + (environment_2: artifact spatial) + (characters_3: artifact record)* + (events_3: artifact record)*\n-> [tool_2 compose]\n-> (story_1: artifact language) + (vignette_1: artifact record)"
+    },
+    {
+      "name": "Play the vignette and enact NPC activities",
+      "description": "When a player opens the vignette, the scene is rendered and model plans two possible next activities for each NPC, depending on whether the player follows or diverges from the next key event. As the player moves and interacts, the system chooses and performs an appropriate NPC activity and repeats the planning cycle until the authored events finish.",
+      "rawExpression": "(story_1: artifact language) + (vignette_1: artifact record)\n-> [tool_2 execute]\n-> (story_1: artifact language) + (vignette_1: artifact record) + (runtime_state_1: artifact record) + (scene_1: artifact visual)\n-> [model generate]~\n-> (story_1: artifact language) + (vignette_1: artifact record) + (runtime_state_1: artifact record) + (scene_1: artifact visual) + (npc_plans_1: artifact record)*\n-> [human specify]\n-> (story_1: artifact language) + (vignette_1: artifact record) + (runtime_state_1: artifact record) + (scene_1: artifact visual) + (npc_plans_1: artifact record)* + (player_action_1: instruction record)\n-> [tool_2 select]\n-> (story_1: artifact language) + (vignette_1: artifact record) + (runtime_state_1: artifact record) + (scene_1: artifact visual) + (npc_activity_1: artifact record)\n-> [tool_2 execute]\n-> (story_1: artifact language) + (vignette_1: artifact record) + (runtime_state_1: artifact record) + (scene_1: artifact visual)\n-> [tool_2 execute]\n-> (end_screen_1: artifact visual)"
+    },
+    {
+      "name": "Converse with an NPC during play",
+      "description": "While playing, the player sends a message to an NPC and model generates a persona-consistent reply. When the message attempts to skip an authored key event, the NPC response encourages the player to return to it.",
+      "rawExpression": "(vignette_1: artifact record) + (runtime_state_1: artifact record)\n-> [human specify]\n-> (vignette_1: artifact record) + (runtime_state_1: artifact record) + (player_message_1: instruction language)\n-> [model generate]~\n-> (vignette_1: artifact record) + (runtime_state_1: artifact record) + (player_message_1: instruction language) + (npc_reply_1: artifact language)\n-> [tool_2 execute]\n-> (vignette_1: artifact record) + (runtime_state_1: artifact record) + (scene_2: artifact visual)"
+    },
+    {
+      "name": "Guide a player who diverges",
+      "description": "If the player does not perform the next key-event activity, the system detects the deviation. model writes an inner-voice cue about the next event, which appears in the scene without stopping other activities.",
+      "rawExpression": "(vignette_1: artifact record) + (runtime_state_1: artifact record) + (player_action_1: instruction record)\n-> [tool_2 evaluate]\n-> (vignette_1: artifact record) + (runtime_state_1: artifact record) + (deviation_1: evaluation categorical)\n-> [model generate]~\n-> (vignette_1: artifact record) + (runtime_state_1: artifact record) + (inner_voice_1: artifact language)\n-> [tool_2 execute]\n-> (vignette_1: artifact record) + (runtime_state_1: artifact record) + (scene_3: artifact visual)"
+    }
+  ],
+  "representations": {
+    "story": "a short everyday story the author writes",
+    "layouts": "room layouts to choose from",
+    "characters": "the people in the story, with persona fields",
+    "layout": "the chosen room layout",
+    "room_labels": "what each room is",
+    "objects": "objects placed in the rooms",
+    "environment": "the rooms and objects together",
+    "message": "a line the author says to a character to test it",
+    "reply": "the character's answer",
+    "traits": "suggested personality traits",
+    "trait_choice": "the traits the author keeps",
+    "activities": "actions characters take with objects",
+    "events": "groups of activities that happen at the same time, in order",
+    "vignette": "the finished playable scene",
+    "runtime_state": "where everyone is and which event comes next during play",
+    "scene": "the rendered 2D game scene",
+    "npc_plans": "two possible next activities for each character",
+    "player_action": "what the player does",
+    "npc_activity": "the activity a character performs",
+    "end_screen": "the screen shown when the events are finished",
+    "player_message": "a message the player sends to a character",
+    "npc_reply": "the character's reply",
+    "deviation": "detection that the player skipped the next event",
+    "inner_voice": "a short hint shown in the scene about what should happen next"
+  },
+  "references": [],
+  "images": []
+}

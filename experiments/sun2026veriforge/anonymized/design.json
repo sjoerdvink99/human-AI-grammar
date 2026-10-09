@@ -1,0 +1,55 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact language)*\n-> [model_1 extract]\n-> (r2_1: artifact record)* + (r3_1: artifact record)*\n-> [tool_1 compose]\n-> (r4_1: artifact graph)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r5_1: artifact language) + (r6_1: artifact graph)\n-> [tool_2 compose]\n-> (r7_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r5_1: artifact language) + (r7_1: artifact record) + (r4_1: artifact graph)\n-> [model_1 extract]\n-> (r8_1: artifact record)* + (r5_1: artifact language) + (r4_1: artifact graph)\n-> [model_2 translate]\n-> (r9_1: artifact numeric)* + (r5_1: artifact language) + (r4_1: artifact graph)\n-> [tool_1 match]\n-> (r10_1: artifact record)* + (r5_1: artifact language)\n-> [tool_3 select]\n-> (r11_1: selection language)* + (r10_1: artifact record)* + (r5_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r11_1: selection language)* + (r10_1: artifact record)* + (r5_1: artifact language)\n-> [human select]\n-> (r12_1: selection language) + (r10_1: artifact record)*\n-> [model_1 generate]~\n-> (r13_1: artifact language) + (r12_1: selection language) + (r10_1: artifact record)*\n-> [tool_3 compose]\n-> (r14_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r7_1: artifact record) + (r4_1: artifact graph)\n-> [human specify]\n-> (r15_1: instruction language) + (r7_1: artifact record) + (r4_1: artifact graph)\n-> [model_1 extract]\n-> (r16_1: artifact record)* + (r15_1: instruction language) + (r4_1: artifact graph)\n-> [model_2 translate]\n-> (r17_1: artifact numeric)* + (r15_1: instruction language) + (r4_1: artifact graph)\n-> [tool_1 match]\n-> (r18_1: artifact record)* + (r15_1: instruction language)\n-> [model_1 generate]~\n-> (r19_1: artifact language) + (r18_1: artifact record)*\n-> [tool_3 compose]\n-> (r19_1: artifact language) + (r20_1: artifact record)*\n-> [tool_3 match]\n-> (r19_1: artifact language) + (r20_1: artifact record)* + (r21_1: artifact record)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r6_1: artifact graph) + (r14_1: artifact record) + (r20_1: artifact record)*\n-> [human select]\n-> (r6_1: artifact graph) + (r22_1: selection record) + (r23_1: selection record)\n-> [tool_3 compose]\n-> (r6_2: artifact graph)\n-> [tool_1 match]\n-> (r6_2: artifact graph) + (r24_1: artifact graph)\n-> [tool_3 compose]\n-> (r6_3: artifact graph)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r6_3: artifact graph) + (r5_1: artifact language)\n-> [human select]\n-> (r25_1: selection record) + (r6_3: artifact graph) + (r5_1: artifact language)\n-> [tool_3 match]\n-> (r26_1: selection language) + (r5_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r6_3: artifact graph) + (r19_1: artifact language)\n-> [human select]\n-> (r27_1: selection record) + (r6_3: artifact graph) + (r19_1: artifact language)\n-> [tool_3 match]\n-> (r28_1: selection language) + (r19_1: artifact language)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r5_1: artifact language) + (r6_3: artifact graph)\n-> [human modify]\n-> (r5_2: artifact language) + (r6_3: artifact graph)\n-> [tool_2 compose]\n-> (r7_2: artifact record) + (r5_2: artifact language) + (r6_3: artifact graph)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

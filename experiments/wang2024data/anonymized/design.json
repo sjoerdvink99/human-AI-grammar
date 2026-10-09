@@ -1,0 +1,30 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact tabular)\n-> [tool_1 extract]\n-> (r1_1: artifact tabular) + (r2_1: artifact record)*\n-> [human specify]\n-> (r1_1: artifact tabular) + (r2_1: artifact record)* + (r3_1: instruction record)\n-> [tool_1 translate]\n-> (r1_1: artifact tabular) + (r4_1: artifact record)\n-> [tool_1 execute]\n-> (r5_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact tabular) + (r2_1: artifact record)*\n-> [human specify]\n-> (r1_1: artifact tabular) + (r2_1: artifact record)* + (r6_1: artifact record)*\n-> [human specify]\n-> (r1_1: artifact tabular) + (r2_1: artifact record)* + (r6_1: artifact record)* + (r3_2: instruction record)\n-> [tool_1 compose]\n-> (r1_1: artifact tabular) + (r6_1: artifact record)* + (r3_2: instruction record) + (r7_1: instruction tabular)\n-> [human modify]\n-> (r1_1: artifact tabular) + (r6_1: artifact record)* + (r3_2: instruction record) + (r7_2: instruction tabular)\n-> [tool_2 execute]\n-> (r1_1: artifact tabular) + (r3_2: instruction record) + (r8_1: artifact formal)*\n-> [tool_1 execute]\n-> (r3_2: instruction record) + (r9_1: artifact tabular)*\n-> [tool_1 translate]\n-> (r9_1: artifact tabular)* + (r4_2: artifact record)\n-> [tool_1 execute]\n-> (r9_1: artifact tabular)* + (r10_1: artifact visual)*\n-> [human select]\n-> (r1_2: artifact tabular) + (r5_2: artifact visual)\n-> [tool_1 assign]\n-> (r1_2: artifact tabular) + (r2_2: artifact record)* + (r5_2: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_2: artifact tabular) + (r2_2: artifact record)*\n-> [human specify]\n-> (r1_2: artifact tabular) + (r2_2: artifact record)* + (r11_1: instruction record)\n-> [tool_1 compose]\n-> (r1_2: artifact tabular) + (r2_2: artifact record)* + (r11_1: instruction record) + (r12_1: instruction formal)*\n-> [model generate]~\n-> (r1_2: artifact tabular) + (r2_2: artifact record)* + (r11_1: instruction record) + (r13_1: artifact formal)*\n-> [tool_1 evaluate]\n-> (r1_2: artifact tabular) + (r2_2: artifact record)* + (r11_1: instruction record) + (r14_1: artifact formal)* + (r15_1: artifact tabular)*\n-> [human select]\n-> (r1_2: artifact tabular) + (r2_2: artifact record)* + (r11_1: instruction record) + (r16_1: artifact formal)\n-> [tool_1 execute]\n-> (r1_3: artifact tabular) + (r2_3: artifact record)* + (r11_1: instruction record)\n-> [human specify]\n-> (r1_3: artifact tabular) + (r2_3: artifact record)* + (r3_3: instruction record)\n-> [tool_1 translate]\n-> (r1_3: artifact tabular) + (r4_3: artifact record)\n-> [tool_1 execute]\n-> (r5_3: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_3: artifact tabular) + (r2_3: artifact record)* + (r11_1: instruction record)\n-> [human modify]\n-> (r1_3: artifact tabular) + (r2_3: artifact record)* + (r11_2: instruction record)\n-> [tool_1 compose]\n-> (r1_3: artifact tabular) + (r2_3: artifact record)* + (r11_2: instruction record) + (r12_2: instruction formal)*\n-> [model generate]~\n-> (r1_3: artifact tabular) + (r2_3: artifact record)* + (r13_2: artifact formal)*\n-> [tool_1 evaluate]\n-> (r1_3: artifact tabular) + (r2_3: artifact record)* + (r14_2: artifact formal)* + (r15_2: artifact tabular)*\n-> [human select]\n-> (r1_3: artifact tabular) + (r2_3: artifact record)* + (r16_2: artifact formal)\n-> [tool_1 execute]\n-> (r1_4: artifact tabular) + (r2_4: artifact record)*"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

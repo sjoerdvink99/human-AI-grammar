@@ -1,0 +1,35 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact tabular)*\n-> [tool_1 select]\n-> (r1_1: artifact tabular)* + (r2_1: artifact tabular)*\n-> [tool_1 extract]\n-> (r1_1: artifact tabular)* + (r2_1: artifact tabular)* + (r3_1: artifact record)*\n-> [tool_1 evaluate]\n-> (r1_1: artifact tabular)* + (r2_1: artifact tabular)* + (r3_1: artifact record)* + (r4_1: artifact tabular)\n-> [tool_1 expand]\n-> (r1_1: artifact tabular)* + (r2_1: artifact tabular)*"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact tabular)* + (r3_1: artifact record)*\n-> [tool_1 extract]\n-> (r1_1: artifact tabular)* + (r5_1: artifact record)*\n-> [tool_1 assign]\n-> (r1_1: artifact tabular)* + (r5_1: artifact record)* + (r6_1: label categorical)*\n-> [model_1 assign]\n-> (r1_1: artifact tabular)* + (r5_1: artifact record)* + (r6_1: label categorical)* + (r7_1: label categorical)*\n-> [tool_1 compose]\n-> (r1_1: artifact tabular)* + (r8_1: artifact record)*\n-> [tool_1 extract]\n-> (r1_1: artifact tabular)* + (r8_1: artifact record)* + (r9_1: artifact graph)\n-> [tool_1 extract]\n-> (r1_1: artifact tabular)* + (r8_1: artifact record)* + (r9_1: artifact graph) + (r10_1: artifact graph)\n-> [tool_1 assign]\n-> (r8_1: artifact record)* + (r9_1: artifact graph) + (r10_1: artifact graph) + (r11_1: label categorical)*\n-> [model_2 assign]\n-> (r8_1: artifact record)* + (r9_1: artifact graph) + (r10_1: artifact graph) + (r11_1: label categorical)* + (r12_1: label categorical)*\n-> [tool_1 compose]\n-> (r13_1: artifact record)\n-> [tool_2 translate]\n-> (r13_1: artifact record) + (r14_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact tabular)* + (r13_1: artifact record) + (r14_1: artifact visual)\n-> [human select]\n-> (r1_1: artifact tabular)* + (r13_1: artifact record) + (r15_1: selection record)\n-> [tool_1 translate]\n-> (r1_1: artifact tabular)* + (r15_1: selection record) + (r16_1: artifact formal)*\n-> [tool_1 execute]\n-> (r15_1: selection record) + (r16_1: artifact formal)* + (r17_1: artifact tabular) + (r4_2: artifact tabular)\n-> [tool_2 translate]\n-> (r18_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r13_1: artifact record) + (r14_1: artifact visual)\n-> [human modify]\n-> (r13_2: artifact record)\n-> [tool_1 assign]\n-> (r13_2: artifact record) + (r19_1: label categorical)*\n-> [model_2 assign]\n-> (r13_2: artifact record) + (r19_1: label categorical)* + (r20_1: label categorical)*\n-> [tool_2 translate]\n-> (r13_2: artifact record) + (r21_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r8_1: artifact record)* + (r11_1: label categorical)* + (r12_1: label categorical)*\n-> [human modify]\n-> (r8_1: artifact record)* + (r11_1: label categorical)* + (r12_2: label categorical)*\n-> [model_2 train]\n-> (r22_1: artifact graph)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

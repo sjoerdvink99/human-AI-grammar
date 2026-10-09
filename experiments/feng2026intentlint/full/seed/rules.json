@@ -1,0 +1,42 @@
+[
+  {
+    "id": "r-missing",
+    "title": "State how missing values are handled",
+    "description": "Any analysis that aggregates, filters or models data must say explicitly how missing values (NaN/None) are treated: dropped, imputed (and how), or kept as their own category.",
+    "severity": "warning",
+    "author": "team",
+    "origin": "seed",
+    "version": 1,
+    "updatedAt": "2026-11-01T09:00:00.000Z"
+  },
+  {
+    "id": "r-raw",
+    "title": "Never modify the raw dataframe in place",
+    "description": "The raw dataset loaded from disk must not be mutated. Derive new dataframes (e.g. df_clean) instead of reassigning or using inplace=True on the raw one.",
+    "severity": "error",
+    "author": "team",
+    "origin": "seed",
+    "version": 1,
+    "updatedAt": "2026-11-01T09:00:00.000Z"
+  },
+  {
+    "id": "r-viz",
+    "title": "Label every chart",
+    "description": "Every plot must have a title, axis labels with units, and a legend when more than one series is shown.",
+    "severity": "info",
+    "author": "team",
+    "origin": "seed",
+    "version": 1,
+    "updatedAt": "2026-11-01T09:00:00.000Z"
+  },
+  {
+    "id": "r-stats",
+    "title": "Report effect sizes with significance tests",
+    "description": "When running a statistical test, report the effect size and confidence interval alongside the p-value, and name the test used.",
+    "severity": "warning",
+    "author": "team",
+    "origin": "seed",
+    "version": 1,
+    "updatedAt": "2026-11-01T09:00:00.000Z"
+  }
+]

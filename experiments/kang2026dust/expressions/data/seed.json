@@ -1,0 +1,16 @@
+[
+  { "id": "h1", "text": "I went to the woods because I wished to live deliberately, to front only the essential facts of life, and see if I could not learn what it had to teach, and not, when I came to die, discover that I had not lived.", "source": "Walden", "author": "Henry David Thoreau", "location": "Ch. 2" },
+  { "id": "h2", "text": "Our life is frittered away by detail. Simplify, simplify.", "source": "Walden", "author": "Henry David Thoreau", "location": "Ch. 2" },
+  { "id": "h3", "text": "The mass of men lead lives of quiet desperation.", "source": "Walden", "author": "Henry David Thoreau", "location": "Ch. 1" },
+  { "id": "h4", "text": "You have power over your mind — not outside events. Realize this, and you will find strength.", "source": "Meditations", "author": "Marcus Aurelius", "location": "Book 6" },
+  { "id": "h5", "text": "The impediment to action advances action. What stands in the way becomes the way.", "source": "Meditations", "author": "Marcus Aurelius", "location": "Book 5" },
+  { "id": "h6", "text": "Very little is needed to make a happy life; it is all within yourself, in your way of thinking.", "source": "Meditations", "author": "Marcus Aurelius", "location": "Book 7" },
+  { "id": "h7", "text": "It is not that we have a short time to live, but that we waste a lot of it.", "source": "On the Shortness of Life", "author": "Seneca", "location": "Sec. 1" },
+  { "id": "h8", "text": "While we are postponing, life speeds by.", "source": "Letters from a Stoic", "author": "Seneca", "location": "Letter 1" },
+  { "id": "h9", "text": "Trust thyself: every heart vibrates to that iron string.", "source": "Self-Reliance", "author": "Ralph Waldo Emerson", "location": "" },
+  { "id": "h10", "text": "A foolish consistency is the hobgoblin of little minds.", "source": "Self-Reliance", "author": "Ralph Waldo Emerson", "location": "" },
+  { "id": "h11", "text": "The greatest thing in the world is to know how to belong to oneself.", "source": "Essays", "author": "Michel de Montaigne", "location": "Of Solitude" },
+  { "id": "h12", "text": "My life has been full of terrible misfortunes, most of which never happened.", "source": "Essays", "author": "Michel de Montaigne", "location": "" },
+  { "id": "h13", "text": "Nothing is so painful to the human mind as a great and sudden change.", "source": "Frankenstein", "author": "Mary Shelley", "location": "Ch. 23" },
+  { "id": "h14", "text": "Beware; for I am fearless, and therefore powerful.", "source": "Frankenstein", "author": "Mary Shelley", "location": "Ch. 20" }
+]

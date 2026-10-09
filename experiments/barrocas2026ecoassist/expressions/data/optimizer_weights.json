@@ -1,0 +1,42 @@
+{
+  "strategies": [
+    {
+      "id": "dark_color_scheme",
+      "weight": 0.5702,
+      "support": 28
+    },
+    {
+      "id": "black_page_background",
+      "weight": 0.3232,
+      "support": 28
+    },
+    {
+      "id": "dim_media",
+      "weight": 0.2699,
+      "support": 5
+    },
+    {
+      "id": "lower_brightness",
+      "weight": 0.2459,
+      "support": 30
+    },
+    {
+      "id": "desaturate",
+      "weight": 0.0357,
+      "support": 15
+    },
+    {
+      "id": "reduce_blue",
+      "weight": 0.0294,
+      "support": 8
+    },
+    {
+      "id": "remove_background_images",
+      "weight": 0.009,
+      "support": 7
+    }
+  ],
+  "nPairs": 73,
+  "lambda": 0.05,
+  "trainedAt": "2026-11-25T08:20:33.097Z"
+}

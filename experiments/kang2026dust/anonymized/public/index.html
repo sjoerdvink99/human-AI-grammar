@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daybook — reflective journaling from your data</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Daybook</h1>
+    <p class="muted">Reflect on your days, grounded in your own data.</p>
+    <button id="reset" class="ghost">Start over</button>
+  </header>
+
+  <main>
+    <!-- Process 4: data explorer over r1 -->
+    <section id="data-col" class="col">
+      <h2>Your data <span class="tag" id="r1-count"></span></h2>
+      <div id="p4-gate" class="gate">Compose a journal entry first, then explore the data behind it.</div>
+      <div id="p4" hidden>
+        <div class="seg" id="metric-buttons" role="group" aria-label="Metric (r9)"></div>
+        <ol id="metric-list" class="metric-list"></ol>
+        <div id="chart"></div>
+      </div>
+    </section>
+
+    <!-- Processes 1 and 3: focus day, prompts, reflection -->
+    <section id="reflect-col" class="col">
+      <h2>Reflect</h2>
+      <div id="focus" class="card"></div>
+
+      <form id="search-form" class="row" hidden>
+        <input id="query" placeholder="Reflect on another day… e.g. “the hiking trip”, “when I slept worst”, “Nov 3”" />
+        <button type="submit">Find day</button>
+      </form>
+      <p id="search-gate" class="gate small">After composing an entry you can pick another day by describing it.</p>
+
+      <div class="subhead">
+        <h3>Reflection questions</h3>
+        <div id="rounds" class="rounds"></div>
+        <button id="regen" class="ghost small" disabled>↻ Regenerate</button>
+      </div>
+      <ol id="prompts" class="prompts"></ol>
+
+      <label for="response"><h3>Your reflection</h3></label>
+      <textarea id="response" rows="9" placeholder="Write freely in response to the questions…"></textarea>
+      <div class="row end">
+        <button id="compose" class="primary" disabled>Compose journal entry</button>
+      </div>
+    </section>
+
+    <!-- Processes 1 (output) and 2: entry and restyling -->
+    <section id="entry-col" class="col">
+      <h2>Journal entry</h2>
+      <div id="entry" class="card entry"><p class="muted">Your composed entry will appear here.</p></div>
+      <div id="entry-history" class="rounds"></div>
+
+      <div id="p2" hidden>
+        <h3>Rewrite as…</h3>
+        <div class="seg wrap" id="style-buttons" role="group" aria-label="Style (r6)"></div>
+        <div id="restyled"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" role="status"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

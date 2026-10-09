@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System X — notebook prompt linter</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">✓</span> System X <span class="muted">· shared notebook</span></div>
+    <div class="who">
+      <label>Workspace of <input id="author" size="12" /></label>
+      <span id="sync" class="sync" title="Shared rule board connection">● offline</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- notebook_1 : artifact record -->
+    <section class="notebook" aria-label="Notebook">
+      <div class="nb-toolbar">
+        <strong>churn_analysis.ipynb</strong>
+        <span class="muted" id="nb-status"></span>
+        <span class="spacer"></span>
+        <button id="add-code" class="ghost">+ Code</button>
+        <button id="add-md" class="ghost">+ Markdown</button>
+      </div>
+      <div id="cells"></div>
+    </section>
+
+    <!-- extension side panel -->
+    <aside class="panel">
+      <nav class="tabs">
+        <button class="tab active" data-tab="assistant">Assistant</button>
+        <button class="tab" data-tab="board">Rule board <span id="rule-count" class="pill"></span></button>
+      </nav>
+
+      <div id="tab-assistant" class="tabpane">
+        <!-- prompt_1 : instruction language (human specify) -->
+        <div class="card">
+          <label for="prompt" class="label">Ask the coding assistant</label>
+          <textarea id="prompt" rows="4" placeholder="e.g. Compare churn rates between plans and test if the difference is significant"></textarea>
+          <div class="row">
+            <span class="muted small"><span id="active-count"></span> active rules · Ctrl+Enter</span>
+            <span class="spacer"></span>
+            <button id="submit" class="primary">Check prompt</button>
+          </div>
+          <ol id="stages" class="stages hidden">
+            <li data-stage="extract">Extract notebook context</li>
+            <li data-stage="match">Check shared rules</li>
+            <li data-stage="lint">Lint &amp; revise prompt</li>
+            <li data-stage="propose">Propose new rules</li>
+          </ol>
+        </div>
+
+        <div id="context-card" class="card hidden">
+          <details><summary class="label">Notebook context <span id="ctx-summary" class="muted small"></span></summary>
+            <div id="context"></div>
+          </details>
+        </div>
+
+        <!-- prompt_1 + prompt_2 + lint_messages_1 ; human select -->
+        <div id="lint-card" class="card hidden">
+          <div class="label">Prompt review</div>
+          <div id="triggered" class="chips"></div>
+          <div id="lint-messages"></div>
+          <div class="compare">
+            <div>
+              <div class="sublabel">Your prompt</div>
+              <div id="orig-view" class="prompt-view"></div>
+            </div>
+            <div>
+              <div class="sublabel">Suggested revision <span class="muted small">(<ins>added</ins> / <del>removed</del>)</span></div>
+              <div id="diff-view" class="prompt-view"></div>
+            </div>
+          </div>
+          <div class="row">
+            <button id="regen-lint" class="ghost">↻ Revise again</button>
+            <span class="spacer"></span>
+            <button id="use-original" class="ghost">Send original</button>
+            <button id="use-revised" class="primary">Accept revision &amp; generate</button>
+          </div>
+        </div>
+
+        <!-- code_1 : artifact formal -->
+        <div id="code-card" class="card hidden">
+          <div class="label">Generated code <span id="code-summary" class="muted small"></span></div>
+          <div class="sublabel">From prompt:</div>
+          <div id="sent-prompt" class="prompt-view small"></div>
+          <pre id="code" class="code"></pre>
+          <div class="row">
+            <button id="regen-code" class="ghost">↻ Regenerate</button>
+            <button id="copy-code" class="ghost">Copy</button>
+            <span class="spacer"></span>
+            <button id="insert-code" class="primary">Insert as new cell</button>
+          </div>
+        </div>
+
+        <!-- rule_proposals_1/2 : process 2 -->
+        <div id="proposal-card" class="card hidden">
+          <div class="label">Suggested team rules</div>
+          <p class="muted small">Based on this prompt, its context and the rules it triggered. Edit, tick the ones to keep, then share them with your team.</p>
+          <div id="proposals"></div>
+          <div class="row">
+            <button id="regen-proposals" class="ghost">↻ Suggest others</button>
+            <span class="spacer"></span>
+            <button id="share-proposals" class="primary">Share accepted</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-board" class="tabpane hidden">
+        <div class="row board-filter">
+          <input id="rule-search" placeholder="Filter rules…" />
+          <select id="rule-sev"><option value="">All severities</option><option>error</option><option>warning</option><option>info</option></select>
+        </div>
+        <p class="muted small">Edits are shared with all teammates. The switch only affects <em>your</em> workspace.</p>
+        <div id="rules"></div>
+      </div>
+    </aside>
+  </main>
+  <div id="toast" class="toast hidden"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

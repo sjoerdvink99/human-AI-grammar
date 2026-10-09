@@ -1,0 +1,41 @@
+{
+  "name": "System X",
+  "goal": "Prompt-time linting, analytic intent scaffolding, code generation handoff, and management of shared rules.",
+  "description": "the system is an extension for the analysts' notebook environment that extracts context from shared computational notebooks, checks prompts against persistent collaboration rules, and suggests revisions before AI-assisted code generation. LLM agents also propose new rules that analysts can review and share with teammates. Actors: tool_1 = source-code parser; tool_2 = rule management and synchronization service; model_1 = LLM-based agent; model_2 = LLM-based agent; model_3 = LLM-based agent; model_4 = AI coding assistant.",
+  "processes": [
+    {
+      "name": "Prompt-time linting and code generation",
+      "description": "When an analyst submits a prompt, the system extracts notebook context and a rule-checking LLM identifies applicable shared rules. A linting LLM then proposes a revised prompt with contextual warnings and explanations, which the analyst can accept before an AI coding assistant generates code.",
+      "rawExpression": "(notebook_1: artifact record) + (rules_1: instruction record)*\n-> [human specify]\n-> (notebook_1: artifact record) + (rules_1: instruction record)* + (prompt_1: instruction language)\n-> [tool_1 extract]\n-> (context_1: artifact record) + (rules_1: instruction record)* + (prompt_1: instruction language)\n-> [model_1 match]\n-> (context_1: artifact record) + (rules_1: instruction record)* + (prompt_1: instruction language) + (triggered_rules_1: selection record)*\n-> [model_2 modify]~\n-> (prompt_1: instruction language) + (prompt_2: instruction language) + (lint_messages_1: evaluation record)*\n-> [human select]\n-> (prompt_2: instruction language)\n-> [model_4 generate]~\n-> (code_1: artifact formal)"
+    },
+    {
+      "name": "Propose and share collaboration rules",
+      "description": "After rule checking, a rule-proposal LLM suggests more specific collaboration rules based on the prompt, notebook context, and triggered rules. The analyst reviews, edits, and accepts proposals, which the application adds to the team's shared rule board for future interactions.",
+      "rawExpression": "(prompt_1: instruction language) + (context_1: artifact record) + (triggered_rules_1: selection record)* + (rules_1: instruction record)*\n-> [model_3 generate]~\n-> (rule_proposals_1: instruction record)* + (rules_1: instruction record)*\n-> [human modify]\n-> (rule_proposals_2: instruction record)* + (rules_1: instruction record)*\n-> [human select]\n-> (accepted_rules_1: instruction record)* + (rules_1: instruction record)*\n-> [tool_2 compose]\n-> (rules_2: instruction record)*"
+    },
+    {
+      "name": "Edit shared rules",
+      "description": "As the analysis evolves, collaborators can edit existing rules, including their descriptions and severity levels. Changes to shared rules become available to teammates.",
+      "rawExpression": "(rules_2: instruction record)*\n-> [human modify]\n-> (rules_3: instruction record)*"
+    },
+    {
+      "name": "Choose locally active rules",
+      "description": "A collaborator can activate or deactivate rules for their own workspace without changing the shared rules for teammates.",
+      "rawExpression": "(rules_2: instruction record)*\n-> [human select]\n-> (active_rules_1: selection record)*"
+    }
+  ],
+  "representations": {
+    "notebook": "the shared computational notebook the analysts work in: its cells, code and outputs",
+    "rules": "the team's shared collaboration rules, each with a description and a severity level",
+    "prompt": "the analyst's request to the AI coding assistant",
+    "context": "information extracted from the notebook, such as variables, imports and data used",
+    "triggered_rules": "the shared rules that apply to the prompt",
+    "lint_messages": "warnings and explanations about how the prompt conflicts with or misses the rules",
+    "code": "the code the coding assistant generates",
+    "rule_proposals": "new, more specific rules suggested from the prompt, context and triggered rules",
+    "accepted_rules": "the proposed rules the analyst accepts",
+    "active_rules": "the rules a collaborator has switched on for their own workspace"
+  },
+  "references": [],
+  "images": []
+}

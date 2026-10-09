@@ -1,0 +1,82 @@
+{
+  "name": "System X",
+  "goal": "Interactive ideation of data-video opening scenes, including video demo generation, revision, and data-grounded scene modification; not full production authoring.",
+  "description": "An interactive prototype that helps non-experts ideate opening scenes of data videos from a topic and selected data facts. It generates guideline-linked scripts and video demos, supports script revision and reference browsing, and lets users replace generated video elements with animated charts made from real data. Actors: model_1 = fine-tuned language model; model_2 = video generation model; model_3 = object segmentation model; tool_1 = video-request assembly component; tool_2 = video generation API; tool_3 = guideline and reference-video linking interface; tool_4 = animated chart template generator; tool_5 = video inpainting algorithm; tool_6 = video composition component; tool_7 = generated-video gallery.",
+  "processes": [
+    {
+      "name": "Generate opening script and video demo",
+      "description": "After the creator enters a story topic and selected data facts, a fine-tuned model_1 generates scene-by-scene scripts with voiceover, visuals, and guideline-linked rationales. the system assembles the scene scripts into a Vadoo request, produces a full video demo, and stores it in the gallery.",
+      "rawExpression": "(topic_1: instruction language) + (data_facts_1: artifact language)* + (guidelines_1: artifact language)*\n-> [model_1 generate]~\n-> (scripts_1: artifact record)* + (guidelines_1: artifact language)*\n-> [tool_1 compose]\n-> (scripts_1: artifact record)* + (video_request_1: instruction record)\n-> [tool_2 execute]\n-> (scripts_1: artifact record)* + (video_1: artifact visual)\n-> [tool_7 compose]\n-> (scripts_1: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)*"
+    },
+    {
+      "name": "Inspect cinematic guidelines and reference videos",
+      "description": "After the script is generated, the creator selects a scene. the system highlights the cinematic guideline used for that scene and presents the associated examples from professionally produced videos.",
+      "rawExpression": "(scripts_1: artifact record)* + (guidelines_1: artifact language)* + (reference_videos_1: artifact visual)*\n-> [human select]\n-> (scripts_1: artifact record)* + (guidelines_1: artifact language)* + (reference_videos_1: artifact visual)* + (scene_focus_1: selection record)\n-> [tool_3 select]\n-> (scene_focus_1: selection record) + (guideline_focus_1: selection language) + (reference_focus_1: selection visual)*"
+    },
+    {
+      "name": "Revise script and regenerate the full demo",
+      "description": "After reviewing the scripts and video, the creator evaluates the design and edits the scene scripts before asking the system to regenerate the full video with Vadoo. This cycle repeats until the creator stops refining the opening-scene concept.",
+      "rawExpression": "(scripts_1: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)*\n-> [human evaluate]\n-> (scripts_1: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)* + (assessment_1: evaluation language)\n-> [human modify]\n-> (scripts_2: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)*\n-> [tool_1 compose]\n-> (scripts_2: artifact record)* + (video_request_2: instruction record) + (video_versions_1: artifact visual)*\n-> [tool_2 execute]\n-> (scripts_2: artifact record)* + (video_2: artifact visual) + (video_versions_1: artifact visual)*\n-> [tool_7 compose]\n-> (scripts_1: artifact record)* + (video_1: artifact visual) + (video_versions_1: artifact visual)*"
+    },
+    {
+      "name": "Regenerate a single scene clip",
+      "description": "After generating or revising a script, the creator selects an individual scene and requests a five-second demo clip. the system sends the scene request to the model_2 video generation model.",
+      "rawExpression": "(scripts_1: artifact record)*\n-> [human select]\n-> (scripts_1: artifact record)* + (clip_scene_1: selection record)\n-> [tool_1 compose]\n-> (clip_request_1: instruction record)\n-> [model_2 generate]~\n-> (clip_1: artifact visual)"
+    },
+    {
+      "name": "Generate an animated chart from real data",
+      "description": "When the creator needs a data-grounded visualization, they paste tabular data and choose a line, bar, or pie chart. the system applies the corresponding animation template to produce an animated chart.",
+      "rawExpression": "(chart_data_1: artifact tabular)\n-> [human specify]\n-> (chart_data_1: artifact tabular) + (chart_type_1: instruction categorical)\n-> [tool_4 translate]\n-> (animated_chart_1: artifact visual)"
+    },
+    {
+      "name": "Replace a video object with a complete chart",
+      "description": "To insert an accurate chart, the creator pauses the generated video at a keyframe and clicks the object to replace. model_3 segments the object, the system inpaints the scene, and the complete chart is merged as a foreground overlay with axes and labels.",
+      "rawExpression": "(video_1: artifact visual) + (animated_chart_1: artifact visual)\n-> [human select]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (keyframe_full_1: selection visual)\n-> [human select]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (keyframe_full_1: selection visual) + (object_point_full_1: selection spatial)\n-> [model_3 extract]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (object_mask_full_1: selection spatial)\n-> [tool_5 modify]\n-> (cleaned_video_full_1: artifact visual) + (animated_chart_1: artifact visual)\n-> [tool_6 compose]\n-> (video_with_chart_1: artifact visual)"
+    },
+    {
+      "name": "Replace a video object with a chart shape",
+      "description": "To explore a stylized alternative, the creator selects an object in a video frame and then chooses only the desired region of an animated chart. model_3 identifies the object, the system removes it by inpainting, and the selected chart shape is merged into the scene.",
+      "rawExpression": "(video_1: artifact visual) + (animated_chart_1: artifact visual)\n-> [human select]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (keyframe_shape_1: selection visual)\n-> [human select]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (keyframe_shape_1: selection visual) + (object_point_shape_1: selection spatial)\n-> [model_3 extract]\n-> (video_1: artifact visual) + (animated_chart_1: artifact visual) + (object_mask_shape_1: selection spatial)\n-> [tool_5 modify]\n-> (cleaned_video_shape_1: artifact visual) + (animated_chart_1: artifact visual)\n-> [human select]\n-> (cleaned_video_shape_1: artifact visual) + (animated_chart_1: artifact visual) + (chart_region_1: selection spatial)\n-> [tool_6 compose]\n-> (video_with_shape_1: artifact visual)"
+    },
+    {
+      "name": "Revisit generated video versions",
+      "description": "After generating demos, the creator can choose a previous video from the gallery to compare and evaluate presentation alternatives.",
+      "rawExpression": "(video_versions_1: artifact visual)*\n-> [human select]\n-> (reviewed_video_1: artifact visual)\n-> [human evaluate]\n-> (reviewed_video_1: artifact visual) + (video_assessment_1: evaluation language)"
+    }
+  ],
+  "representations": {
+    "topic": "the topic of the data story",
+    "data_facts": "selected facts from the data to feature",
+    "guidelines": "cinematic guidelines for opening scenes",
+    "scripts": "scene-by-scene scripts with voiceover, visuals and the guideline each scene follows",
+    "video_request": "the scripts packaged as a request to a video generation service",
+    "video": "the generated demo video",
+    "video_versions": "the gallery of generated videos",
+    "reference_videos": "example scenes from professionally produced videos",
+    "scene_focus": "the scene the user selects",
+    "guideline_focus": "the guideline used for that scene, highlighted",
+    "reference_focus": "the reference examples for that guideline",
+    "assessment": "the user's judgement of the current design",
+    "clip_scene": "the scene the user wants a short clip of",
+    "clip_request": "the request for that clip",
+    "clip": "a five-second generated clip of one scene",
+    "chart_data": "a table the user pastes in",
+    "chart_type": "line, bar or pie",
+    "animated_chart": "an animated chart made from the table",
+    "keyframe_full": "the paused frame where a chart will replace an object",
+    "object_point_full": "the point the user clicks on the object to replace",
+    "object_mask_full": "the mask of that object",
+    "cleaned_video_full": "the video with the object removed and filled in",
+    "video_with_chart": "the video with the full chart overlaid",
+    "keyframe_shape": "the paused frame for a stylized replacement",
+    "object_point_shape": "the point the user clicks on the object to replace",
+    "object_mask_shape": "the mask of that object",
+    "cleaned_video_shape": "the video with the object removed and filled in",
+    "chart_region": "the part of the chart the user selects to use as a shape",
+    "video_with_shape": "the video with the chart shape merged into the scene",
+    "reviewed_video": "an earlier video picked from the gallery",
+    "video_assessment": "the user's judgement of that video"
+  },
+  "references": [],
+  "images": []
+}

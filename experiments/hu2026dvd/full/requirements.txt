@@ -1,0 +1,8 @@
+fastapi==0.165.0
+httpx==0.28.1
+imageio-ffmpeg==0.8.1
+numpy==2.5.5
+opencv-python-headless==5.1.0.95
+pillow==13.0.0
+pytest==9.2.0
+uvicorn==0.54.0

@@ -1,0 +1,448 @@
+{
+  "id": "smoke",
+  "title": "Sunday soup",
+  "story": "Every Sunday evening I visit my grandmother Rosa. When I arrive she is already in the kitchen stirring a pot of soup on the stove. I set the table while my little brother Leo plays with his toy cars on the living room rug. Grandma calls us to eat and we all sit at the dining table. After dinner Leo falls asleep on the sofa, and Grandma and I wash the dishes at the sink while she tells me stories about her childhood.",
+  "environment": {
+    "layoutId": "two-side",
+    "width": 20,
+    "height": 14,
+    "rooms": [
+      {
+        "id": "A",
+        "x": 1,
+        "y": 1,
+        "w": 9,
+        "h": 12,
+        "label": "kitchen"
+      },
+      {
+        "id": "B",
+        "x": 11,
+        "y": 1,
+        "w": 8,
+        "h": 12,
+        "label": "living room"
+      }
+    ],
+    "doors": [
+      {
+        "x": 10,
+        "y": 7
+      }
+    ],
+    "objects": [
+      {
+        "id": "o-stove",
+        "name": "stove",
+        "roomId": "A",
+        "w": 2,
+        "h": 1,
+        "againstWall": true,
+        "emoji": "🔥",
+        "affordances": [
+          "cook at",
+          "stir at",
+          "turn on"
+        ],
+        "pos": {
+          "x": 4,
+          "y": 1
+        }
+      },
+      {
+        "id": "o-soup-pot",
+        "name": "soup pot",
+        "roomId": "A",
+        "w": 1,
+        "h": 1,
+        "againstWall": true,
+        "emoji": "🍲",
+        "affordances": [
+          "stir",
+          "taste",
+          "serve from",
+          "carry"
+        ],
+        "pos": {
+          "x": 9,
+          "y": 3
+        }
+      },
+      {
+        "id": "o-sink",
+        "name": "sink",
+        "roomId": "A",
+        "w": 2,
+        "h": 1,
+        "againstWall": true,
+        "emoji": "🚰",
+        "affordances": [
+          "wash dishes at",
+          "fill with water",
+          "rinse"
+        ],
+        "pos": {
+          "x": 7,
+          "y": 1
+        }
+      },
+      {
+        "id": "o-kitchen-counter",
+        "name": "kitchen counter",
+        "roomId": "A",
+        "w": 3,
+        "h": 1,
+        "againstWall": true,
+        "emoji": "🍽️",
+        "affordances": [
+          "prepare food on",
+          "place dishes on",
+          "lean on"
+        ],
+        "pos": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      {
+        "id": "o-dining-table",
+        "name": "dining table",
+        "roomId": "A",
+        "w": 3,
+        "h": 2,
+        "againstWall": false,
+        "emoji": "🪑",
+        "affordances": [
+          "set",
+          "eat at",
+          "sit at",
+          "clear"
+        ],
+        "pos": {
+          "x": 3,
+          "y": 6
+        }
+      },
+      {
+        "id": "o-refrigerator",
+        "name": "refrigerator",
+        "roomId": "A",
+        "w": 1,
+        "h": 1,
+        "againstWall": true,
+        "emoji": "🧊",
+        "affordances": [
+          "open",
+          "take food from",
+          "store food in"
+        ],
+        "pos": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      {
+        "id": "o-chair",
+        "name": "chair",
+        "roomId": "A",
+        "w": 1,
+        "h": 1,
+        "againstWall": false,
+        "emoji": "💺",
+        "affordances": [
+          "sit on",
+          "pull out",
+          "move"
+        ],
+        "pos": {
+          "x": 7,
+          "y": 6
+        }
+      },
+      {
+        "id": "o-sofa",
+        "name": "sofa",
+        "roomId": "B",
+        "w": 3,
+        "h": 1,
+        "againstWall": true,
+        "emoji": "🛋️",
+        "affordances": [
+          "sit on",
+          "sleep on",
+          "lie on",
+          "cuddle on"
+        ],
+        "pos": {
+          "x": 11,
+          "y": 1
+        }
+      },
+      {
+        "id": "o-rug",
+        "name": "rug",
+        "roomId": "B",
+        "w": 3,
+        "h": 2,
+        "againstWall": false,
+        "emoji": "🧶",
+        "affordances": [
+          "play on",
+          "sit on",
+          "lie on"
+        ],
+        "pos": {
+          "x": 13,
+          "y": 6
+        }
+      },
+      {
+        "id": "o-toy-cars",
+        "name": "toy cars",
+        "roomId": "B",
+        "w": 1,
+        "h": 1,
+        "againstWall": false,
+        "emoji": "🚗",
+        "affordances": [
+          "play with",
+          "push",
+          "pick up",
+          "put away"
+        ],
+        "pos": {
+          "x": 16,
+          "y": 7
+        }
+      },
+      {
+        "id": "o-bookshelf",
+        "name": "bookshelf",
+        "roomId": "B",
+        "w": 2,
+        "h": 1,
+        "againstWall": true,
+        "emoji": "📚",
+        "affordances": [
+          "browse",
+          "read",
+          "take a book from"
+        ],
+        "pos": {
+          "x": 14,
+          "y": 1
+        }
+      },
+      {
+        "id": "o-coffee-table",
+        "name": "coffee table",
+        "roomId": "B",
+        "w": 2,
+        "h": 1,
+        "againstWall": false,
+        "emoji": "☕",
+        "affordances": [
+          "put things on",
+          "sit near",
+          "look at"
+        ],
+        "pos": {
+          "x": 15,
+          "y": 5
+        }
+      },
+      {
+        "id": "o-floor-lamp",
+        "name": "floor lamp",
+        "roomId": "B",
+        "w": 1,
+        "h": 1,
+        "againstWall": true,
+        "emoji": "💡",
+        "affordances": [
+          "turn on",
+          "turn off",
+          "dim"
+        ],
+        "pos": {
+          "x": 17,
+          "y": 1
+        }
+      }
+    ]
+  },
+  "characters": [
+    {
+      "name": "Narrator",
+      "isPlayer": true,
+      "description": "The grown grandchild who visits Grandma Rosa every Sunday evening, sets the table, and helps wash dishes.",
+      "personality": "Caring, dutiful, attentive, and a good listener who treasures family rituals.",
+      "background": "Grandchild of Rosa and older sibling of Leo. Has a long-standing Sunday evening tradition of visiting their grandmother.",
+      "goals": "To spend a warm evening with family, help with the meal and dishes, and hear Grandma's stories about her childhood.",
+      "speakingStyle": "Warm, gentle, and conversational; asks curious questions and responds with affection.",
+      "id": "c-narrator-0",
+      "traits": [],
+      "color": "#e07a5f"
+    },
+    {
+      "name": "Rosa",
+      "isPlayer": false,
+      "description": "The narrator's grandmother, an elderly woman who cooks soup in her kitchen and welcomes the family each Sunday.",
+      "personality": "Nurturing, warm, nostalgic, and a natural storyteller who shows love through food.",
+      "background": "Has a long life behind her and a childhood she loves recalling. Hosts her grandchildren every Sunday evening in her home.",
+      "goals": "To feed and gather her family around the table, and to pass her childhood stories on to her grandchildren.",
+      "speakingStyle": "Affectionate and unhurried, calling the children to the table kindly and weaving old memories into her talk.",
+      "id": "c-rosa-1",
+      "traits": [],
+      "color": "#3d85c6"
+    },
+    {
+      "name": "Leo",
+      "isPlayer": false,
+      "description": "The narrator's little brother, a young child who plays with toy cars on the living room rug and falls asleep on the sofa after dinner.",
+      "personality": "Playful, imaginative, energetic, and easily tired out by the end of the evening.",
+      "background": "Younger brother of the narrator and grandson of Rosa. Joins the Sunday visits and loves his toy cars.",
+      "goals": "To play with his toy cars, enjoy dinner, and cozy up to rest.",
+      "speakingStyle": "Short, excited kid phrases with car noises, turning sleepy and mumbly later in the evening.",
+      "id": "c-leo-2",
+      "traits": [],
+      "color": "#81b29a"
+    }
+  ],
+  "activities": [
+    {
+      "characterId": "c-rosa-1",
+      "action": "stirs the soup at the stove",
+      "objectId": "o-soup-pot",
+      "description": "Rosa is already in the kitchen stirring a pot of soup when the narrator arrives.",
+      "id": "a1"
+    },
+    {
+      "characterId": "c-narrator-0",
+      "action": "arrives and greets Grandma at the stove",
+      "objectId": "o-stove",
+      "description": "The narrator arrives for the Sunday evening visit and finds Rosa cooking.",
+      "id": "a2"
+    },
+    {
+      "characterId": "c-leo-2",
+      "action": "plays with his toy cars on the rug",
+      "objectId": "o-toy-cars",
+      "description": "Leo pushes his toy cars around the living room rug making car noises.",
+      "id": "a3"
+    },
+    {
+      "characterId": "c-narrator-0",
+      "action": "sets the dining table",
+      "objectId": "o-dining-table",
+      "description": "The narrator lays out the dishes and places for dinner.",
+      "id": "a4"
+    },
+    {
+      "characterId": "c-rosa-1",
+      "action": "serves the soup from the pot",
+      "objectId": "o-soup-pot",
+      "description": "Rosa ladles the soup and calls everyone to eat.",
+      "id": "a5"
+    },
+    {
+      "characterId": "c-leo-2",
+      "action": "leaves the rug and comes to the table",
+      "objectId": "o-rug",
+      "description": "Leo stops playing when Grandma calls and heads to dinner.",
+      "id": "a6"
+    },
+    {
+      "characterId": "c-rosa-1",
+      "action": "sits down to eat at the dining table",
+      "objectId": "o-dining-table",
+      "description": "Rosa joins the family at the table.",
+      "id": "a7"
+    },
+    {
+      "characterId": "c-narrator-0",
+      "action": "sits and eats dinner at the table",
+      "objectId": "o-chair",
+      "description": "The narrator sits in a chair and shares the meal with the family.",
+      "id": "a8"
+    },
+    {
+      "characterId": "c-leo-2",
+      "action": "eats dinner at the table",
+      "objectId": "o-dining-table",
+      "description": "Leo enjoys his soup with the rest of the family.",
+      "id": "a9"
+    },
+    {
+      "characterId": "c-leo-2",
+      "action": "falls asleep on the sofa",
+      "objectId": "o-sofa",
+      "description": "After dinner, Leo curls up on the sofa and dozes off.",
+      "id": "a10"
+    },
+    {
+      "characterId": "c-narrator-0",
+      "action": "washes the dishes at the sink",
+      "objectId": "o-sink",
+      "description": "The narrator helps clean up after dinner.",
+      "id": "a11"
+    },
+    {
+      "characterId": "c-rosa-1",
+      "action": "washes dishes and tells childhood stories at the sink",
+      "objectId": "o-sink",
+      "description": "Rosa shares stories about her childhood while washing dishes beside the narrator.",
+      "id": "a12"
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "order": 1,
+      "title": "Arrival and Cooking",
+      "activityIds": [
+        "a1",
+        "a2",
+        "a3",
+        "a4"
+      ]
+    },
+    {
+      "id": "e2",
+      "order": 2,
+      "title": "Dinner Together",
+      "activityIds": [
+        "a5",
+        "a6",
+        "a7",
+        "a8",
+        "a9"
+      ]
+    },
+    {
+      "id": "e3",
+      "order": 3,
+      "title": "After Dinner Stories",
+      "activityIds": [
+        "a10",
+        "a11",
+        "a12"
+      ]
+    }
+  ],
+  "startPositions": {
+    "c-narrator-0": {
+      "x": 6,
+      "y": 6
+    },
+    "c-rosa-1": {
+      "x": 17,
+      "y": 12
+    },
+    "c-leo-2": {
+      "x": 11,
+      "y": 4
+    }
+  },
+  "createdAt": "2026-11-25T08:09:42.622Z"
+}

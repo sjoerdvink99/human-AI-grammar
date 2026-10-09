@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System X — prompt linting for notebooks</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <strong>System X</strong>
+    <span class="sub">Lint your notebook prompts with your own rules, then generate code</span>
+  </header>
+  <main class="layout">
+    <!-- notebook_1: artifact record -->
+    <section class="pane" id="notebook-pane">
+      <div class="pane-head">
+        <h2>Notebook</h2>
+        <div class="actions">
+          <label class="btn small">Import .ipynb<input type="file" id="ipynb-input" accept=".ipynb,application/json" hidden /></label>
+          <button class="btn small" id="reset-notebook">Sample</button>
+        </div>
+      </div>
+      <input id="nb-title" class="nb-title" />
+      <div id="cells"></div>
+      <div class="add-cell">
+        <button class="btn small" data-add="code">+ Code</button>
+        <button class="btn small" data-add="markdown">+ Markdown</button>
+      </div>
+    </section>
+
+    <!-- Process 1 -->
+    <section class="pane" id="assistant-pane">
+      <div class="pane-head"><h2>Prompt assistant</h2></div>
+      <label class="field-label" for="prompt-input">What should the next cell do?</label>
+      <textarea id="prompt-input" rows="4" placeholder="e.g. plot revenue by region"></textarea>
+      <div class="row">
+        <button class="btn primary" id="lint-btn">Lint prompt</button>
+        <span class="hint">Ctrl/⌘ + Enter</span>
+      </div>
+      <ol class="steps" id="steps"></ol>
+      <div id="context-view"></div>
+      <div id="lint-view"></div>
+      <div id="code-view"></div>
+    </section>
+
+    <!-- rules, proposals, history -->
+    <section class="pane" id="rules-pane">
+      <div class="tabs">
+        <button class="tab active" data-tab="rules">Rules</button>
+        <button class="tab" data-tab="proposals">Proposals <span id="proposal-count" class="count"></span></button>
+        <button class="tab" data-tab="history">History</button>
+      </div>
+      <div class="tab-body" id="tab-rules"></div>
+      <div class="tab-body hidden" id="tab-proposals"></div>
+      <div class="tab-body hidden" id="tab-history"></div>
+    </section>
+  </main>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

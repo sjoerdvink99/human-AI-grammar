@@ -1,0 +1,51 @@
+{
+  "name": "System X",
+  "goal": "Offline energy profiling, optimization dataset construction, and model fine-tuning, followed by frontend code generation, energy-aware optimization, selective change acceptance, and webpage preview.",
+  "description": "the system is an AI-assisted frontend development environment that identifies energy-intensive code patterns and proposes optimized alternatives. Developers can inspect code differences, compare estimated energy consumption, selectively accept changes, and preview the resulting webpage. Actors: model_1 = user-selectable code-generation language model; model_2 = fine-tuned language model for frontend energy optimization; tool_1 = browser automation tool; tool_2 = CPU and GPU energy profiling tool; tool_3 = rule-based frontend optimization toolchain using LightningCSS, Terser, HTML-Minifier-Terser, Subfont, Critical, Imagemin, and Squoosh; tool_4 = energy comparison and supervised training-data preparation pipeline; tool_5 = code diff, energy feedback, selective change application, and webpage preview interface.",
+  "processes": [
+    {
+      "name": "Train energy-aware optimizer",
+      "description": "An offline pipeline profiles 500 webpages using tool_1 and tool_2, applies rule-based optimizations, and measures their energy impact. It assembles validated before-and-after code pairs and uses them to fine-tune model_2 for energy-aware frontend optimization.",
+      "rawExpression": "(training_webpages_1: artifact formal)*\n-> [tool_1 execute]\n-> (training_webpages_1: artifact formal)* + (baseline_renderings_1: artifact visual)*\n-> [tool_2 evaluate]\n-> (training_webpages_1: artifact formal)* + (baseline_energy_1: evaluation numeric)*\n-> [tool_3 modify]\n-> (training_webpages_1: artifact formal)* + (training_webpages_2: artifact formal)* + (baseline_energy_1: evaluation numeric)*\n-> [tool_1 execute]\n-> (training_webpages_1: artifact formal)* + (training_webpages_2: artifact formal)* + (baseline_energy_1: evaluation numeric)* + (optimized_renderings_1: artifact visual)*\n-> [tool_2 evaluate]\n-> (training_webpages_1: artifact formal)* + (training_webpages_2: artifact formal)* + (baseline_energy_1: evaluation numeric)* + (optimized_energy_1: evaluation numeric)*\n-> [tool_4 evaluate]\n-> (training_webpages_1: artifact formal)* + (training_webpages_2: artifact formal)* + (baseline_energy_1: evaluation numeric)* + (optimized_energy_1: evaluation numeric)* + (energy_savings_1: evaluation numeric)*\n-> [tool_4 compose]\n-> (candidate_training_pairs_1: artifact record)*\n-> [tool_4 select]\n-> (training_pairs_1: artifact record)*\n-> [model_2 train]\n-> (optimizer_weights_1: artifact numeric)"
+    },
+    {
+      "name": "Generate frontend code",
+      "description": "The developer describes a frontend application and chooses a coding model, such as GPT-5. The selected language model generates HTML, CSS, and JavaScript code that the developer can inspect and edit in the IDE.",
+      "rawExpression": "(request_1: instruction language) + (model_choice_1: instruction categorical)\n-> [model_1 generate]~\n-> (code_1: artifact formal)"
+    },
+    {
+      "name": "Optimize and review code",
+      "description": "When the developer invokes optimization on generated or manually written code, the system measures its energy use and sends it to the fine-tuned model_2 model for optimization. The system measures the optimized version and displays energy savings alongside a unified diff, allowing the developer to accept or reject individual changes before applying the selected edits.",
+      "rawExpression": "(code_1: artifact formal) + (optimizer_weights_1: artifact numeric)\n-> [tool_1 execute]\n-> (code_1: artifact formal) + (optimizer_weights_1: artifact numeric) + (baseline_rendering_1: artifact visual)\n-> [tool_2 evaluate]\n-> (code_1: artifact formal) + (optimizer_weights_1: artifact numeric) + (energy_before_1: evaluation numeric)\n-> [model_2 modify]~\n-> (code_1: artifact formal) + (code_2: artifact formal) + (energy_before_1: evaluation numeric)\n-> [tool_1 execute]\n-> (code_1: artifact formal) + (code_2: artifact formal) + (energy_before_1: evaluation numeric) + (optimized_rendering_1: artifact visual)\n-> [tool_2 evaluate]\n-> (code_1: artifact formal) + (code_2: artifact formal) + (energy_before_1: evaluation numeric) + (energy_after_1: evaluation numeric)\n-> [tool_5 evaluate]\n-> (code_1: artifact formal) + (code_2: artifact formal) + (energy_before_1: evaluation numeric) + (energy_after_1: evaluation numeric) + (savings_1: evaluation numeric)\n-> [tool_5 extract]\n-> (code_1: artifact formal) + (code_2: artifact formal) + (energy_before_1: evaluation numeric) + (energy_after_1: evaluation numeric) + (savings_1: evaluation numeric) + (diff_1: artifact formal)\n-> [human select]\n-> (code_1: artifact formal) + (diff_1: artifact formal) + (selected_edits_1: selection formal)*\n-> [tool_5 modify]\n-> (code_3: artifact formal)"
+    },
+    {
+      "name": "Preview optimized webpage",
+      "description": "After applying optimizations, the developer can open the webpage preview to inspect the rendered layout and check that the application still functions as intended.",
+      "rawExpression": "(code_3: artifact formal)\n-> [tool_5 translate]\n-> (preview_1: artifact visual)"
+    }
+  ],
+  "representations": {
+    "training_webpages": "the webpages used to build training data",
+    "baseline_renderings": "those pages loaded in a browser before optimization",
+    "baseline_energy": "measured energy use before optimization",
+    "optimized_renderings": "the pages loaded after rule-based optimization",
+    "optimized_energy": "measured energy use after optimization",
+    "energy_savings": "the difference in energy use",
+    "candidate_training_pairs": "before and after code pairs",
+    "training_pairs": "pairs that saved energy and still work",
+    "optimizer_weights": "the fine-tuned optimization model",
+    "request": "the developer's description of the frontend to build",
+    "model_choice": "the code-generation model the developer picks",
+    "code": "HTML, CSS and JavaScript code",
+    "baseline_rendering": "the page loaded before optimization",
+    "energy_before": "its measured energy use",
+    "optimized_rendering": "the page loaded after optimization",
+    "energy_after": "its measured energy use",
+    "savings": "the estimated energy saved",
+    "diff": "the line-by-line differences between the original and optimized code",
+    "selected_edits": "the changes the developer accepts",
+    "preview": "the rendered webpage"
+  },
+  "references": [],
+  "images": []
+}

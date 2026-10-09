@@ -1,0 +1,25 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: artifact spatial)\n-> [human specify]\n-> (r1_1: artifact spatial) + (r2_1: instruction spatial)*\n-> [tool_1 modify]\n-> (r2_2: instruction spatial)*\n-> [tool_3 compose]\n-> (r3_1: artifact spatial)\n-> [tool_2 translate]\n-> (r4_1: artifact spatial)\n-> [tool_3 translate]\n-> (r4_1: artifact spatial) + (r5_1: instruction spatial)\n-> [human modify]\n-> (r4_1: artifact spatial) + (r5_2: instruction spatial)\n-> [tool_2 modify]\n-> (r4_2: artifact spatial)\n-> [tool_3 translate]\n-> (r6_1: artifact visual)\n-> [model_1 generate]~\n-> (r7_1: artifact visual)\n-> [human specify]\n-> (r7_1: artifact visual) + (r8_1: instruction spatial)*\n-> [tool_1 modify]\n-> (r7_1: artifact visual) + (r8_2: instruction spatial)*\n-> [tool_3 translate]\n-> (r7_1: artifact visual) + (r9_1: selection spatial)* + (r10_1: instruction language)*\n-> [model_1 modify]~\n-> (r7_2: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r11_1: artifact spatial)\n-> [human specify]\n-> (r12_1: instruction spatial)*\n-> [tool_1 modify]\n-> (r12_2: instruction spatial)*\n-> [tool_3 translate]\n-> (r13_1: artifact visual) + (r14_1: instruction language)\n-> [model_1 generate]~\n-> (r15_1: artifact visual)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r16_1: instruction language) + (r17_1: artifact spatial)\n-> [human specify]\n-> (r16_1: instruction language) + (r18_1: instruction spatial)*\n-> [human modify]\n-> (r16_1: instruction language) + (r18_2: instruction spatial)*\n-> [human specify]\n-> (r16_1: instruction language) + (r18_2: instruction spatial)* + (r19_1: instruction audio)*\n-> [tool_3 translate]\n-> (r16_1: instruction language) + (r18_2: instruction spatial)* + (r20_1: label categorical)*\n-> [tool_3 compose]\n-> (r16_1: instruction language) + (r21_1: instruction record)*\n-> [model_2 generate]~\n-> (r21_1: instruction record)* + (r22_1: artifact language)*\n-> [model_1 generate]~\n-> (r21_1: instruction record)* + (r22_1: artifact language)* + (r23_1: artifact visual)*\n-> [tool_3 compose]\n-> (r24_1: artifact visual)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

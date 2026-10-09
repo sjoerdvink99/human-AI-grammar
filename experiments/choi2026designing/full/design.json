@@ -1,0 +1,61 @@
+{
+  "name": "System X",
+  "goal": "Therapeutic conversation, collaborative lyric writing, music generation and visualization, song revision, and reflective discussion.",
+  "description": "A conversational system that helps Deaf and Hard-of-Hearing individuals express personal experiences through collaborative songwriting. It uses a language model to guide lyric writing and musical choices, a music generation model to create songs, and audio analysis tools to visualize music and support emotional reflection. Actors: model_1 = language model; model_2 = music generation model; tool_1 = step completion checker; tool_2 = music analysis API; tool_3 = sequence alignment algorithm; tool_4 = beat analysis library; tool_5 = visual rendering tool.",
+  "processes": [
+    {
+      "name": "Therapeutic conversation",
+      "description": "At the start of a session, model_1 asks supportive questions about the user's experiences, emotions, motivation, and musical preferences. It extracts required information from the conversation, while a tool_1 determines when to advance to the next step. This repeats until the required information for each step is collected.",
+      "rawExpression": "(therapy_framework_1: instruction record) + (chat_history_1: artifact language)\n-> [model_1 extract]\n-> (therapy_framework_1: instruction record) + (chat_history_1: artifact language) + (required_variables_1: artifact record)\n-> [tool_1 evaluate]\n-> (therapy_framework_1: instruction record) + (chat_history_1: artifact language) + (required_variables_1: artifact record) + (step_status_1: evaluation categorical)\n-> [model_1 generate]~\n-> (therapy_framework_1: instruction record) + (chat_history_1: artifact language) + (question_1: artifact language)\n-> [human specify]\n-> (therapy_framework_1: instruction record) + (chat_history_1: artifact language)"
+    },
+    {
+      "name": "Collaborative lyric writing",
+      "description": "After discussing personal experiences, the user develops a song concept and describes emotions, scenes, keywords, and lyric ideas in response to model_1's questions. model_1 uses these inputs to compose a complete song with verses, a chorus, and a bridge. The user reviews the lyrics and can request revisions until satisfied.",
+      "rawExpression": "(chat_history_1: artifact language) + (required_variables_1: artifact record)\n-> [model_1 generate]~\n-> (lyric_questions_1: artifact language)\n-> [human specify]\n-> (lyric_inputs_1: artifact language)\n-> [model_1 extract]\n-> (song_concept_1: instruction record) + (lyric_elements_1: artifact record)\n-> [model_1 generate]~\n-> (lyrics_1: artifact language)\n-> [human evaluate]\n-> (lyrics_1: artifact language) + (lyrics_feedback_1: evaluation language)\n-> [model_1 modify]~\n-> (lyrics_1: artifact language)"
+    },
+    {
+      "name": "Music generation and visualization",
+      "description": "After the lyrics are ready, model_1 helps the user choose musical attributes and converts them into a style prompt for model_2, which generates a vocal track. tool_2 extracts musical features and word timings, a sequence alignment algorithm synchronizes the timings with the actual lyrics, and tool_4 extracts beats. The system then renders animated lyrics and beat visualizations alongside the generated music.",
+      "rawExpression": "(lyrics_1: artifact language) + (song_concept_1: instruction record)\n-> [model_1 generate]~\n-> (music_guidance_1: artifact language)\n-> [human specify]\n-> (lyrics_1: artifact language) + (music_attributes_1: instruction record)\n-> [model_1 translate]~\n-> (lyrics_1: artifact language) + (style_prompt_1: instruction language)\n-> [model_2 generate]~\n-> (lyrics_1: artifact language) + (song_1: artifact audio)\n-> [tool_2 extract]\n-> (lyrics_1: artifact language) + (song_1: artifact audio) + (predicted_transcript_1: artifact record) + (audio_features_1: artifact record)\n-> [tool_3 match]\n-> (song_1: artifact audio) + (timed_lyrics_1: artifact record) + (audio_features_1: artifact record)\n-> [tool_4 extract]\n-> (song_1: artifact audio) + (timed_lyrics_1: artifact record) + (audio_features_1: artifact record) + (beat_features_1: artifact tabular)\n-> [tool_5 translate]\n-> (song_1: artifact audio) + (music_visualization_1: artifact visual)"
+    },
+    {
+      "name": "Song discussion and reflection",
+      "description": "After the song is generated, model_1 asks whether the user is satisfied with it. If the user accepts the song, model_1 asks which lyrics or musical passages resonated with them and guides reflection on associated feelings, memories, and personal meaning. The user shares these reflections and receives supportive responses.",
+      "rawExpression": "(song_1: artifact audio) + (music_visualization_1: artifact visual) + (lyrics_1: artifact language)\n-> [model_1 generate]~\n-> (song_1: artifact audio) + (music_visualization_1: artifact visual) + (lyrics_1: artifact language) + (review_question_1: artifact language)\n-> [human evaluate]\n-> (song_1: artifact audio) + (lyrics_1: artifact language) + (song_feedback_1: evaluation language)\n-> [model_1 generate]~\n-> (song_1: artifact audio) + (lyrics_1: artifact language) + (reflection_question_1: artifact language)\n-> [human specify]\n-> (reflection_1: artifact language)\n-> [model_1 generate]~\n-> (supportive_response_1: artifact language)"
+    },
+    {
+      "name": "Music revision",
+      "description": "If the user requests changes after hearing the generated song, they can revisit their musical choices. The revised attributes are converted into a new style prompt, and model_2 generates another track using the lyrics. The new track is analyzed and visualized through the same music processing pipeline.",
+      "rawExpression": "(song_1: artifact audio) + (lyrics_1: artifact language) + (music_attributes_1: instruction record) + (song_feedback_1: evaluation language)\n-> [human modify]\n-> (lyrics_1: artifact language) + (music_attributes_2: instruction record)\n-> [model_1 translate]~\n-> (lyrics_1: artifact language) + (style_prompt_2: instruction language)\n-> [model_2 generate]~\n-> (lyrics_1: artifact language) + (song_2: artifact audio)\n-> [tool_2 extract]\n-> (lyrics_1: artifact language) + (song_2: artifact audio) + (predicted_transcript_2: artifact record) + (audio_features_2: artifact record)\n-> [tool_3 match]\n-> (song_2: artifact audio) + (timed_lyrics_2: artifact record) + (audio_features_2: artifact record)\n-> [tool_4 extract]\n-> (song_2: artifact audio) + (timed_lyrics_2: artifact record) + (audio_features_2: artifact record) + (beat_features_2: artifact tabular)\n-> [tool_5 translate]\n-> (song_2: artifact audio) + (music_visualization_2: artifact visual)"
+    }
+  ],
+  "representations": {
+    "therapy_framework": "the steps of the therapy session and the information each step needs before moving on",
+    "chat_history": "the conversation so far between the user and the system",
+    "required_variables": "the information gathered from the conversation for the current step, such as experiences, emotions, motivation and musical preferences",
+    "step_status": "whether the current step has all its required information and the session can move on",
+    "question": "the next supportive question asked to the user",
+    "lyric_questions": "questions that help the user describe the song they want to write",
+    "lyric_inputs": "the user's answers: emotions, scenes, keywords and lyric ideas",
+    "song_concept": "the overall concept of the song",
+    "lyric_elements": "the emotions, scenes, keywords and lyric ideas taken from the user's answers",
+    "lyrics": "the song lyrics, with verses, a chorus and a bridge",
+    "lyrics_feedback": "the user's comments on the lyrics and requested changes",
+    "music_guidance": "explanations and suggestions that help the user choose musical attributes",
+    "music_attributes": "the chosen musical attributes, such as genre, mood, tempo and instruments",
+    "style_prompt": "a text style description for the music generation model",
+    "song": "the generated song with vocals",
+    "predicted_transcript": "the words recognized in the song, with timings",
+    "audio_features": "musical features analyzed from the song",
+    "timed_lyrics": "the actual lyrics aligned to the timings in the song",
+    "beat_features": "the beat times of the song",
+    "music_visualization": "animated lyrics and beat visuals shown while the song plays",
+    "review_question": "a question asking whether the user is satisfied with the song",
+    "song_feedback": "the user's reaction to the song",
+    "reflection_question": "a question about which lyrics or passages resonated and what feelings or memories they bring up",
+    "reflection": "the user's reflection on the song",
+    "supportive_response": "a supportive reply to the user's reflection"
+  },
+  "references": [],
+  "images": []
+}

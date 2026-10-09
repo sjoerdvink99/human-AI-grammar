@@ -1,0 +1,86 @@
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px/1.4 system-ui, -apple-system, Segoe UI, sans-serif; color: #2b2722; background: #f3efe8; }
+button { font: inherit; padding: 6px 12px; border: 1px solid #c9bfb1; background: #fff; border-radius: 6px; cursor: pointer; }
+button:disabled { opacity: .5; cursor: default; }
+button.primary { background: #3d5a80; color: #fff; border-color: #3d5a80; }
+button.link { border: none; background: none; color: #7a6f62; text-decoration: underline; }
+button.chip { font-size: 12px; padding: 3px 8px; border-radius: 12px; text-align: left; }
+textarea, input[type=text], input:not([type]) { font: inherit; width: 100%; padding: 8px; border: 1px solid #c9bfb1; border-radius: 6px; }
+.muted { color: #8a7f72; font-weight: normal; font-size: 12px; }
+.small { font-size: 11px; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.app { display: grid; grid-template-columns: 360px 1fr 320px; grid-template-rows: auto 1fr; height: 100vh; }
+header { grid-column: 1 / -1; display: flex; align-items: center; gap: 24px; padding: 10px 18px; background: #2b2722; color: #f3efe8; }
+header h1 { margin: 0; font-size: 18px; } header h1 span { font-weight: normal; opacity: .6; }
+.steps { display: flex; gap: 6px; flex: 1; }
+.steps span { padding: 3px 10px; border-radius: 12px; background: #3e3933; font-size: 12px; }
+.steps span.active { background: #e0a458; color: #2b2722; }
+header .link { color: #cfc6b9; }
+
+aside { overflow: auto; padding: 14px; }
+aside.left { border-right: 1px solid #ddd4c6; background: #faf7f2; }
+aside.right { border-left: 1px solid #ddd4c6; background: #faf7f2; }
+main { overflow: auto; padding: 14px 20px; display: flex; flex-direction: column; gap: 10px; }
+h3 { margin: 4px 0 8px; font-size: 14px; } h4 { margin: 14px 0 6px; font-size: 13px; }
+.request .row { margin: 8px 0; }
+.examples { display: flex; flex-direction: column; gap: 4px; }
+
+.empty { flex: 1; display: grid; place-items: center; color: #7a6f62; text-align: center; }
+.sceneHead { display: flex; justify-content: space-between; align-items: center; }
+.sceneHead h2 { margin: 0; font-size: 16px; }
+svg.scene { width: 100%; max-height: 62vh; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px #0002; touch-action: none; user-select: none; }
+svg.scene.busy { opacity: .6; }
+svg.scene .obj { cursor: pointer; }
+svg.scene .obj rect, svg.scene .obj ellipse { stroke: #4a4036; stroke-width: 1.5; fill-opacity: .9; }
+svg.scene .obj.sel rect, svg.scene .obj.sel ellipse { stroke: #e07a1f; stroke-width: 5; }
+svg.scene .front { stroke: #0005; stroke-width: 3; }
+svg.scene .label { font-size: 13px; text-anchor: middle; dominant-baseline: middle; fill: #1d1a16; pointer-events: none; paint-order: stroke; stroke: #fffc; stroke-width: 3px; }
+svg.scene .dim { font-size: 14px; fill: #8a7f72; }
+svg.scene .region { fill: #e07a1f22; stroke: #e07a1f; stroke-dasharray: 8 6; stroke-width: 2; pointer-events: none; }
+
+.voice { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.mic { padding: 10px 16px; border-radius: 22px; font-weight: 600; background: #fff; }
+.mic.on { background: #c8553d; color: #fff; border-color: #c8553d; }
+.typed { display: flex; gap: 6px; flex: 1; min-width: 300px; }
+.clip { height: 32px; }
+.warn { color: #a0522d; font-size: 12px; width: 100%; }
+.error { background: #fbe3dc; border: 1px solid #e4a493; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+.status { color: #3d5a80; }
+.spin::before { content: '◌ '; display: inline-block; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.learnBar { display: flex; gap: 12px; align-items: center; border-top: 1px solid #ddd4c6; padding-top: 10px; }
+.learnResult { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.log ol { margin: 4px 0; padding-left: 20px; }
+
+.verdict { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; font-weight: 600; }
+.verdict.accept { background: #d6ecd2; color: #2d6a2d; } .verdict.revise { background: #f6e7c1; color: #7a5a10; } .verdict.reject { background: #f5d0c8; color: #8d2b17; }
+
+.trace { margin-top: 14px; }
+.trace details { border: 1px solid #e5ddd0; border-radius: 6px; margin-bottom: 4px; background: #fff; }
+.trace summary { padding: 5px 8px; cursor: pointer; font-size: 12px; display: flex; gap: 6px; align-items: center; }
+.trace .actor { font-family: ui-monospace, monospace; padding: 0 4px; border-radius: 4px; }
+.actor.model { background: #e8dcf5; } .actor.tool { background: #dde8f0; } .actor.human { background: #f6e3c8; }
+.trace .medium { color: #9a8f82; font-size: 11px; margin-left: auto; }
+.trace .ms { color: #9a8f82; font-size: 11px; }
+.trace .spin { color: #3d5a80; font-size: 11px; }
+.trace .out { padding: 6px 8px; border-top: 1px solid #eee6da; font-size: 12px; overflow: auto; max-height: 280px; }
+.trace pre { margin: 0; font-size: 11px; white-space: pre-wrap; }
+.trace table { border-collapse: collapse; width: 100%; font-size: 11px; }
+.trace th, .trace td { border-bottom: 1px solid #eee6da; padding: 2px 4px; text-align: left; vertical-align: top; }
+.trace ul, .trace ol { margin: 2px 0; padding-left: 18px; }
+.trace .edges i { color: #3d5a80; }
+.bars { display: grid; gap: 2px; }
+.bar { display: grid; grid-template-columns: 90px 1fr 36px; gap: 6px; align-items: center; font-size: 11px; }
+.bar i, .rel i { display: block; height: 8px; background: #3d5a80; border-radius: 4px; }
+.bar span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.thumbs { display: flex; flex-wrap: wrap; gap: 6px; } .thumbs figure { margin: 0; font-size: 10px; } .thumbs svg { width: 100px; height: 100px; }
+
+.library .cards { display: grid; gap: 8px; }
+.card { background: #fff; border: 1px solid #e5ddd0; border-radius: 8px; padding: 8px; }
+.card.new { border-color: #e0a458; box-shadow: 0 0 0 2px #e0a45844; }
+.card .thumb svg { width: 100%; height: 120px; }
+.rel { display: grid; grid-template-columns: 1fr 34px; gap: 6px; align-items: center; font-size: 11px; background: none; margin-top: 4px; }
+.relRow { display: grid; grid-template-columns: 1fr 120px; gap: 6px; font-size: 12px; align-items: center; }
+.base { list-style: none; padding: 0; font-size: 12px; columns: 2; }
+.base i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; border: 1px solid #0003; }

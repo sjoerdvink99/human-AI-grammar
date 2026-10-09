@@ -1,0 +1,25 @@
+{
+  "name": "System X",
+  "goal": "",
+  "description": "",
+  "processes": [
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r1_1: instruction language) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [model_3 translate]\n-> (r1_1: instruction language) + (r4_1: artifact numeric) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [tool_3 match]\n-> (r1_1: instruction language) + (r4_1: artifact numeric) + (r5_1: selection record)* + (r3_1: artifact record)\n-> [model_4 match]\n-> (r1_1: instruction language) + (r4_1: artifact numeric) + (r6_1: artifact tabular) + (r3_1: artifact record)\n-> [tool_3 select]\n-> (r1_1: instruction language) + (r4_1: artifact numeric) + (r7_1: selection record)* + (r3_1: artifact record)\n-> [model_5 match]\n-> (r1_1: instruction language) + (r7_1: selection record)* + (r8_1: artifact tabular)\n-> [tool_3 select]\n-> (r1_1: instruction language) + (r7_1: selection record)* + (r9_1: selection record)*\n-> [tool_1 generate]\n-> (r1_1: instruction language) + (r10_1: instruction record) + (r9_1: selection record)* + (r11_1: artifact record)\n-> [tool_3 compose]\n-> (r1_1: instruction language) + (r12_1: instruction record) + (r11_1: artifact record)\n-> [tool_1 generate]\n-> (r13_1: artifact graph) + (r11_1: artifact record)\n-> [tool_2 translate]\n-> (r14_1: artifact spatial) + (r11_1: artifact record) + (r15_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r14_1: artifact spatial) + (r11_1: artifact record) + (r15_1: artifact record)\n-> [human select]\n-> (r14_1: artifact spatial) + (r11_1: artifact record) + (r15_1: artifact record) + (r16_1: selection spatial)\n-> [human specify]\n-> (r14_1: artifact spatial) + (r11_1: artifact record) + (r15_1: artifact record) + (r16_1: selection spatial) + (r17_1: instruction audio)\n-> [model_1 translate]\n-> (r14_1: artifact spatial) + (r11_1: artifact record) + (r15_1: artifact record) + (r16_1: selection spatial) + (r18_1: instruction language)\n-> [tool_2 compose]\n-> (r14_1: artifact spatial) + (r11_1: artifact record) + (r15_1: artifact record) + (r19_1: instruction record)\n-> [model_2 translate]~\n-> (r14_1: artifact spatial) + (r11_1: artifact record) + (r15_1: artifact record) + (r20_1: instruction record)\n-> [model_2 decompose]~\n-> (r14_1: artifact spatial) + (r11_1: artifact record) + (r15_1: artifact record) + (r21_1: instruction record)*\n-> [tool_2 execute]\n-> (r14_1: artifact spatial) + (r11_1: artifact record) + (r15_1: artifact record)"
+    },
+    {
+      "name": "",
+      "description": "",
+      "rawExpression": "(r14_1: artifact spatial) + (r15_1: artifact record) + (r11_1: artifact record) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [tool_4 compose]\n-> (r22_1: artifact record) + (r11_1: artifact record) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [tool_4 extract]\n-> (r23_1: artifact tabular) + (r22_1: artifact record) + (r11_1: artifact record) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [tool_4 assign]\n-> (r24_1: artifact graph) + (r22_1: artifact record) + (r11_1: artifact record) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [tool_4 extract]\n-> (r25_1: artifact graph) + (r22_1: artifact record) + (r11_1: artifact record) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [model_6 expand]~\n-> (r26_1: artifact graph) + (r22_1: artifact record) + (r11_1: artifact record) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [model_6 extract]~\n-> (r27_1: artifact language)* + (r22_1: artifact record) + (r11_1: artifact record) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [tool_4 translate]\n-> (r28_1: artifact record)* + (r22_1: artifact record) + (r11_1: artifact record) + (r2_1: artifact record) + (r3_1: artifact record)\n-> [tool_4 compose]\n-> (r2_2: artifact record) + (r22_1: artifact record) + (r11_1: artifact record) + (r3_1: artifact record)\n-> [tool_2 translate]\n-> (r29_1: artifact visual) + (r2_2: artifact record) + (r11_1: artifact record) + (r3_1: artifact record)\n-> [model_7 evaluate]\n-> (r30_1: evaluation categorical)* + (r2_2: artifact record) + (r11_1: artifact record) + (r3_1: artifact record)\n-> [tool_5 evaluate]\n-> (r31_1: evaluation numeric)* + (r2_2: artifact record) + (r3_1: artifact record)\n-> [tool_5 train]\n-> (r2_2: artifact record) + (r3_2: artifact record)"
+    }
+  ],
+  "representations": {},
+  "references": [],
+  "images": []
+}

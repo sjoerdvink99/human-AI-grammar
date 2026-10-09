@@ -1,0 +1,13 @@
+{
+  "name": "system-x",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Rooms from words: retrieval-guided layout generation, point-and-speak editing, and preference learning.",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node --test test/",
+    "check": "node --check server/*.js && for f in public/*.js; do node --check $f; done"
+  },
+  "engines": { "node": ">=20" }
+}

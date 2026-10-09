@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System X — personalised VR room authoring</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>System X <span>personalised VR room authoring</span></h1>
+      <div class="status">
+        <span id="versions">memory v1 · policy v1</span>
+        <button id="inspect" class="ghost">Memory &amp; policy</button>
+        <button id="reset" class="ghost danger">Reset learning</button>
+      </div>
+    </header>
+    <main>
+      <aside id="left">
+        <section class="card">
+          <h2><span class="pnum">1</span> Generate a scene</h2>
+          <form id="request-form">
+            <label for="request">Describe the room</label>
+            <textarea id="request" rows="3" placeholder="e.g. a cosy bedroom with a reading corner and a desk"></textarea>
+            <button type="submit" id="generate">Generate scene</button>
+          </form>
+          <div id="p1-steps" class="steps"></div>
+        </section>
+      </aside>
+      <section id="viewport">
+        <div id="hint">Drag to orbit · scroll to zoom · <b>click</b> an object to point at it · <b>Shift+click</b> the floor to point at a position · hold <b>Space</b> or the mic button to speak</div>
+        <div id="empty">Describe a room on the left to generate a scene.</div>
+      </section>
+      <aside id="right">
+        <section class="card" id="p2">
+          <h2><span class="pnum">2</span> Edit by pointing and speaking</h2>
+          <div class="targets-row">
+            <span class="muted">Pointed at:</span>
+            <div id="targets" class="chips"><span class="muted">nothing</span></div>
+            <button id="clear-targets" class="ghost small">Clear</button>
+          </div>
+          <button id="mic" class="mic" disabled>🎙 Hold to speak</button>
+          <details class="fallback">
+            <summary>No microphone? Type the command</summary>
+            <form id="typed-form"><input id="typed" placeholder="move this there" /><button class="small">Send</button></form>
+          </details>
+          <div id="p2-steps" class="steps"></div>
+          <h3>Interaction log</h3>
+          <ol id="log" class="log"><li class="muted">No edits yet.</li></ol>
+          <button id="finish" disabled>Finish editing &amp; learn preferences</button>
+        </section>
+        <section class="card" id="p3">
+          <h2><span class="pnum">3</span> Learn preferences</h2>
+          <div id="p3-steps" class="steps"><p class="muted">Runs after you finish editing.</p></div>
+        </section>
+      </aside>
+    </main>
+    <dialog id="inspector">
+      <form method="dialog"><button class="ghost close">✕</button></form>
+      <div id="inspector-body"></div>
+    </dialog>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
