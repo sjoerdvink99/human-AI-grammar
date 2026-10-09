@@ -1,0 +1,1 @@
+ALTER TABLE `grammar_processes` ADD `description` text;
