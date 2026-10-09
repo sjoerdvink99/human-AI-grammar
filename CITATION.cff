@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use this software or the corpus, please cite the paper below."
+type: software
+title: "A Grammar for Human-AI Systems"
+abstract: >-
+  A research tool for describing, comparing, and exploring human-AI systems
+  through a common process grammar. Processes are expressed as transformations
+  between representations: representations are characterized by their roles
+  and media, and transformations by the actors and operations involved. The
+  repository contains the grammar and its parser, a corpus of human-AI systems
+  from the literature expressed in the grammar, and a website for browsing and
+  comparing them.
+authors:
+  - given-names: Sjoerd
+    family-names: Vink
+  - given-names: Alexandra
+    family-names: Scott
+  - given-names: Manling
+    family-names: Yang
+  - given-names: Byungmoo
+    family-names: Kim
+  - given-names: Remco
+    family-names: Chang
+repository-code: "https://github.com/sjoerdvink99/human-AI-grammar"
+url: "https://sjoerdvink99.github.io/human-AI-grammar/"
+keywords:
+  - human-AI interaction
+  - human-AI systems
+  - grammar
+  - interaction design
+  - generative AI
+version: 0.1.0
+date-released: "2026-10-09"
+preferred-citation:
+  type: generic
+  title: "A Grammar for Human-AI Systems"
+  authors:
+    - given-names: Sjoerd
+      family-names: Vink
+    - given-names: Alexandra
+      family-names: Scott
+    - given-names: Manling
+      family-names: Yang
+    - given-names: Byungmoo
+      family-names: Kim
+    - given-names: Remco
+      family-names: Chang
+  year: 2026
