@@ -1,0 +1,455 @@
+[
+  {
+    "paper": {
+      "title": "Believe it or not: Designing a Human-AI Partnership for Mixed-Initiative Fact-Checking",
+      "authors": [
+        "An T. Nguyen",
+        "Aditya Kharosekar",
+        "Saumyaa Krishnan",
+        "Siddhesh Krishnan",
+        "Elizabeth Tate",
+        "Byron C. Wallace",
+        "Matthew Lease"
+      ],
+      "year": 2018,
+      "venue": "UIST",
+      "citationKey": "nguyen2018believe",
+      "doi": "10.1145/3242587.3242666",
+      "url": "https://doi.org/10.1145/3242587.3242666",
+      "abstract": "Fact-checking, the task of assessing the veracity of claims, is an important, timely, and challenging problem. While many automated fact-checking systems have been recently proposed, the human side of the partnership has been largely neglected: how might people understand, interact with, and establish trust with an AI fact-checking system? Does such a system actually help people better assess the factuality of claims? In this paper, we present the design and evaluation of a mixed-initiative approach to fact-checking, blending human knowledge and experience with the efficiency and scalability of automated information retrieval and ML. In a user study in which participants used our system to aid their own assessment of claims, our results suggest that individuals tend to trust the system: participant accuracy assessing claims improved when exposed to correct model predictions. However, this trust perhaps goes too far: when the model was wrong, exposure to its predictions often degraded human accuracy. Participants given the option to interact with these incorrect predictions were often able improve their own performance. This suggests that transparent models are key to facilitating effective human interaction with fallible AI models.",
+      "notes": "The system follows an information-literacy-inspired sequence of retrieving relevant articles, assessing article stance and source reputation, and aggregating this evidence into a claim-veracity prediction.",
+      "tags": [
+        "fact-checking",
+        "mixed-initiative",
+        "human-ai partnership",
+        "interactive machine learning",
+        "model transparency"
+      ]
+    },
+    "system": {
+      "name": "Mixed-Initiative Fact-Checking System",
+      "description": "A mixed-initiative fact-checking interface that retrieves evidence for a claim, predicts article stances and source reputations, and aggregates them into a claim-veracity prediction. Users can inspect supporting evidence and override stance or reputation estimates to immediately update the overall prediction.",
+      "processScope": "From a user-provided claim through automated evidence retrieval and prediction to evidence inspection and slider-based correction of model estimates.",
+      "notes": "The paper does not assign a separate product name to the prototype. Article stance and source reputation overrides are independently repeatable, and each slider change immediately recomputes the overall claim-veracity prediction. The article-retrieval implementation is not described in enough detail to decompose further."
+    },
+    "processes": [
+      {
+        "name": "Automated fact-checking",
+        "rawExpression": "(claim_1: artifact language)\n-> [tool retrieve]\n-> (claim_1: artifact language) + (articles_1: artifact structured)\n-> [model_1 evaluate]\n-> (claim_1: artifact language) + (articles_1: artifact structured) + (article_stances_1: evaluation structured)\n-> [model_2 evaluate]\n-> (claim_1: artifact language) + (articles_1: artifact structured) + (article_stances_1: evaluation structured) + (source_reputations_1: evaluation structured) + (claim_veracity_1: evaluation structured)"
+      },
+      {
+        "name": "Override article stance",
+        "rawExpression": "(claim_1: artifact language) + (articles_1: artifact structured) + (article_stances_1: evaluation structured) + (source_reputations_1: evaluation structured) + (claim_veracity_1: evaluation structured)\n-> [human modify]\n-> (claim_1: artifact language) + (articles_1: artifact structured) + (article_stances_2: evaluation structured) + (source_reputations_1: evaluation structured)\n-> [model_2 evaluate]\n-> (claim_1: artifact language) + (articles_1: artifact structured) + (article_stances_2: evaluation structured) + (source_reputations_1: evaluation structured) + (claim_veracity_2: evaluation structured)"
+      },
+      {
+        "name": "Override source reputation",
+        "rawExpression": "(claim_1: artifact language) + (articles_1: artifact structured) + (article_stances_1: evaluation structured) + (source_reputations_1: evaluation structured) + (claim_veracity_1: evaluation structured)\n-> [human modify]\n-> (claim_1: artifact language) + (articles_1: artifact structured) + (article_stances_1: evaluation structured) + (source_reputations_2: evaluation structured)\n-> [model_2 evaluate]\n-> (claim_1: artifact language) + (articles_1: artifact structured) + (article_stances_1: evaluation structured) + (source_reputations_2: evaluation structured) + (claim_veracity_2: evaluation structured)"
+      },
+      {
+        "name": "Inspect article evidence",
+        "rawExpression": "(articles_1: artifact structured) + (article_stances_1: evaluation structured)\n-> [human select]\n-> (articles_1: artifact structured) + (article_stances_1: evaluation structured) + (article_selection_1: selection structured)\n-> [tool retrieve]\n-> (article_1: artifact language)"
+      },
+      {
+        "name": "Inspect source reputation",
+        "rawExpression": "(articles_1: artifact structured) + (source_reputations_1: evaluation structured)\n-> [human select]\n-> (articles_1: artifact structured) + (source_reputations_1: evaluation structured) + (source_selection_1: selection structured)\n-> [tool retrieve]\n-> (source_evidence_1: artifact structured)"
+      }
+    ]
+  },
+  {
+    "paper": {
+      "title": "Sensecape: Enabling Multilevel Exploration and Sensemaking with Large Language Models",
+      "authors": ["Sangho Suh", "Bryan Min", "Srishti Palani", "Haijun Xia"],
+      "year": 2023,
+      "venue": "UIST",
+      "citationKey": "suh2023sensecape",
+      "doi": "10.1145/3586183.3606756",
+      "url": "https://doi.org/10.1145/3586183.3606756",
+      "abstract": "People are increasingly turning to large language models (LLMs) for complex information tasks like academic research or planning a move to another city. However, while they often require working in a nonlinear manner — e.g., to arrange information spatially to organize and make sense of it, current interfaces for interacting with LLMs are generally linear to support conversational interaction. To address this limitation and explore how we can support LLM-powered exploration and sensemaking, we developed Sensecape, an interactive system designed to support complex information tasks with an LLM by enabling users to (1) manage the complexity of information through multilevel abstraction and (2) switch seamlessly between foraging and sensemaking. Our within-subject user study reveals that Sensecape empowers users to explore more topics and structure their knowledge hierarchically, thanks to the externalization of levels of abstraction. We contribute implications for LLM-based workflows and interfaces for information tasks.",
+      "tags": [
+        "human-AI interaction",
+        "sensemaking",
+        "information exploration",
+        "spatial interaction",
+        "semantic zoom",
+        "hierarchical organization",
+        "LLM-generated suggestions",
+        "direct manipulation"
+      ]
+    },
+    "system": {
+      "name": "Sensecape",
+      "description": "An LLM-powered information exploration and sensemaking environment combining a spatial canvas with a hierarchical organization of topic-specific canvases. Users explore topics through generated responses, questions, explanations, and subtopics, while organizing information through direct manipulation, semantic zoom, and navigation across abstraction levels.",
+      "processScope": "Core interaction processes in the canvas and hierarchy views, including LLM-assisted exploration, text extraction, semantic zoom, semantic dive, and hierarchical organization.",
+      "notes": "Sensecape supports nonlinear, iterative exploration rather than a fixed end-to-end sequence. Processes represent distinct interaction modes described in Section 3.2 and Figures 3–7. Users can repeatedly invoke exploration actions on existing or generated nodes, reorganize information, and move between abstraction levels. LLM generation and summarization are stochastic, whereas direct manipulation and view navigation are treated as deterministic interface operations. Semantic zoom involves LLM-generated alternative representations followed by deterministic selection according to zoom level or manual settings. The paper does not specify that semantic zoom summaries are regenerated on every zoom interaction. The current implementation does not include automatic context-aware suggestions for grouping existing nodes or restructuring the hierarchy."
+    },
+    "processes": [
+      {
+        "name": "Prompt and Response Generation",
+        "rawExpression": "(node_1: artifact language)\n-> [human select]\n-> (node_1: artifact language) + (action_1: selection structured)\n-> [tool translate]\n-> (prompt_1: instruction language)\n-> [model generate]~\n-> (response_1: artifact language)"
+      },
+      {
+        "name": "Question Generation",
+        "rawExpression": "(topic_1: artifact language)\n-> [human select]\n-> (topic_1: artifact language) + (action_1: selection structured)\n-> [tool translate]\n-> (prompt_1: instruction language)\n-> [model generate]~\n-> (questions_1: artifact structured)\n-> [tool compose]\n-> (node_1: artifact language)"
+      },
+      {
+        "name": "Subtopic Generation",
+        "rawExpression": "(topic_1: artifact language)\n-> [human select]\n-> (topic_1: artifact language) + (action_1: selection structured)\n-> [tool translate]\n-> (prompt_1: instruction language)\n-> [model generate]~\n-> (subtopics_1: artifact structured)\n-> [tool compose]\n-> (nodes_1: artifact spatial)"
+      },
+      {
+        "name": "Text Extraction",
+        "rawExpression": "(response_1: artifact language)\n-> [human select]\n-> (response_1: artifact language) + (text_selection_1: selection language)\n-> [human specify]\n-> (response_1: artifact language) + (text_selection_1: selection language) + (position_1: instruction spatial)\n-> [tool extract]\n-> (response_1: artifact language) + (node_1: artifact language)\n-> [tool compose]\n-> (canvas_1: artifact spatial)"
+      },
+      {
+        "name": "Semantic Zoom Representation Generation",
+        "rawExpression": "(response_1: artifact language)\n-> [tool translate]\n-> (response_1: artifact language) + (summary_prompt_1: instruction language)\n-> [model generate]~\n-> (response_1: artifact language) + (summary_1: artifact language)\n-> [tool translate]\n-> (response_1: artifact language) + (summary_1: artifact language) + (keywords_prompt_1: instruction language)\n-> [model generate]~\n-> (response_1: artifact language) + (summary_1: artifact language) + (keywords_1: artifact structured)"
+      },
+      {
+        "name": "Semantic Zoom Display",
+        "rawExpression": "(response_1: artifact language) + (summary_1: artifact language) + (keywords_1: artifact structured)\n-> [human configure]\n-> (response_1: artifact language) + (summary_1: artifact language) + (keywords_1: artifact structured) + (zoom_setting_1: instruction structured)\n-> [tool select]\n-> (display_1: artifact visual)"
+      },
+      {
+        "name": "Canvas Topic Summarization",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [tool extract]\n-> (canvas_content_1: artifact language)\n-> [model generate]~\n-> (topic_1: artifact language)\n-> [tool modify]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Semantic Dive",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (node_selection_1: selection spatial)\n-> [tool compose]\n-> (canvas_2: artifact spatial) + (hierarchy_1: artifact spatial) + (topic_1: artifact language)\n-> [tool translate]\n-> (canvas_2: artifact spatial) + (hierarchy_1: artifact spatial) + (prompt_1: instruction language)\n-> [model generate]~\n-> (canvas_2: artifact spatial) + (hierarchy_1: artifact spatial) + (subtopics_1: artifact structured)\n-> [tool compose]\n-> (canvas_3: artifact spatial) + (hierarchy_1: artifact spatial)"
+      },
+      {
+        "name": "Manual Canvas Organization",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (nodes_selection_1: selection spatial)\n-> [human modify]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Manual Hierarchy Construction",
+        "rawExpression": "(hierarchy_1: artifact spatial)\n-> [human specify]\n-> (hierarchy_1: artifact spatial) + (topic_1: instruction language)\n-> [tool compose]\n-> (hierarchy_2: artifact spatial)"
+      },
+      {
+        "name": "Generated Hierarchy Expansion",
+        "rawExpression": "(hierarchy_1: artifact spatial) + (topic_1: artifact language)\n-> [human select]\n-> (hierarchy_1: artifact spatial) + (topic_1: artifact language) + (action_1: selection structured)\n-> [tool translate]\n-> (hierarchy_1: artifact spatial) + (prompt_1: instruction language)\n-> [model generate]~\n-> (hierarchy_1: artifact spatial) + (subtopic_1: artifact language)\n-> [tool compose]\n-> (hierarchy_2: artifact spatial)"
+      },
+      {
+        "name": "Cross-Canvas Information Transfer",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (nodes_selection_1: selection spatial)\n-> [human specify]\n-> (canvas_1: artifact spatial) + (nodes_selection_1: selection spatial) + (destination_1: selection spatial)\n-> [tool compose]\n-> (canvas_1: artifact spatial) + (canvas_2: artifact spatial)"
+      }
+    ]
+  },
+  {
+    "paper": {
+      "title": "Improving Steering and Verification in AI-Assisted Data Analysis with Interactive Task Decomposition",
+      "authors": [
+        "Majeed Kazemitabaar",
+        "Jack Williams",
+        "Ian Drosos",
+        "Tovi Grossman",
+        "Austin Z. Henley",
+        "Carina Negreanu",
+        "Advait Sarkar"
+      ],
+      "year": 2024,
+      "venue": "UIST",
+      "citationKey": "kazemitabaar2024improving",
+      "doi": "10.1145/3654777.3676345",
+      "url": "https://doi.org/10.1145/3654777.3676345",
+      "abstract": "LLM-powered tools like ChatGPT Data Analysis, have the potential to help users tackle the challenging task of data analysis programming, which requires expertise in data processing, programming, and statistics. However, our formative study (n=15) uncovered serious challenges in verifying AI-generated results and steering the AI (i.e., guiding the AI system to produce the desired output). We developed two contrasting approaches to address these challenges. The first (Stepwise) decomposes the problem into step-by-step subgoals with pairs of editable assumptions and code until task completion, while the second (Phasewise) decomposes the entire problem into three editable, logical phases: structured input/output assumptions, execution plan, and code. A controlled, within-subjects experiment (n=18) compared these systems against a conversational baseline. Users reported significantly greater control with the Stepwise and Phasewise systems, and found intervention, correction, and verification easier, compared to the baseline. The results suggest design guidelines and trade-offs for AI-assisted data analysis tools.",
+      "tags": [
+        "human-AI interaction",
+        "data analysis",
+        "task decomposition",
+        "steering",
+        "verification",
+        "editable assumptions",
+        "code generation",
+        "interactive planning"
+      ]
+    },
+    "system": {
+      "name": "Interactive Task Decomposition",
+      "description": "An AI-assisted data analysis system that enables users to steer and verify LLM-generated analysis by editing assumptions, execution plans, and code. It implements two decomposition approaches, Phasewise and Stepwise, alongside a conversational baseline.",
+      "processScope": "Dataset and task specification, AI-generated task decomposition, human intervention, code generation and execution, verification, and iterative refinement across three interface variants.",
+      "notes": "Phasewise decomposes the entire task into editable assumptions, an execution plan, and code. Stepwise incrementally generates subgoals, each containing editable assumptions and corresponding code. The Conversational baseline generates non-editable assumptions and code for the entire task, with refinement through follow-up prompts. In Phasewise and Stepwise, submitting an edit to an earlier component regenerates downstream components and preserves the original in a separate branch. Edits to the final component do not create a new branch. Shared side conversations allow code questions, code generation, and exploratory data queries without changing the main analysis. The processes below represent these distinct interaction modes and one iteration of recurring interactions."
+    },
+    "processes": [
+      {
+        "name": "Phasewise Analysis",
+        "rawExpression": "(dataset_1: artifact structured) + (task_1: instruction language)\n-> [tool extract]\n-> (dataset_1: artifact structured) + (summary_1: artifact structured) + (task_1: instruction language)\n-> [model decompose]~\n-> (assumptions_1: artifact structured) + (summary_1: artifact structured)\n-> [human modify]\n-> (assumptions_2: artifact structured) + (summary_1: artifact structured)\n-> [model generate]~\n-> (assumptions_2: artifact structured) + (plan_1: artifact language)\n-> [human modify]\n-> (assumptions_2: artifact structured) + (plan_2: artifact language)\n-> [model generate]~\n-> (code_1: artifact formal)\n-> [tool execute]\n-> (code_1: artifact formal) + (output_1: artifact structured) + (variables_1: artifact structured)\n-> [human evaluate]\n-> (code_1: artifact formal) + (output_1: artifact structured) + (variables_1: artifact structured) + (feedback_1: evaluation language)\n-> [human modify]\n-> (code_2: artifact formal)\n-> [tool execute]\n-> (code_2: artifact formal) + (output_2: artifact structured) + (variables_2: artifact structured)"
+      },
+      {
+        "name": "Stepwise Analysis",
+        "rawExpression": "(dataset_1: artifact structured) + (task_1: instruction language)\n-> [tool extract]\n-> (summary_1: artifact structured) + (task_1: instruction language)\n-> [model decompose]~\n-> (subgoal_1: instruction language) + (assumptions_1: artifact structured)\n-> [human modify]\n-> (subgoal_1: instruction language) + (assumptions_2: artifact structured)\n-> [model generate]~\n-> (code_1: artifact formal)\n-> [tool execute]\n-> (code_1: artifact formal) + (output_1: artifact structured) + (variables_1: artifact structured)\n-> [human evaluate]\n-> (code_1: artifact formal) + (output_1: artifact structured) + (variables_1: artifact structured) + (feedback_1: evaluation language)\n-> [model decompose]~\n-> (subgoal_2: instruction language) + (assumptions_3: artifact structured)"
+      },
+      {
+        "name": "Conversational Analysis",
+        "rawExpression": "(dataset_1: artifact structured) + (task_1: instruction language)\n-> [tool extract]\n-> (summary_1: artifact structured) + (task_1: instruction language)\n-> [model generate]~\n-> (assumptions_1: artifact language) + (code_1: artifact formal)\n-> [tool execute]\n-> (assumptions_1: artifact language) + (code_1: artifact formal) + (output_1: artifact structured) + (variables_1: artifact structured)\n-> [human specify]\n-> (assumptions_1: artifact language) + (code_1: artifact formal) + (output_1: artifact structured) + (variables_1: artifact structured) + (instruction_1: instruction language)\n-> [model modify]~\n-> (assumptions_2: artifact language) + (code_2: artifact formal)\n-> [tool execute]\n-> (assumptions_2: artifact language) + (code_2: artifact formal) + (output_2: artifact structured) + (variables_2: artifact structured)"
+      },
+      {
+        "name": "Side Query",
+        "rawExpression": "(dataset_1: artifact structured) + (variables_1: artifact structured)\n-> [human specify]\n-> (dataset_1: artifact structured) + (variables_1: artifact structured) + (query_1: instruction language)\n-> [model generate]~\n-> (code_1: artifact formal)\n-> [tool execute]\n-> (code_1: artifact formal) + (output_1: artifact structured)\n-> [human evaluate]\n-> (output_1: artifact structured) + (feedback_1: evaluation language)"
+      },
+      {
+        "name": "Ask Question",
+        "rawExpression": "(code_1: artifact formal)\n-> [human select]\n-> (code_1: artifact formal) + (selection_1: selection formal)\n-> [human specify]\n-> (code_1: artifact formal) + (selection_1: selection formal) + (question_1: instruction language)\n-> [model generate]~\n-> (answer_1: artifact language)"
+      },
+      {
+        "name": "Generate Code",
+        "rawExpression": "(code_1: artifact formal)\n-> [human select]\n-> (code_1: artifact formal) + (selection_1: selection formal)\n-> [human specify]\n-> (code_1: artifact formal) + (selection_1: selection formal) + (instruction_1: instruction language)\n-> [model generate]~\n-> (code_1: artifact formal) + (suggestion_1: artifact formal)\n-> [human select]\n-> (code_1: artifact formal) + (suggestion_1: artifact formal) + (selection_2: selection structured)\n-> [human modify]\n-> (code_2: artifact formal)\n-> [tool execute]\n-> (code_2: artifact formal) + (output_1: artifact structured)"
+      },
+      {
+        "name": "Upstream Edit and Regeneration",
+        "rawExpression": "(assumptions_1: artifact structured) + (plan_1: artifact language) + (code_1: artifact formal)\n-> [human modify]\n-> (assumptions_2: artifact structured) + (plan_1: artifact language) + (code_1: artifact formal)\n-> [model generate]~\n-> (assumptions_2: artifact structured) + (plan_2: artifact language)\n-> [model generate]~\n-> (assumptions_2: artifact structured) + (plan_2: artifact language) + (code_2: artifact formal)\n-> [tool execute]\n-> (assumptions_2: artifact structured) + (plan_2: artifact language) + (code_2: artifact formal) + (output_1: artifact structured)"
+      }
+    ]
+  },
+  {
+    "paper": {
+      "title": "DiscipLink: Unfolding Interdisciplinary Information Seeking Process via Human-AI Co-Exploration",
+      "authors": [
+        "Chengbo Zheng",
+        "Yuanhao Zhang",
+        "Zeyu Hunag",
+        "Chuhan Shi",
+        "Minrui Xu",
+        "Xiaojuan Ma"
+      ],
+      "year": 2024,
+      "venue": "UIST",
+      "citationKey": "zheng2024disciplink",
+      "doi": "10.1145/3654777.3676366",
+      "url": "https://doi.org/10.1145/3654777.3676366",
+      "tags": [
+        "human-AI collaboration",
+        "interdisciplinary information seeking",
+        "literature exploration",
+        "exploratory questions",
+        "query expansion",
+        "paper clustering",
+        "mixed-initiative interaction"
+      ]
+    },
+    "system": {
+      "name": "DiscipLink",
+      "description": "An interactive human-AI co-exploration system that generates discipline-specific exploratory questions from research interests, expands selected questions into literature search queries, and organizes retrieved papers into contextualized themes. Users can refine exploration directions, inspect and collect papers, and initiate new searches from discovered literature.",
+      "processScope": "Orientation through exploratory question generation, literature retrieval through query expansion, contextualized clustering and paper screening, and bottom-up exploration through paper collections and citation networks.",
+      "notes": "The system uses GPT-4 for generative operations, Semantic Scholar for paper retrieval, text-embedding-3-small for embeddings, and DBSCAN for clustering. Processes represent distinct interaction modes and computational pipelines rather than a mandatory linear sequence. Users may return to orientation from discovered papers and repeat literature searches with new or modified exploratory questions."
+    },
+    "processes": [
+      {
+        "name": "Generate Exploratory Questions from Research Topic",
+        "rawExpression": "(topic_1: instruction language)\n-> [model select]~\n-> (topic_1: instruction language) + (disciplines_1: selection structured)\n-> [model expand]~\n-> (topic_1: instruction language) + (fields_1: selection structured)\n-> [model generate]~\n-> (questions_1: artifact structured)\n-> [model modify]~\n-> (questions_2: artifact structured)"
+      },
+      {
+        "name": "Tailor Exploration Directions",
+        "rawExpression": "(questions_1: artifact structured)\n-> [human select]\n-> (questions_1: artifact structured) + (selected_questions_1: selection structured)\n-> [human modify]\n-> (questions_2: artifact structured) + (selected_questions_1: selection structured)\n-> [human select]\n-> (questions_2: artifact structured) + (selected_questions_2: selection structured)"
+      },
+      {
+        "name": "Generate Additional Exploratory Questions",
+        "rawExpression": "(topic_1: instruction language) + (questions_1: artifact structured)\n-> [human specify]\n-> (topic_1: instruction language) + (questions_1: artifact structured) + (request_1: instruction language)\n-> [model generate]~\n-> (questions_2: artifact structured)\n-> [human select]\n-> (questions_2: artifact structured) + (selected_questions_1: selection structured)"
+      },
+      {
+        "name": "Expand Queries and Retrieve Papers",
+        "rawExpression": "(topic_1: instruction language) + (selected_questions_1: selection structured)\n-> [model generate]~\n-> (pseudo_answers_1: artifact language)\n-> [model extract]~\n-> (terminology_1: artifact structured)\n-> [model generate]~\n-> (queries_1: instruction structured)\n-> [tool execute]\n-> (papers_1: artifact structured)"
+      },
+      {
+        "name": "Extract Contextualized Research Themes",
+        "rawExpression": "(topic_1: instruction language) + (selected_questions_1: selection structured) + (papers_1: artifact structured)\n-> [tool extract]\n-> (topic_1: instruction language) + (selected_questions_1: selection structured) + (papers_1: artifact structured) + (keyphrases_1: artifact structured)\n-> [tool translate]\n-> (embeddings_1: artifact structured)\n-> [tool execute]\n-> (clusters_1: artifact structured)\n-> [model evaluate]~\n-> (clusters_1: artifact structured) + (cluster_assessment_1: evaluation structured)\n-> [tool modify]\n-> (themes_1: artifact structured) + (possibly_relevant_papers_1: artifact structured)"
+      },
+      {
+        "name": "Inspect Themes and Screen Papers",
+        "rawExpression": "(topic_1: instruction language) + (selected_questions_1: selection structured) + (themes_1: artifact structured) + (papers_1: artifact structured)\n-> [tool extract]\n-> (themes_1: artifact structured) + (papers_1: artifact structured) + (annotations_1: artifact structured)\n-> [tool compose]\n-> (annotated_papers_1: artifact visual) + (theme_overview_1: artifact visual)\n-> [human select]\n-> (annotated_papers_1: artifact visual) + (theme_overview_1: artifact visual) + (paper_selection_1: selection structured)"
+      },
+      {
+        "name": "Organize Useful Papers into Collections",
+        "rawExpression": "(themes_1: artifact structured) + (papers_1: artifact structured)\n-> [human select]\n-> (themes_1: artifact structured) + (papers_1: artifact structured) + (paper_selection_1: selection structured)\n-> [tool compose]\n-> (collections_1: artifact structured)\n-> [human modify]\n-> (collections_2: artifact structured)"
+      },
+      {
+        "name": "Explore Citations and References",
+        "rawExpression": "(paper_1: artifact structured) + (topic_1: instruction language) + (exploration_history_1: artifact structured)\n-> [human select]\n-> (paper_1: artifact structured) + (citation_request_1: instruction structured) + (topic_1: instruction language) + (exploration_history_1: artifact structured)\n-> [tool execute]\n-> (related_papers_1: artifact structured) + (topic_1: instruction language) + (exploration_history_1: artifact structured)\n-> [tool evaluate]\n-> (ranked_related_papers_1: artifact structured)\n-> [human select]\n-> (selected_paper_1: selection structured)"
+      },
+      {
+        "name": "Generate Exploratory Questions from Paper of Interest",
+        "rawExpression": "(paper_1: artifact structured)\n-> [human select]\n-> (selected_paper_1: selection structured)\n-> [human specify]\n-> (selected_paper_1: selection structured) + (focus_1: instruction language)\n-> [model select]~\n-> (selected_paper_1: selection structured) + (focus_1: instruction language) + (fields_1: selection structured)\n-> [model generate]~\n-> (questions_1: artifact structured)\n-> [human select]\n-> (questions_1: artifact structured) + (selected_questions_1: selection structured)"
+      }
+    ]
+  },
+  {
+    "paper": {
+      "title": "ImaginationVellum: Generative-AI Ideation Canvas with Spatial Prompts, Generative Strokes, and Ideation History",
+      "authors": [
+        "Nicolai Marquardt",
+        "Asta Roseway",
+        "Hugo Romat",
+        "Payod Panda",
+        "Michel Pahud",
+        "Gonzalo Ramos",
+        "Steven M. Drucker",
+        "Andrew D. Wilson",
+        "Ken Hinckley",
+        "Nathalie Riche"
+      ],
+      "year": 2025,
+      "venue": "UIST",
+      "citationKey": "marquardt2025imaginationvellum",
+      "doi": "10.1145/3746059.3747631",
+      "url": "https://doi.org/10.1145/3746059.3747631",
+      "tags": [
+        "human-AI co-creation",
+        "visual ideation",
+        "spatial prompting",
+        "generative strokes",
+        "image generation",
+        "direct manipulation",
+        "provenance"
+      ]
+    },
+    "system": {
+      "name": "ImaginationVellum",
+      "description": "A multimodal spatial canvas for visual ideation in which users arrange sketches, images, and text to steer generative image models. Spatial prompting and generative strokes translate canvas relationships into weighted prompts and model parameters, while temporal replay and provenance visualization support revisiting and branching from earlier ideas.",
+      "processScope": "Canvas-based visual generation, composition and remixing, four generative stroke modes, generative stamps and lenses, and ideation history interactions.",
+      "notes": "The generative processes can be repeated using previously generated images as source material. The system uses deterministic spatial mappings to construct prompts and configure generation parameters, followed by stochastic Stable Diffusion image generation. The processes below describe distinct interaction modes rather than a mandatory sequence."
+    },
+    "processes": [
+      {
+        "name": "Canvas composition",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human modify]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Generate sketch from selection",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (source_1: selection visual)\n-> [human configure]\n-> (canvas_1: artifact spatial) + (source_1: selection visual) + (generation_config_1: instruction structured)\n-> [tool translate]\n-> (source_1: selection visual) + (prompt_1: instruction language) + (generation_config_1: instruction structured)\n-> [model generate]~\n-> (image_1: artifact visual)\n-> [tool compose]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Semantic Generative Stroke",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human specify]\n-> (canvas_2: artifact spatial) + (intent_tags_1: instruction language)\n-> [human specify]\n-> (canvas_2: artifact spatial) + (intent_tags_1: instruction language) + (stroke_1: instruction spatial)\n-> [tool extract]\n-> (intent_tags_1: instruction language) + (stroke_1: instruction spatial) + (spatial_weights_1: instruction structured)\n-> [tool translate]\n-> (prompt_1: instruction language) + (generation_config_1: instruction structured) + (stroke_1: instruction spatial)\n-> [model generate]~\n-> (images_1: artifact visual) + (stroke_1: instruction spatial)\n-> [tool compose]\n-> (canvas_3: artifact spatial)"
+      },
+      {
+        "name": "Transformation Generative Stroke",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (source_1: selection visual)\n-> [human specify]\n-> (canvas_1: artifact spatial) + (source_1: selection visual) + (stroke_1: instruction spatial)\n-> [tool translate]\n-> (source_1: selection visual) + (prompt_1: instruction language) + (generation_config_1: instruction structured) + (stroke_1: instruction spatial)\n-> [model generate]~\n-> (images_1: artifact visual)\n-> [tool compose]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Variation Generative Stroke",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (source_1: selection visual)\n-> [human specify]\n-> (canvas_1: artifact spatial) + (source_1: selection visual) + (stroke_1: instruction spatial)\n-> [tool translate]\n-> (source_1: selection visual) + (stroke_1: instruction spatial) + (generation_config_1: instruction structured) + (prompt_1: instruction language)\n-> [model generate]~\n-> (images_1: artifact visual)\n-> [tool compose]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Style Generative Stroke",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (source_1: selection visual)\n-> [human specify]\n-> (canvas_1: artifact spatial) + (source_1: selection visual) + (stroke_1: instruction spatial)\n-> [tool translate]\n-> (source_1: selection visual) + (stroke_1: instruction spatial) + (style_config_1: instruction structured) + (prompt_1: instruction language)\n-> [model generate]~\n-> (images_1: artifact visual)\n-> [tool compose]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Generative Stamp",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human specify]\n-> (canvas_1: artifact spatial) + (position_1: instruction spatial)\n-> [tool translate]\n-> (prompt_1: instruction language) + (generation_config_1: instruction structured)\n-> [model generate]~\n-> (image_1: artifact visual)\n-> [tool compose]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Generative Lens",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (region_1: selection spatial)\n-> [tool translate]\n-> (source_1: artifact visual) + (prompt_1: instruction language) + (generation_config_1: instruction structured)\n-> [model generate]~\n-> (image_1: artifact visual)\n-> [tool compose]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Manual remixing and regeneration",
+        "rawExpression": "(canvas_1: artifact spatial)\n-> [human select]\n-> (canvas_1: artifact spatial) + (elements_1: selection visual)\n-> [human modify]\n-> (canvas_2: artifact spatial) + (composition_1: artifact visual)\n-> [human select]\n-> (canvas_2: artifact spatial) + (source_1: selection visual)\n-> [tool translate]\n-> (source_1: selection visual) + (prompt_1: instruction language) + (generation_config_1: instruction structured)\n-> [model generate]~\n-> (image_1: artifact visual)\n-> [tool compose]\n-> (canvas_3: artifact spatial)"
+      },
+      {
+        "name": "Spatial prompt feedforward",
+        "rawExpression": "(canvas_1: artifact spatial) + (cursor_1: instruction spatial)\n-> [tool extract]\n-> (canvas_1: artifact spatial) + (cursor_1: instruction spatial) + (tag_weights_1: instruction structured)\n-> [tool translate]\n-> (canvas_1: artifact spatial) + (feedforward_1: artifact visual)"
+      },
+      {
+        "name": "Temporal replay and branching",
+        "rawExpression": "(history_1: artifact structured)\n-> [human select]\n-> (history_1: artifact structured) + (timepoint_1: selection structured)\n-> [tool execute]\n-> (canvas_1: artifact spatial) + (timepoint_1: selection structured)\n-> [human modify]\n-> (canvas_2: artifact spatial)"
+      },
+      {
+        "name": "Provenance visualization",
+        "rawExpression": "(canvas_1: artifact spatial) + (provenance_1: artifact structured)\n-> [human select]\n-> (canvas_1: artifact spatial) + (provenance_1: artifact structured) + (element_1: selection visual)\n-> [tool extract]\n-> (element_1: selection visual) + (dependencies_1: artifact structured)\n-> [tool translate]\n-> (canvas_1: artifact spatial) + (provenance_graph_1: artifact visual)"
+      }
+    ]
+  },
+  {
+    "paper": {
+      "title": "GenTune: Toward Traceable Prompts to Improve Controllability of Image Refinement in Environment Design",
+      "authors": [
+        "Wen-Fan Wang",
+        "Ting-Ying Lee",
+        "Chien-Ting Lu",
+        "Che-Wei Hsu",
+        "Nil Ponsa i Campanyà",
+        "Yu Chen",
+        "Mike Y. Chen",
+        "Bing-Yu Chen"
+      ],
+      "year": 2025,
+      "venue": "UIST",
+      "citationKey": "wang2025gentune",
+      "doi": "10.1145/3746059.3747774",
+      "url": "https://doi.org/10.1145/3746059.3747774",
+      "tags": [
+        "image generation",
+        "image refinement",
+        "prompt editing",
+        "traceable prompts",
+        "semantic selection",
+        "inpainting",
+        "multimodal interaction",
+        "human-AI collaboration",
+        "environment design"
+      ]
+    },
+    "system": {
+      "name": "GenTune",
+      "description": "A human-AI image generation and refinement system that connects visual elements to labels extracted from structured prompts. Users can select image elements and refine them through natural-language instructions or reference images using controlled-seed prompt regeneration or semantic-guided inpainting.",
+      "processScope": "Initial image generation, prompt-element correspondence, global refinement, semantic-guided prompt refinement, semantic-guided inpainting, and contextual refinement suggestions.",
+      "notes": "The system uses separate LLM modules for brainstorming, label extraction, refinement, inpainting, and suggestions. SAM segments user-selected image regions, while CLIP matches these regions against labels extracted from the structured prompt. Refinement produces four image candidates per iteration: four controlled-seed results, four inpainting results, or two of each in mixed mode. Users select a candidate to continue refining. The refinement processes describe one iteration and can recur using the selected image and its associated prompt. Controlled-seed regeneration can overwrite previous inpainting modifications. Reference-image captioning is optional, and suggestion generation is independent of executing a refinement."
+    },
+    "processes": [
+      {
+        "name": "Initial Image Generation",
+        "rawExpression": "(input_1: instruction language)\n-> [model_1 expand]~\n-> (prompt_1: instruction structured)\n-> [model_2 generate]~\n-> (prompt_1: instruction structured) + (images_1: artifact visual)\n-> [human select]\n-> (prompt_1: instruction structured) + (image_1: artifact visual) + (image_selection_1: selection visual)"
+      },
+      {
+        "name": "Prompt Label Extraction",
+        "rawExpression": "(prompt_1: instruction structured)\n-> [model_1 extract]~\n-> (prompt_1: instruction structured) + (labels_1: label structured)"
+      },
+      {
+        "name": "Traceable Prompt Element Selection",
+        "rawExpression": "(image_1: artifact visual) + (prompt_1: instruction structured) + (labels_1: label structured)\n-> [human select]\n-> (image_1: artifact visual) + (prompt_1: instruction structured) + (labels_1: label structured) + (region_1: selection spatial)\n-> [tool extract]\n-> (image_1: artifact visual) + (prompt_1: instruction structured) + (labels_1: label structured) + (region_1: selection spatial) + (mask_1: artifact spatial)\n-> [tool extract]\n-> (prompt_1: instruction structured) + (labels_1: label structured) + (region_1: selection spatial) + (mask_1: artifact spatial) + (region_image_1: artifact visual)\n-> [model_1 match]\n-> (prompt_1: instruction structured) + (region_1: selection spatial) + (mask_1: artifact spatial) + (candidate_labels_1: label structured)\n-> [human select]\n-> (prompt_1: instruction structured) + (region_1: selection spatial) + (mask_1: artifact spatial) + (selected_label_1: selection structured)"
+      },
+      {
+        "name": "Global Refinement",
+        "rawExpression": "(image_1: artifact visual) + (prompt_1: instruction structured)\n-> [human specify]\n-> (image_1: artifact visual) + (prompt_1: instruction structured) + (instruction_1: instruction language)\n-> [model_1 modify]~\n-> (image_1: artifact visual) + (prompt_2: instruction structured)\n-> [model_2 generate]~\n-> (prompt_2: instruction structured) + (images_2: artifact visual)\n-> [human select]\n-> (prompt_2: instruction structured) + (image_2: artifact visual) + (image_selection_1: selection visual)"
+      },
+      {
+        "name": "Semantic-Guided Prompt Refinement",
+        "rawExpression": "(image_1: artifact visual) + (prompt_1: instruction structured) + (selected_label_1: selection structured)\n-> [human specify]\n-> (image_1: artifact visual) + (prompt_1: instruction structured) + (selected_label_1: selection structured) + (instruction_1: instruction language)\n-> [model_1 modify]~\n-> (image_1: artifact visual) + (prompt_2: instruction structured)\n-> [model_2 generate]~\n-> (prompt_2: instruction structured) + (images_2: artifact visual)\n-> [human select]\n-> (prompt_2: instruction structured) + (image_2: artifact visual) + (image_selection_1: selection visual)"
+      },
+      {
+        "name": "Reference Image Captioning",
+        "rawExpression": "(reference_image_1: instruction visual)\n-> [model extract]~\n-> (reference_caption_1: instruction language)"
+      },
+      {
+        "name": "Semantic-Guided Prompt Refinement With Reference Image",
+        "rawExpression": "(image_1: artifact visual) + (prompt_1: instruction structured) + (selected_label_1: selection structured) + (instruction_1: instruction language) + (reference_caption_1: instruction language)\n-> [model_1 modify]~\n-> (image_1: artifact visual) + (prompt_2: instruction structured)\n-> [model_2 generate]~\n-> (prompt_2: instruction structured) + (images_2: artifact visual)\n-> [human select]\n-> (prompt_2: instruction structured) + (image_2: artifact visual) + (image_selection_1: selection visual)"
+      },
+      {
+        "name": "Updated Label Extraction",
+        "rawExpression": "(prompt_2: instruction structured)\n-> [model extract]~\n-> (prompt_2: instruction structured) + (labels_2: label structured)"
+      },
+      {
+        "name": "Semantic-Guided Inpainting",
+        "rawExpression": "(image_1: artifact visual) + (prompt_1: instruction structured) + (selected_label_1: selection structured) + (mask_1: artifact spatial)\n-> [human specify]\n-> (image_1: artifact visual) + (prompt_1: instruction structured) + (selected_label_1: selection structured) + (mask_1: artifact spatial) + (instruction_1: instruction language)\n-> [model_1 generate]~\n-> (image_1: artifact visual) + (prompt_1: instruction structured) + (mask_1: artifact spatial) + (inpainting_prompt_1: instruction language)\n-> [model_2 modify]~\n-> (prompt_1: instruction structured) + (inpainting_prompt_1: instruction language) + (mask_1: artifact spatial) + (images_2: artifact visual)\n-> [human select]\n-> (prompt_1: instruction structured) + (inpainting_prompt_1: instruction language) + (image_2: artifact visual) + (image_selection_1: selection visual)\n-> [model_3 compose]~\n-> (image_2: artifact visual) + (prompt_2: instruction structured)\n-> [model_4 extract]~\n-> (image_2: artifact visual) + (prompt_2: instruction structured) + (labels_2: label structured)"
+      },
+      {
+        "name": "Semantic-Guided Inpainting With Reference Image",
+        "rawExpression": "(image_1: artifact visual) + (prompt_1: instruction structured) + (selected_label_1: selection structured) + (mask_1: artifact spatial) + (instruction_1: instruction language) + (reference_caption_1: instruction language)\n-> [model_1 generate]~\n-> (image_1: artifact visual) + (prompt_1: instruction structured) + (mask_1: artifact spatial) + (inpainting_prompt_1: instruction language)\n-> [model_2 modify]~\n-> (prompt_1: instruction structured) + (inpainting_prompt_1: instruction language) + (mask_1: artifact spatial) + (images_2: artifact visual)\n-> [human select]\n-> (prompt_1: instruction structured) + (inpainting_prompt_1: instruction language) + (image_2: artifact visual) + (image_selection_1: selection visual)\n-> [model_3 compose]~\n-> (image_2: artifact visual) + (prompt_2: instruction structured)\n-> [model_4 extract]~\n-> (image_2: artifact visual) + (prompt_2: instruction structured) + (labels_2: label structured)"
+      },
+      {
+        "name": "Global Refinement Suggestions",
+        "rawExpression": "(prompt_1: instruction structured)\n-> [model generate]~\n-> (suggestions_1: instruction structured)\n-> [human select]\n-> (selected_suggestion_1: selection language)"
+      },
+      {
+        "name": "Label-Based Refinement Suggestions",
+        "rawExpression": "(prompt_1: instruction structured) + (selected_label_1: selection structured)\n-> [model generate]~\n-> (suggestions_1: instruction structured)\n-> [human select]\n-> (selected_suggestion_1: selection language)"
+      },
+      {
+        "name": "Expanded Refinement Suggestions",
+        "rawExpression": "(prompt_1: instruction structured) + (instruction_1: instruction language)\n-> [model expand]~\n-> (suggestions_1: instruction structured)\n-> [human select]\n-> (selected_suggestion_1: selection language)"
+      },
+      {
+        "name": "Expanded Label-Based Refinement Suggestions",
+        "rawExpression": "(prompt_1: instruction structured) + (selected_label_1: selection structured) + (instruction_1: instruction language)\n-> [model expand]~\n-> (suggestions_1: instruction structured)\n-> [human select]\n-> (selected_suggestion_1: selection language)"
+      }
+    ]
+  }
+]

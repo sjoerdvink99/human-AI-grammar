@@ -1,0 +1,47 @@
+{
+  "name": "haii-grammar",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "db:generate": "drizzle-kit generate",
+    "db:seed": "tsx src/db/seed.ts",
+    "db:reset": "tsx src/db/seed.ts --reset",
+    "corpus:export": "tsx src/db/corpus.ts export",
+    "corpus:import": "tsx src/db/corpus.ts import",
+    "build:static": "STATIC_EXPORT=1 next build",
+    "plugin:build": "esbuild src/plugin/cli.ts --bundle --platform=node --format=esm --target=node20 --minify --legal-comments=none --outfile=plugin/scripts/human-ai.mjs && cp corpus/prompt.md plugin/skills/extract/prompt.md"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.11.1",
+    "d3-scale": "^4.0.2",
+    "drizzle-orm": "^0.45.4",
+    "lucide-react": "^1.54.0",
+    "next": "15.5.27",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/d3-scale": "^4.0.9",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.11",
+    "esbuild": "^0.25.12",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.27",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^4.1.11"
+  }
+}
