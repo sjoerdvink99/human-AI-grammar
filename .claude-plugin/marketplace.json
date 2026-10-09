@@ -1,0 +1,16 @@
+{
+  "name": "human-ai-grammar",
+  "owner": {
+    "name": "Sjoerd Vink"
+  },
+  "metadata": {
+    "description": "Claude Code plugin for the Human-AI grammar: extract expressions from papers, design systems, and implement them."
+  },
+  "plugins": [
+    {
+      "name": "human-ai",
+      "source": "./plugin",
+      "description": "Extract Human-AI grammar expressions from papers, design new systems with the corpus, and implement designs."
+    }
+  ]
+}

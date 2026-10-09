@@ -1,0 +1,8 @@
+{
+  "name": "human-ai",
+  "version": "0.1.0",
+  "description": "Extract Human-AI grammar expressions from papers, design new systems with the corpus, and implement designs.",
+  "author": { "name": "Sjoerd Vink" },
+  "homepage": "https://sjoerdvink99.github.io/human-AI-grammar/",
+  "repository": "https://github.com/sjoerdvink99/human-AI-grammar"
+}
